@@ -1,0 +1,268 @@
+﻿<!DOCTYPE html>
+<html lang="zxx">
+<head>
+    <!-- Google Tag Manager -->
+    <script>
+        (function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-PDTWJ3Z');</script>
+    <!-- End Google Tag Manager -->
+    <title>Trego - Travel Tour HTML Template</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <!-- External CSS libraries -->
+    <link type="text/css" rel="stylesheet" href="~/assets/css/bootstrap.min.css">
+    <link type="text/css" rel="stylesheet" href="~/assets/css/magnific-popup.css">
+    <link type="text/css" rel="stylesheet" href="~/assets/css/jquery.selectBox.css">
+    <link type="text/css" rel="stylesheet" href="~/assets/css/dropzone.css">
+    <link type="text/css" rel="stylesheet" href="~/assets/css/slick.css">
+    <link type="text/css" rel="stylesheet" href="~/assets/css/rangeslider.css">
+    <link type="text/css" rel="stylesheet" href="~/assets/css/animate.min.css">
+    <link type="text/css" rel="stylesheet" href="~/assets/css/daterangepicker.css">
+    <link type="text/css" rel="stylesheet" href="~/assets/css/leaflet.css">
+    <link type="text/css" rel="stylesheet" href="~/assets/css/map.css">
+    <link type="text/css" rel="stylesheet" href="~/assets/css/jquery.mCustomScrollbar.css">
+    <link type="text/css" rel="stylesheet" href="~/assets/fonts/font-awesome/css/font-awesome.min.css">
+    <link type="text/css" rel="stylesheet" href="~/assets/fonts/flaticon/font/flaticon.css">
+    <link rel="stylesheet" type="text/css" href="~/assets/fonts/linearicons/style.css">
+
+    <!-- Favicon icon -->
+    <link rel="shortcut icon" href="~/assets/img/favicon.ico" type="image/x-icon">
+
+    <!-- Google fonts -->
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Raleway:300,400,500,600,300,700">
+
+    <!-- Custom Stylesheet -->
+    <link type="text/css" rel="stylesheet" href="~/assets/css/style.css">
+    <link rel="stylesheet" type="text/css" id="style_sheet" href="~/assets/css/skins/default.css">
+
+</head>
+<body id="top">
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PDTWJ3Z"
+                height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    <div class="page_loader"></div>
+
+    <!-- main header start -->
+    <header class="main-header sticky-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <nav class="navbar navbar-expand-lg navbar-light rounded">
+                        <a class="navbar-brand logo navbar-brand d-flex mr-auto" href="@Url.Action("Index","Home")">
+                            <img src="~/assets/img/logos/black-logo.png" alt="logo">
+                        </a>
+                        <div class="navbar-collapse collapse w-100" id="navbar">
+                            <ul class="navbar-nav ml-auto">
+                                <li class="nav-item dropdown active">
+                                    <a class="nav-link dropdown-toggle" href="@Url.Action("Tours_grid","Tours")" id="navbarDropdownMenuLink2">Tours</a>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="@Url.Action("Destination_mansory","Destinations")" id="navbarDropdownMenuLink3">Destinations</a>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="@Url.Action("Blog_post","Blog")" id="navbarDropdownMenuLink4">Blog</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="contact.html">Contact</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="register.html">Register</a>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a href="#full-page-search" class="nav-link h-icon">
+                                        <i class="flaticon-search"></i>
+                                    </a>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <button type="button" style="background-color: Transparent;border: none;" class="btn btn-secondary nav-link dropdown-toggle"><i class="fa fa-bars" aria-hidden="true"></i></button>
+                                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                        <li><a class="dropdown-item" href="about.html">About Us</a></li>
+                                        <li><a class="dropdown-item" href="pricing-tables.html">Pricing Tables</a></li>
+                                        <li><a class="dropdown-item" href="gallery.html">Gallery</a></li>
+                                        <li><a class="dropdown-item" href="agent.html">Meet Our Team</a></li>
+                                        <li><a class="dropdown-item" href="faq.html">Faqs</a></li>
+                                        <li><a class="dropdown-item" href="typography.html">Typography</a></li>
+                                        <li><a class="dropdown-item" href="coming-soon.html">Coming Soon</a></li>
+                                        <li><a class="dropdown-item" href="pages-404.html">404 Page</a></li>
+                                    </ul>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- main header end -->
+    @RenderBody()
+    <!-- Footer start -->
+    <footer class="footer">
+        <div class="container footer-inner">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="footer-item">
+                        <h4>Contact Us</h4>
+                        <div class="s-border"></div>
+                        <div class="m-border"></div>
+                        <ul class="contact-info">
+                            <li>
+                                <i class="flaticon-pin"></i>20/F Green Road, Dhanmondi, Dhaka
+                            </li>
+                            <li>
+                                <i class="flaticon-mail"></i><a href="mailto:sales@hotelempire.com">info@themevessel.com</a>
+                            </li>
+                            <li>
+                                <i class="flaticon-phone"></i><a href="tel:+55-417-634-7071">+0477 85X6 552</a>
+                            </li>
+                            <li>
+                                <i class="flaticon-fax"></i>+0477 85X6 552
+                            </li>
+                        </ul>
+                        <ul class="social-list clearfix">
+                            <li><a href="#" class="facebook-color"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#" class="twitter-color"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="#" class="google-color"><i class="fa fa-google-plus"></i></a></li>
+                            <li><a href="#" class="rss-color"><i class="fa fa-rss"></i></a></li>
+                            <li><a href="#" class="linkedin-color"><i class="fa fa-linkedin"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6 col-sm-6">
+                    <div class="footer-item">
+                        <h4>Solutions</h4>
+                        <div class="s-border"></div>
+                        <div class="m-border"></div>
+                        <ul class="links">
+                            <li>
+                                <a href="#"><i class="fa fa-angle-right"></i>Tours</a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="fa fa-angle-right"></i>Pricing</a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="fa fa-angle-right"></i>About us</a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="fa fa-angle-right"></i>Destinations</a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="fa fa-angle-right"></i>Testimonials</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6 col-sm-6">
+                    <div class="footer-item">
+                        <h4>quick links</h4>
+                        <div class="s-border"></div>
+                        <div class="m-border"></div>
+                        <ul class="links">
+                            <li>
+                                <a href="#"><i class="fa fa-angle-right"></i>Upcoming Tours</a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="fa fa-angle-right"></i>Contact Us</a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="fa fa-angle-right"></i>Discover</a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="fa fa-angle-right"></i>Payment Options</a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="fa fa-angle-right"></i>FAQs</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6 col-sm-6">
+                    <div class="footer-item">
+                        <h4>Resources</h4>
+                        <div class="s-border"></div>
+                        <div class="m-border"></div>
+                        <ul class="links">
+                            <li>
+                                <a href="#"><i class="fa fa-angle-right"></i>Privacy Policy</a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="fa fa-angle-right"></i>Security</a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="fa fa-angle-right"></i>Terms of Use</a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="fa fa-angle-right"></i>Information</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-8 col-sm-12">
+                    <div class="footer-item clearfix">
+                        <h4>Subscribe</h4>
+                        <div class="s-border"></div>
+                        <div class="m-border"></div>
+                        <div class="Subscribe-box">
+                            <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.</p>
+                            <form class="form-inline" action="#" method="GET">
+                                <input type="text" class="form-control mb-sm-0" id="inlineFormInputName3" placeholder="Email Address">
+                                <button type="submit" class="btn"><i class="fa fa-paper-plane"></i></button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-12">
+                    <p class="copy">© 2020 <a href="http://themevessel.com/" target="_blank">Theme Vessel</a>. Trademarks and brands are the property of their respective owners.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer end -->
+    <!-- Full page search -->
+    <div id="full-page-search">
+        <button type="button" class="close">×</button>
+        <form action="#">
+            <input type="search" value="" placeholder="type keyword(s) here" />
+            <button type="submit" class="btn btn-sm btn-color">Search</button>
+        </form>
+    </div>
+
+    <!-- External JS libraries -->
+    <script src="~/assets/js/jquery-2.2.0.min.js"></script>
+    <script src="~/assets/js/popper.min.js"></script>
+    <script src="~/assets/js/bootstrap.min.js"></script>
+    <script src="~/assets/js/jquery.selectBox.js"></script>
+    <script src="~/assets/js/rangeslider.js"></script>
+    <script src="~/assets/js/jquery.magnific-popup.min.js"></script>
+    <script src="~/assets/js/jquery.filterizr.js"></script>
+    <script src="~/assets/js/wow.min.js"></script>
+    <script src="~/assets/js/moment.min.js"></script>
+    <script src="~/assets/js/daterangepicker.min.js"></script>
+    <script src="~/assets/js/backstretch.js"></script>
+    <script src="~/assets/js/jquery.countdown.js"></script>
+    <script src="~/assets/js/jquery.scrollUp.js"></script>
+    <script src="~/assets/js/particles.min.js"></script>
+    <script src="~/assets/js/typed.min.js"></script>
+    <script src="~/assets/js/slick.min.js"></script>
+    <script src="~/assets/js/dropzone.js"></script>
+    <script src="~/assets/js/jquery.mb.YTPlayer.js"></script>
+    <script src="~/assets/js/leaflet.js"></script>
+    <script src="~/assets/js/leaflet-providers.js"></script>
+    <script src="~/assets/js/leaflet.markercluster.js"></script>
+    <script src="~/assets/js/maps.js"></script>
+    <script src="~/assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB0N5pbJN10Y1oYFRd0MJ_v2g8W2QT74JE"></script>
+    <script src="~/assets/js/ie-emulation-modes-warning.js"></script>
+    <!-- Custom JS Script -->
+    <script src="~/assets/js/app.js"></script>
+</body>
+</html>

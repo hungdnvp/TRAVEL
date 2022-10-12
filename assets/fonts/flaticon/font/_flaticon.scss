@@ -1,0 +1,116 @@
+    /*
+    Flaticon icon font: Flaticon
+    Creation date: 25/01/2020 21:04
+    */
+
+    @font-face {
+  font-family: "Flaticon";
+  src: url("./Flaticon.eot");
+  src: url("./Flaticon.eot?#iefix") format("embedded-opentype"),
+       url("./Flaticon.woff2") format("woff2"),
+       url("./Flaticon.woff") format("woff"),
+       url("./Flaticon.ttf") format("truetype"),
+       url("./Flaticon.svg#Flaticon") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  @font-face {
+    font-family: "Flaticon";
+    src: url("./Flaticon.svg#Flaticon") format("svg");
+  }
+}
+
+    .fi:before{
+        display: inline-block;
+  font-family: "Flaticon";
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  line-height: 1;
+  text-decoration: inherit;
+  text-rendering: optimizeLegibility;
+  text-transform: none;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+    }
+
+    .flaticon-zoom:before { content: "\f100"; }
+.flaticon-search:before { content: "\f101"; }
+.flaticon-search-1:before { content: "\f102"; }
+.flaticon-clock:before { content: "\f103"; }
+.flaticon-calendar:before { content: "\f104"; }
+.flaticon-download:before { content: "\f105"; }
+.flaticon-chevron:before { content: "\f106"; }
+.flaticon-pin:before { content: "\f107"; }
+.flaticon-shapes-and-symbols:before { content: "\f108"; }
+.flaticon-journey:before { content: "\f109"; }
+.flaticon-travel:before { content: "\f10a"; }
+.flaticon-value:before { content: "\f10b"; }
+.flaticon-aircraft:before { content: "\f10c"; }
+.flaticon-aircraft-1:before { content: "\f10d"; }
+.flaticon-bus:before { content: "\f10e"; }
+.flaticon-tour:before { content: "\f10f"; }
+.flaticon-train:before { content: "\f110"; }
+.flaticon-plane:before { content: "\f111"; }
+.flaticon-camping-tent:before { content: "\f112"; }
+.flaticon-money:before { content: "\f113"; }
+.flaticon-payment:before { content: "\f114"; }
+.flaticon-google-place:before { content: "\f115"; }
+.flaticon-phone:before { content: "\f116"; }
+.flaticon-fax:before { content: "\f117"; }
+.flaticon-mail:before { content: "\f118"; }
+.flaticon-mail-1:before { content: "\f119"; }
+.flaticon-comment:before { content: "\f11a"; }
+.flaticon-blog:before { content: "\f11b"; }
+.flaticon-heart:before { content: "\f11c"; }
+.flaticon-wheel:before { content: "\f11d"; }
+.flaticon-internet:before { content: "\f11e"; }
+.flaticon-user:before { content: "\f11f"; }
+.flaticon-team:before { content: "\f120"; }
+.flaticon-video:before { content: "\f121"; }
+.flaticon-see:before { content: "\f122"; }
+.flaticon-map:before { content: "\f123"; }
+.flaticon-pencil:before { content: "\f124"; }
+.flaticon-edit:before { content: "\f125"; }
+    
+    $font-Flaticon-zoom: "\f100";
+    $font-Flaticon-search: "\f101";
+    $font-Flaticon-search-1: "\f102";
+    $font-Flaticon-clock: "\f103";
+    $font-Flaticon-calendar: "\f104";
+    $font-Flaticon-download: "\f105";
+    $font-Flaticon-chevron: "\f106";
+    $font-Flaticon-pin: "\f107";
+    $font-Flaticon-shapes-and-symbols: "\f108";
+    $font-Flaticon-journey: "\f109";
+    $font-Flaticon-travel: "\f10a";
+    $font-Flaticon-value: "\f10b";
+    $font-Flaticon-aircraft: "\f10c";
+    $font-Flaticon-aircraft-1: "\f10d";
+    $font-Flaticon-bus: "\f10e";
+    $font-Flaticon-tour: "\f10f";
+    $font-Flaticon-train: "\f110";
+    $font-Flaticon-plane: "\f111";
+    $font-Flaticon-camping-tent: "\f112";
+    $font-Flaticon-money: "\f113";
+    $font-Flaticon-payment: "\f114";
+    $font-Flaticon-google-place: "\f115";
+    $font-Flaticon-phone: "\f116";
+    $font-Flaticon-fax: "\f117";
+    $font-Flaticon-mail: "\f118";
+    $font-Flaticon-mail-1: "\f119";
+    $font-Flaticon-comment: "\f11a";
+    $font-Flaticon-blog: "\f11b";
+    $font-Flaticon-heart: "\f11c";
+    $font-Flaticon-wheel: "\f11d";
+    $font-Flaticon-internet: "\f11e";
+    $font-Flaticon-user: "\f11f";
+    $font-Flaticon-team: "\f120";
+    $font-Flaticon-video: "\f121";
+    $font-Flaticon-see: "\f122";
+    $font-Flaticon-map: "\f123";
+    $font-Flaticon-pencil: "\f124";
+    $font-Flaticon-edit: "\f125";

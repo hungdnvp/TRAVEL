@@ -1,0 +1,547 @@
+﻿
+@{
+    ViewBag.Title = "Tours_grid";
+    ViewData["sub_link"] = "Tours Grid";
+    ViewData["Title"] = "Tours Grid";
+}
+
+@Html.Partial("_banner")
+<!-- Tour grid rightside start -->
+<div class="tour-grid-rightside content-area-2">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-12">
+                <div class="option-bar">
+                    <div class="row clearfix">
+                        <div class="col-xl-4 col-lg-5 col-md-5 col-sm-5">
+                            <h4>
+                                <span class="heading-icon">
+                                    <i class="fa fa-caret-right icon-design"></i>
+                                    <i class="fa fa-th-large"></i>
+                                </span>
+                                <span class="heading">20 Result Found</span>
+                            </h4>
+                        </div>
+                        <div class="col-xl-8 col-lg-7 col-md-7 col-sm-7">
+                            <div class="sorting-options clearfix">
+                                <a href="#" class="change-view-btn"><i class="fa fa-th-list"></i></a>
+                                <a href="#" class="change-view-btn active-view-btn"><i class="fa fa-th-large"></i></a>
+                            </div>
+                            <div class="search-area">
+                                <select class="selectpicker search-fields" name="location">
+                                    <option>Default Sorting</option>
+                                    <option>High to Low</option>
+                                    <option>Low to High</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <div class="tour-item">
+                            <div class="item-thumbnail">
+                                <a href="tours-detail.html" class="item-img">
+                                    <div class="plan-price"><sup>$</sup>600<sub>/ night</sub></div>
+                                    <img src="~/assets/img/tour/img-1.jpg" alt="tours" class="img-fluid">
+                                </a>
+                            </div>
+                            <div class="detail">
+                                <h1 class="title">
+                                    <a href="tours-detail.html">Camping and  mountains</a>
+                                </h1>
+                                <div class="location">
+                                    <a href="tours-detail.html">
+                                        <i class="flaticon-pin"></i> 2726 Shinn Street, New York
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="footer clearfix">
+                                <div class="pull-left">
+                                    <i class="flaticon-calendar"></i> 5 Days / 4 Nights
+                                </div>
+                                <div class="pull-right">
+                                    <div class="ratings">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star-o"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <div class="tour-item">
+                            <div class="item-thumbnail">
+                                <a href="tours-detail.html" class="item-img">
+                                    <div class="tag">Sale</div>
+                                    <div class="plan-price"><sup>$</sup>750<sub>/ night</sub></div>
+                                    <img src="~/assets/img/tour/img-2.jpg" alt="tours" class="img-fluid">
+                                </a>
+                            </div>
+                            <div class="detail">
+                                <h1 class="title">
+                                    <a href="tours-detail.html">Best Switzerland Tour</a>
+                                </h1>
+                                <div class="location">
+                                    <a href="tours-detail.html">
+                                        <i class="flaticon-pin"></i> 2726 Shinn Street, New York
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="footer clearfix">
+                                <div class="pull-left">
+                                    <i class="flaticon-calendar"></i> 5 Days / 4 Nights
+                                </div>
+                                <div class="pull-right">
+                                    <div class="ratings">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star-o"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <div class="tour-item">
+                            <div class="item-thumbnail">
+                                <a href="tours-detail.html" class="item-img">
+                                    <div class="tag">Sale</div>
+                                    <div class="plan-price"><sup>$</sup>950<sub>/ night</sub></div>
+                                    <img src="~/assets/img/tour/img-3.jpg" alt="tours" class="img-fluid">
+                                </a>
+                            </div>
+                            <div class="detail">
+                                <h1 class="title">
+                                    <a href="tours-detail.html">Treasures of Thailand</a>
+                                </h1>
+                                <div class="location">
+                                    <a href="tours-detail.html">
+                                        <i class="flaticon-pin"></i> 2726 Shinn Street, New York
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="footer clearfix">
+                                <div class="pull-left">
+                                    <i class="flaticon-calendar"></i> 5 Days / 4 Nights
+                                </div>
+                                <div class="pull-right">
+                                    <div class="ratings">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star-o"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <div class="tour-item">
+                            <div class="item-thumbnail">
+                                <a href="tours-detail.html" class="item-img">
+                                    <div class="plan-price"><sup>$</sup>570<sub>/ night</sub></div>
+                                    <img src="~/assets/img/tour/img-4.jpg" alt="tours" class="img-fluid">
+                                </a>
+                            </div>
+                            <div class="detail">
+                                <h1 class="title">
+                                    <a href="tours-detail.html">Australia Sydney City</a>
+                                </h1>
+                                <div class="location">
+                                    <a href="tours-detail.html">
+                                        <i class="flaticon-pin"></i> 2726 Shinn Street, New York
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="footer clearfix">
+                                <div class="pull-left">
+                                    <i class="flaticon-calendar"></i>  5 Days / 4 Nights
+                                </div>
+                                <div class="pull-right">
+                                    <div class="ratings">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star-o"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <div class="tour-item">
+                            <div class="item-thumbnail">
+                                <a href="tours-detail.html" class="item-img">
+                                    <div class="tag">Sale</div>
+                                    <div class="plan-price"><sup>$</sup>580<sub>/ night</sub></div>
+                                    <img src="~/assets/img/tour/img-5.jpg" alt="tours" class="img-fluid">
+                                </a>
+                            </div>
+                            <div class="detail">
+                                <h1 class="title">
+                                    <a href="tours-detail.html">Discover Italian</a>
+                                </h1>
+                                <div class="location">
+                                    <a href="tours-detail.html">
+                                        <i class="flaticon-pin"></i> 2726 Shinn Street, New York
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="footer clearfix">
+                                <div class="pull-left">
+                                    <i class="flaticon-calendar"></i>  5 Days / 4 Nights
+                                </div>
+                                <div class="pull-right">
+                                    <div class="ratings">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star-o"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <div class="tour-item">
+                            <div class="item-thumbnail">
+                                <a href="tours-detail.html" class="item-img">
+                                    <div class="tag">Sale</div>
+                                    <div class="plan-price"><sup>$</sup>630<sub>/ night</sub></div>
+                                    <img src="~/assets/img/tour/img-6.jpg" alt="tours" class="img-fluid">
+                                </a>
+                            </div>
+                            <div class="detail">
+                                <h1 class="title">
+                                    <a href="tours-detail.html">Cuba Sailing Adventure</a>
+                                </h1>
+                                <div class="location">
+                                    <a href="tours-detail.html">
+                                        <i class="flaticon-pin"></i> 2726 Shinn Street, New York
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="footer clearfix">
+                                <div class="pull-left">
+                                    <i class="flaticon-calendar"></i>  5 Days / 4 Nights
+                                </div>
+                                <div class="pull-right">
+                                    <div class="ratings">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star-o"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <div class="tour-item">
+                            <div class="item-thumbnail">
+                                <a href="tours-detail.html" class="item-img">
+                                    <div class="tag">Sale</div>
+                                    <div class="plan-price"><sup>$</sup>700<sub>/ night</sub></div>
+                                    <img src="~/assets/img/tour/img-2.jpg" alt="tours" class="img-fluid">
+                                </a>
+                            </div>
+                            <div class="detail">
+                                <h1 class="title">
+                                    <a href="tours-detail.html">Best Switzerland Tour</a>
+                                </h1>
+                                <div class="location">
+                                    <a href="tours-detail.html">
+                                        <i class="flaticon-pin"></i> 2726 Shinn Street, New York
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="footer clearfix">
+                                <div class="pull-left">
+                                    <i class="flaticon-calendar"></i> 5 Days / 4 Nights
+                                </div>
+                                <div class="pull-right">
+                                    <div class="ratings">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star-o"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <div class="tour-item">
+                            <div class="item-thumbnail">
+                                <a href="tours-detail.html" class="item-img">
+                                    <div class="plan-price"><sup>$</sup>800<sub>/ night</sub></div>
+                                    <img src="~/assets/img/tour/img-1.jpg" alt="tours" class="img-fluid">
+                                </a>
+                            </div>
+                            <div class="detail">
+                                <h1 class="title">
+                                    <a href="tours-detail.html">Camping and  mountains</a>
+                                </h1>
+                                <div class="location">
+                                    <a href="tours-detail.html">
+                                        <i class="flaticon-pin"></i> 2726 Shinn Street, New York
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="footer clearfix">
+                                <div class="pull-left">
+                                    <i class="flaticon-calendar"></i>  5 Days / 4 Nights
+                                </div>
+                                <div class="pull-right">
+                                    <div class="ratings">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star-o"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="pagination-box">
+                            <nav aria-label="Page navigation example">
+                                <ul class="pagination">
+                                    <li class="page-item"><a class="page-link" href="#"><span aria-hidden="true">«</span></a></li>
+                                    <li class="page-item"><a class="page-link active" href="#">1</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                    <li class="page-item"><a class="page-link" href="#"><span aria-hidden="true">»</span></a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-12">
+                <div class="sidebar">
+                    <!-- Search area2 start -->
+                    <div class="widget search-area2">
+                        <h5 class="sidebar-title">Book This Tours</h5>
+                        <form class="inline-search-area" method="GET">
+                            <div class="form-group search-col">
+                                <input type="text" class="form-control" placeholder="Destination, City.....">
+                                <i class="flaticon-search icon-append"></i>
+                            </div>
+                            <div class="form-group search-col">
+                                <input type="text" name="dates" placeholder="Check In" class="datetimes-left form-control" />
+                                <i class="flaticon-calendar icon-append"></i>
+                            </div>
+                            <div class="form-group search-col">
+                                <input type="text" name="dates" placeholder="Check Out" class="datetimes-left form-control" />
+                                <i class="flaticon-calendar icon-append"></i>
+                            </div>
+                            <div class="form-group search-col">
+                                <select class="selectpicker search-fields btn-block form-control bdr" name="travel-type">
+                                    <option>Travel Type</option>
+                                    <option>Adventure</option>
+                                    <option>Escorted Tour</option>
+                                    <option>River Cruise</option>
+                                    <option>Hiking</option>
+                                    <option>Suffing</option>
+                                </select>
+                                <i class="flaticon-download icon-append"></i>
+                            </div>
+                            <div class="form-group clearfix">
+                                <p>Distance</p>
+                                <div class="range-slider">
+                                    <div data-min="0" data-max="100" data-unit="Km" data-min-name="min_price" data-max-name="max_price" class="range-slider-ui ui-slider" aria-disabled="false"></div>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                            <div class="form-group search-col mb-0">
+                                <a href="#" class="btn-theme btn-md btn-block">Search</a>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- Star Rating start -->
+                    <div class="widget duration">
+                        <h5 class="sidebar-title">Star Rating</h5>
+                        <form class="inline-search-area" method="GET">
+                            <div class="form-group mb-0">
+                                <div class="form-check checkbox-theme">
+                                    <input class="form-check-input" type="checkbox" value="" id="star1">
+                                    <label class="form-check-label" for="star1">
+                                        <span class="ratings">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                        </span>
+                                    </label>
+                                </div>
+                                <div class="form-check checkbox-theme">
+                                    <input class="form-check-input" type="checkbox" value="" id="star2">
+                                    <label class="form-check-label" for="star2">
+                                        <span class="ratings">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star-o"></i>
+                                        </span>
+                                    </label>
+                                </div>
+                                <div class="form-check checkbox-theme">
+                                    <input class="form-check-input" type="checkbox" value="" id="star3">
+                                    <label class="form-check-label" for="star3">
+                                        <span class="ratings">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star-o"></i>
+                                            <i class="fa fa-star-o"></i>
+                                        </span>
+                                    </label>
+                                </div>
+                                <div class="form-check checkbox-theme">
+                                    <input class="form-check-input" type="checkbox" value="" id="star4">
+                                    <label class="form-check-label" for="star4">
+                                        <span class="ratings">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star-o"></i>
+                                            <i class="fa fa-star-o"></i>
+                                            <i class="fa fa-star-o"></i>
+                                        </span>
+                                    </label>
+                                </div>
+                                <div class="form-check checkbox-theme mb-0">
+                                    <input class="form-check-input" type="checkbox" value="" id="star5">
+                                    <label class="form-check-label" for="star5">
+                                        <span class="ratings">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star-o"></i>
+                                            <i class="fa fa-star-o"></i>
+                                            <i class="fa fa-star-o"></i>
+                                            <i class="fa fa-star-o"></i>
+                                        </span>
+                                    </label>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- Duration start -->
+                    <div class="widget duration">
+                        <h5 class="sidebar-title">Duration</h5>
+                        <form class="inline-search-area" method="GET">
+                            <div class="form-group mb-0">
+                                <div class="form-check checkbox-theme">
+                                    <input class="form-check-input" type="checkbox" value="" id="day-tour1">
+                                    <label class="form-check-label" for="day-tour1">
+                                        1 Day Tour
+                                    </label>
+                                </div>
+                                <div class="form-check checkbox-theme">
+                                    <input class="form-check-input" type="checkbox" value="" id="day-tour2">
+                                    <label class="form-check-label" for="day-tour2">
+                                        2 - 5 Days Tour
+                                    </label>
+                                </div>
+                                <div class="form-check checkbox-theme">
+                                    <input class="form-check-input" type="checkbox" value="" id="day-tour3">
+                                    <label class="form-check-label" for="day-tour3">
+                                        4 - 10 Days Tour
+                                    </label>
+                                </div>
+                                <div class="form-check checkbox-theme">
+                                    <input class="form-check-input" type="checkbox" value="" id="day-tour4">
+                                    <label class="form-check-label" for="day-tour4">
+                                        8 - 20 Days Tour
+                                    </label>
+                                </div>
+                                <div class="form-check checkbox-theme mb-0">
+                                    <input class="form-check-input" type="checkbox" value="" id="day-tour5">
+                                    <label class="form-check-label" for="day-tour5">
+                                        16 - 40 Days Tour
+                                    </label>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- Activity type start -->
+                    <div class="widget activity-type">
+                        <h5 class="sidebar-title">Activity Type</h5>
+                        <form class="inline-search-area" method="GET">
+                            <div class="form-group mb-0">
+                                <div class="form-check checkbox-theme">
+                                    <input class="form-check-input" type="checkbox" value="" id="adventure">
+                                    <label class="form-check-label" for="adventure">
+                                        Adventure
+                                    </label>
+                                </div>
+                                <div class="form-check checkbox-theme">
+                                    <input class="form-check-input" type="checkbox" value="" id="camping">
+                                    <label class="form-check-label" for="camping">
+                                        Camping
+                                    </label>
+                                </div>
+                                <div class="form-check checkbox-theme">
+                                    <input class="form-check-input" type="checkbox" value="" id="kayaking">
+                                    <label class="form-check-label" for="kayaking">
+                                        Kayaking
+                                    </label>
+                                </div>
+                                <div class="form-check checkbox-theme">
+                                    <input class="form-check-input" type="checkbox" value="" id="trekking">
+                                    <label class="form-check-label" for="trekking">
+                                        Trekking
+                                    </label>
+                                </div>
+                                <div class="form-check checkbox-theme mb-0">
+                                    <input class="form-check-input" type="checkbox" value="" id="skiing">
+                                    <label class="form-check-label" for="skiing">
+                                        Skiing
+                                    </label>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- Question start -->
+                    <div class="widget question">
+                        <h5 class="sidebar-title">Get a Question?</h5>
+                        <ul class="contact-info">
+                            <li>
+                                <i class="flaticon-pin"></i>20/F Green Road, Dhanmondi
+                            </li>
+                            <li>
+                                <i class="flaticon-mail"></i><a href="mailto:info@themevessel.com">info@themevessel.com</a>
+                            </li>
+                            <li>
+                                <i class="flaticon-phone"></i><a href="tel:+0477-85x6-552">+0477 85x6 552</a>
+                            </li>
+                        </ul>
+                        <div class="social-list clearfix">
+                            <ul>
+                                <li><a href="#" class="facebook-bg"><i class="fa fa-facebook"></i></a></li>
+                                <li><a href="#" class="twitter-bg"><i class="fa fa-twitter"></i></a></li>
+                                <li><a href="#" class="google-bg"><i class="fa fa-google-plus"></i></a></li>
+                                <li><a href="#" class="rss-bg"><i class="fa fa-rss"></i></a></li>
+                                <li><a href="#" class="linkedin-bg"><i class="fa fa-linkedin"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Tours grid rightside end -->
