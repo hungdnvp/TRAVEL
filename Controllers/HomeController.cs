@@ -10,7 +10,7 @@ namespace TRAVEL.Controllers
 
      public class HomeController : Controller
      {
-          private TravelVietNamEntities ObjTravelModel = new TravelVietNamEntities();
+         
           public ActionResult Index()
           {
                return View();
