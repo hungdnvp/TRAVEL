@@ -57,6 +57,8 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -126,12 +128,76 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Controllers\BlogController.cs" />
+    <Compile Include="Controllers\CaptchaController.cs" />
     <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\DestinationsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ToursController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BangGia.cs">
+      <DependentUpon>TravelVietNamModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Blog.cs">
+      <DependentUpon>TravelVietNamModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ChiTietNgay.cs">
+      <DependentUpon>TravelVietNamModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ChiTietTK.cs">
+      <DependentUpon>TravelVietNamModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ChiTietTour.cs">
+      <DependentUpon>TravelVietNamModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DanhGia.cs">
+      <DependentUpon>TravelVietNamModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DiaDanh.cs">
+      <DependentUpon>TravelVietNamModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DichVuTour.cs">
+      <DependentUpon>TravelVietNamModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LinkImg.cs">
+      <DependentUpon>TravelVietNamModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Ngay.cs">
+      <DependentUpon>TravelVietNamModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PhanHoi.cs">
+      <DependentUpon>TravelVietNamModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PhieuDatTour.cs">
+      <DependentUpon>TravelVietNamModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sysdiagram.cs">
+      <DependentUpon>TravelVietNamModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TaiKhoan.cs">
+      <DependentUpon>TravelVietNamModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Tour.cs">
+      <DependentUpon>TravelVietNamModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TravelVietNamModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TravelVietNamModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TravelVietNamModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TravelVietNamModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TravelVietNamModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TravelVietNamModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Vung.cs">
+      <DependentUpon>TravelVietNamModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -274,6 +340,16 @@
     <Content Include="assets\js\wow.min.js" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="Models\TravelVietNamModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>TravelVietNamModel.edmx</DependentUpon>
+      <LastGenOutput>TravelVietNamModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\TravelVietNamModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>TravelVietNamModel.edmx</DependentUpon>
+      <LastGenOutput>TravelVietNamModel.cs</LastGenOutput>
+    </Content>
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -293,7 +369,6 @@
     <Folder Include="Areas\Admin\Controllers\" />
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Admin\Views\Shared\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="assets\fonts\flaticon\font\Flaticon.eot" />
@@ -345,12 +420,21 @@
     <Content Include="assets\fonts\linearicons\selection.json" />
     <Content Include="assets\img\logos\logo.psd" />
     <Content Include="Areas\Admin\Views\web.config" />
+    <EntityDeploy Include="Models\TravelVietNamModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>TravelVietNamModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\TravelVietNamModel.edmx.diagram">
+      <DependentUpon>TravelVietNamModel.edmx</DependentUpon>
+    </Content>
     <None Include="packages.config" />
     <Content Include="Views\Tours\Tours_grid.cshtml" />
     <Content Include="Views\Shared\_banner.cshtml" />
     <Content Include="Views\Blog\Blog_post.cshtml" />
     <Content Include="Views\Destinations\Destination_mansory.cshtml" />
     <Content Include="Views\Contact\Contact.cshtml" />
+    <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="Views\Captcha\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
