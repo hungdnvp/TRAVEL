@@ -133,6 +133,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\Admin\Data\assetsF\demo\chart-area-demo.js" />
+    <Content Include="Areas\Admin\Data\assetsF\demo\chart-bar-demo.js" />
+    <Content Include="Areas\Admin\Data\assetsF\demo\chart-pie-demo.js" />
+    <Content Include="Areas\Admin\Data\assetsF\demo\datatables-demo.js" />
+    <Content Include="Areas\Admin\Data\assetsF\img\error-404-monochrome.svg" />
     <Content Include="Areas\Admin\Data\assets\css\demo.css" />
     <Content Include="Areas\Admin\Data\assets\img\avatars\1.png" />
     <Content Include="Areas\Admin\Data\assets\img\avatars\5.png" />
@@ -217,6 +222,9 @@
     <Content Include="Areas\Admin\Data\assets\vendor\libs\perfect-scrollbar\perfect-scrollbar.css" />
     <Content Include="Areas\Admin\Data\assets\vendor\libs\perfect-scrollbar\perfect-scrollbar.js" />
     <Content Include="Areas\Admin\Data\assets\vendor\libs\popper\popper.js" />
+    <Content Include="Areas\Admin\Data\cssF\styles.css" />
+    <Content Include="Areas\Admin\Data\jsF\datatables-simple-demo.js" />
+    <Content Include="Areas\Admin\Data\jsF\scripts.js" />
     <Content Include="Areas\Admin\Data\js\bootstrap.js" />
     <Content Include="Areas\Admin\Data\js\helpers.js" />
     <Content Include="Areas\Admin\Data\js\menu.js" />
