@@ -45,10 +45,21 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=2.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -112,11 +123,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
-      <HintPath>packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -125,10 +131,28 @@
     <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\DestinationsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\RegisterController.cs" />
     <Compile Include="Controllers\ToursController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\BangGia.cs" />
+    <Compile Include="Models\Blog.cs" />
+    <Compile Include="Models\ChiTietNgay.cs" />
+    <Compile Include="Models\ChiTietTK.cs" />
+    <Compile Include="Models\ChiTietTour.cs" />
+    <Compile Include="Models\DanhGia.cs" />
+    <Compile Include="Models\DiaDanh.cs" />
+    <Compile Include="Models\DichVuTour.cs" />
+    <Compile Include="Models\LinkImg.cs" />
+    <Compile Include="Models\Model1.cs" />
+    <Compile Include="Models\Ngay.cs" />
+    <Compile Include="Models\PhanHoi.cs" />
+    <Compile Include="Models\PhieuDatTour.cs" />
+    <Compile Include="Models\sysdiagram.cs" />
+    <Compile Include="Models\TaiKhoan.cs" />
+    <Compile Include="Models\Tour.cs" />
+    <Compile Include="Models\Vung.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -289,7 +313,6 @@
     <Folder Include="Areas\Admin\Controllers\" />
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Admin\Views\Shared\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="assets\fonts\flaticon\font\Flaticon.eot" />
@@ -347,6 +370,10 @@
     <Content Include="Views\Blog\Blog_post.cshtml" />
     <Content Include="Views\Destinations\Destination_mansory.cshtml" />
     <Content Include="Views\Contact\Contact.cshtml" />
+    <Content Include="Views\Register\Register.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
