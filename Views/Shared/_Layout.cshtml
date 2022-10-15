@@ -75,7 +75,16 @@
                                     <a class="nav-link" href="contact.html">Contact</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="register.html">Register</a>
+                                    @{
+                                        if (Session["username"] != null)
+                                        {
+                                            <a class="nav-link" href="#"><i class="fa fa-user-circle-o" aria-hidden="true"></i>@Session["username"]</a>
+                                        }
+                                        else
+                                        {
+                                            <a class="nav-link" href="@Url.Action("Login","Home")">Login</a>
+                                        }
+                                    }
                                 </li>
                                 <li class="nav-item dropdown">
                                     <a href="#full-page-search" class="nav-link h-icon">
@@ -264,5 +273,6 @@
     <script src="~/assets/js/ie-emulation-modes-warning.js"></script>
     <!-- Custom JS Script -->
     <script src="~/assets/js/app.js"></script>
+    @RenderSection("Script", required: false)
 </body>
 </html>

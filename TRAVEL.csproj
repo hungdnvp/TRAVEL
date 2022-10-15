@@ -45,10 +45,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -130,6 +138,22 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\BangGia.cs" />
+    <Compile Include="Models\Blog.cs" />
+    <Compile Include="Models\ChiTietNgay.cs" />
+    <Compile Include="Models\ChiTietTK.cs" />
+    <Compile Include="Models\ChiTietTour.cs" />
+    <Compile Include="Models\DanhGia.cs" />
+    <Compile Include="Models\DiaDanh.cs" />
+    <Compile Include="Models\DichVuTour.cs" />
+    <Compile Include="Models\LinkImg.cs" />
+    <Compile Include="Models\MyDbConText.cs" />
+    <Compile Include="Models\Ngay.cs" />
+    <Compile Include="Models\PhanHoi.cs" />
+    <Compile Include="Models\PhieuDatTour.cs" />
+    <Compile Include="Models\TaiKhoan.cs" />
+    <Compile Include="Models\Tour.cs" />
+    <Compile Include="Models\Vung.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -364,7 +388,6 @@
     <Content Include="assets\js\slick.min.js" />
     <Content Include="assets\js\typed.min.js" />
     <Content Include="assets\js\wow.min.js" />
-    <Content Include="Content\Site.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Web.config" />
@@ -382,9 +405,7 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="assets\fonts\flaticon\font\Flaticon.eot" />
     <Content Include="assets\fonts\flaticon\font\Flaticon.ttf" />
@@ -537,6 +558,8 @@
     <Content Include="Views\Blog\Blog_post.cshtml" />
     <Content Include="Views\Destinations\Destination_mansory.cshtml" />
     <Content Include="Views\Contact\Contact.cshtml" />
+    <Content Include="Views\Home\Register.cshtml" />
+    <Content Include="Views\Home\Login.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
