@@ -147,7 +147,7 @@
     <Compile Include="Models\DiaDanh.cs" />
     <Compile Include="Models\DichVuTour.cs" />
     <Compile Include="Models\LinkImg.cs" />
-    <Compile Include="Models\MyDbConText.cs" />
+    <Compile Include="Models\MyDbContext.cs" />
     <Compile Include="Models\Ngay.cs" />
     <Compile Include="Models\PhanHoi.cs" />
     <Compile Include="Models\PhieuDatTour.cs" />

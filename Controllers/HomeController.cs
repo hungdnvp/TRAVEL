@@ -12,7 +12,7 @@ namespace TRAVEL.Controllers
 {
     public class HomeController : Controller
     {
-        private MyDbConText Travel = new MyDbConText();
+        private MyDbContext Travel = new MyDbContext();
         public ActionResult Index()
         {
             return View();

@@ -5,10 +5,10 @@ using System.Linq;
 
 namespace TRAVEL.Models
 {
-    public partial class MyDbConText : DbContext
+    public partial class MyDbContext : DbContext
     {
-        public MyDbConText()
-            : base("name=MyDbConText")
+        public MyDbContext()
+            : base("name=MyDbContext")
         {
         }
 
