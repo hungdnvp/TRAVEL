@@ -18,16 +18,16 @@ namespace TRAVEL.Controllers
             return View();
         }
 
-          public ActionResult About()
-          {
-               ViewBag.Message = "Your application description page.";
+        public ActionResult About()
+        {
+            ViewBag.Message = "Your application description page.";
 
-               return View();
-          }
+            return View();
+        }
 
-          public ActionResult Contact()
-          {
-               ViewBag.Message = "Your contact page.";
+        public ActionResult Contact()
+        {
+            ViewBag.Message = "Your contact page.";
 
             return View();
         }
@@ -56,7 +56,7 @@ namespace TRAVEL.Controllers
 
         //POST: Register
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public ActionResult Register(TaiKhoan tk)
         {
             if (ModelState.IsValid)
@@ -75,10 +75,10 @@ namespace TRAVEL.Controllers
                 else
                 {
                     ViewBag.error = "Email or username already exists";
-                    return View();
+                    return View("Register");
                 }
             }
-            return View();
+            return View("Register");
         }
 
         public ActionResult Login()
@@ -90,7 +90,7 @@ namespace TRAVEL.Controllers
         //POST: Login
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public ActionResult Login(TaiKhoan tk)
         {
             if (ModelState.IsValid)
