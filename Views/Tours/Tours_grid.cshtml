@@ -1,4 +1,5 @@
-﻿
+﻿@using TRAVEL.Models
+ 
 @{
     ViewBag.Title = "Tours_grid";
     ViewData["sub_link"] = "Tours Grid";
@@ -38,41 +39,45 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-lg-6 col-md-6 col-sm-12">
-                        <div class="tour-item">
-                            <div class="item-thumbnail">
-                                <a href="tours-detail.html" class="item-img">
-                                    <div class="plan-price"><sup>$</sup>600<sub>/ night</sub></div>
-                                    <img src="~/assets/img/tour/img-1.jpg" alt="tours" class="img-fluid">
-                                </a>
-                            </div>
-                            <div class="detail">
-                                <h1 class="title">
-                                    <a href="tours-detail.html">Camping and  mountains</a>
-                                </h1>
-                                <div class="location">
-                                    <a href="tours-detail.html">
-                                        <i class="flaticon-pin"></i> 2726 Shinn Street, New York
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="footer clearfix">
-                                <div class="pull-left">
-                                    <i class="flaticon-calendar"></i> 5 Days / 4 Nights
-                                </div>
-                                <div class="pull-right">
-                                    <div class="ratings">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star-o"></i>
+                     @if (Model.Count > 0)
+                     {
+                          foreach (var item in Model)
+                          {
+                               <div class="col-lg-6 col-md-6 col-sm-12">
+                                    <div class="tour-item">
+                                         <div class="item-thumbnail">
+                                              <a href="tours-detail.html" class="item-img">
+                                                   <div class="plan-price"><sup>$</sup>@item.Gia <sub>/ night</sub></div>
+                                                   <img src="~/assets/img/tour/img-1.jpg" alt="tours" class="img-fluid">
+                                              </a>
+                                         </div>
+                                         <div class="detail">
+                                              <h1 class="title">
+                                                   <a href="tours-detail.html">@item.TenTour </a>
+                                              </h1>
+                                              <div class="location">
+                                                   <a href="tours-detail.html">
+                                                        <i class="flaticon-pin"></i> @item.DiaDiem 
+                                                   </a>
+                                              </div>
+                                         </div>
+                                         <div class="footer clearfix">
+                                              <div class="pull-left">
+                                                   <i class="flaticon-calendar"></i> 5 Days / 4 Nights
+                                              </div>
+                                              <div class="pull-right">
+                                                   <div class="ratings">
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star-o"></i>
+                                                   </div>
+                                              </div>
+                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-sm-12">
+                               </div> }
+                                              } @*<div class="col-lg-6 col-md-6 col-sm-12">
                         <div class="tour-item">
                             <div class="item-thumbnail">
                                 <a href="tours-detail.html" class="item-img">
@@ -314,20 +319,20 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-lg-12">
-                        <div class="pagination-box">
-                            <nav aria-label="Page navigation example">
-                                <ul class="pagination">
-                                    <li class="page-item"><a class="page-link" href="#"><span aria-hidden="true">«</span></a></li>
-                                    <li class="page-item"><a class="page-link active" href="#">1</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                    <li class="page-item"><a class="page-link" href="#"><span aria-hidden="true">»</span></a></li>
-                                </ul>
-                            </nav>
-                        </div>
-                    </div>
+                    </div>*@
+                     <div class="col-lg-12">
+                          <div class="pagination-box">
+                               <nav aria-label="Page navigation example">
+                                    <ul class="pagination">
+                                         <li class="page-item"><a class="page-link" href="#"><span aria-hidden="true">«</span></a></li>
+                                         <li class="page-item"><a class="page-link active" href="#">1</a></li>
+                                         <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                         <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                         <li class="page-item"><a class="page-link" href="#"><span aria-hidden="true">»</span></a></li>
+                                    </ul>
+                               </nav>
+                          </div>
+                     </div>
                 </div>
             </div>
             <div class="col-lg-4 col-md-12">

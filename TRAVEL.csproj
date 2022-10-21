@@ -152,6 +152,7 @@
     <Compile Include="Models\Ngay.cs" />
     <Compile Include="Models\PhanHoi.cs" />
     <Compile Include="Models\PhieuDatTour.cs" />
+    <Compile Include="Models\sysdiagram.cs" />
     <Compile Include="Models\TaiKhoan.cs" />
     <Compile Include="Models\Tour.cs" />
     <Compile Include="Models\Vung.cs" />
@@ -370,6 +371,7 @@
     <Content Include="Views\Contact\Contact.cshtml" />
     <Content Include="Views\Home\Register.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="Views\Captcha\Index.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
