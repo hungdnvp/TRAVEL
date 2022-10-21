@@ -20,5 +20,10 @@ namespace TRAVEL.Controllers
             }
 
         }
+
+        public ActionResult AjaxView(IEnumerable<Tour> tourlist)
+        {
+            return PartialView("_tourlist");
+        }
     }
 }

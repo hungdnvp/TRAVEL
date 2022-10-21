@@ -6,6 +6,34 @@
 }
 @using TRAVEL.Models
 @model IEnumerable<Tour>
+<!--Script ajax-->
+<script type="text/javascript">
+    $(function () {
+        $("#load-database").click(function () {
+            var model = {};
+            //lấy id sản phẩm
+            model.Id = @Model.Id;
+            // lấy số lượng đặt hàng
+            model.Quantity = $("#ipQuantity").val();
+            debugger;
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("AddToCart", "Cart")',
+                data:  JSON.stringify(model) ,
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function () {
+                    alert("Thêm giỏ hàng thành công!")
+                    $('#CartCount').text(@Session["count"] + 1);
+                },
+                error: function () {
+                    alert("Lỗi trong khi thêm vào giỏ hàng!");
+                }
+            });
+            return false;
+        });
+    });
+</script>
 
 @Html.Partial("_banner")
 <!-- Tour grid rightside start -->
@@ -45,7 +73,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
+                <div id="load-database" class="row">
                     @foreach (var tour in Model)
                     {
                         var night = tour.NumDay - 1;
