@@ -3,15 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using TRAVEL.Models;
 
 namespace TRAVEL.Controllers
 {
     public class DestinationsController : Controller
     {
         // GET: Destinations
-        public ActionResult Destination_mansory()
+
+      
+
+        public ActionResult Destination_mansory( )
         {
-            return View();
+            MyDbContext mdt = new MyDbContext();
+            var model = mdt.DiaDanhs.ToList();
+            return View(model);
         }
     }
 }
