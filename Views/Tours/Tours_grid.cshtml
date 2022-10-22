@@ -6,34 +6,7 @@
 }
 @using TRAVEL.Models
 @model IEnumerable<Tour>
-<!--Script ajax-->
-<script type="text/javascript">
-    $(function () {
-        $("#load-database").click(function () {
-            var model = {};
-            //lấy id sản phẩm
-            model.Id = @Model.Id;
-            // lấy số lượng đặt hàng
-            model.Quantity = $("#ipQuantity").val();
-            debugger;
-            $.ajax({
-                type: "POST",
-                url: '@Url.Action("AddToCart", "Cart")',
-                data:  JSON.stringify(model) ,
-                dataType: "json",
-                contentType: "application/json; charset=utf-8",
-                success: function () {
-                    alert("Thêm giỏ hàng thành công!")
-                    $('#CartCount').text(@Session["count"] + 1);
-                },
-                error: function () {
-                    alert("Lỗi trong khi thêm vào giỏ hàng!");
-                }
-            });
-            return false;
-        });
-    });
-</script>
+
 
 @Html.Partial("_banner")
 <!-- Tour grid rightside start -->
@@ -47,7 +20,7 @@
                             <h4>
                                 <span class="heading-icon">
                                     <i class="fa fa-caret-right icon-design"></i>
-                                    <i class="fa fa-th-large"></i>
+                                    <i id="head-icon" class="fa fa-th-large"></i>
                                 </span>
                                 @if (Model != null)
                                 {
@@ -60,8 +33,8 @@
                         </div>
                         <div class="col-xl-8 col-lg-7 col-md-7 col-sm-7">
                             <div class="sorting-options clearfix">
-                                <a href="#" class="change-view-btn"><i class="fa fa-th-list"></i></a>
-                                <a href="#" class="change-view-btn active-view-btn"><i class="fa fa-th-large"></i></a>
+                                <button id="view-list" class="change-view-btn"><i class="fa fa-th-list"></i></button>
+                                <button id="view-grid" class="change-view-btn active-view-btn"><i class="fa fa-th-large"></i></button>
                             </div>
                             <div class="search-area">
                                 <select class="selectpicker search-fields" name="location">
@@ -77,11 +50,12 @@
                     @foreach (var tour in Model)
                     {
                         var night = tour.NumDay - 1;
+                        int j = 0;
                         <div class="col-lg-6 col-md-6 col-sm-12">
                             <div class="tour-item">
                                 <div class="item-thumbnail">
                                     <a href="#" class="item-img">
-                                        <div class="plan-price"><sup>$</sup>150<sub>/ night</sub></div>
+                                        <div class="plan-price"><sup>$</sup>@ViewBag.Prices[tour.MaTour]<sub>/ night</sub></div>
                                         <img src="~/assets/@tour.LinkImage" alt="tours" class="img-fluid">
                                     </a>
                                 </div>
@@ -101,11 +75,16 @@
                                     </div>
                                     <div class="pull-right">
                                         <div class="ratings">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star-o"></i>
+                                            @for (int i = 0; i < ViewBag.Numstars[tour.MaTour]; i++)
+                                            {
+                                                <i class="fa fa-star"></i>
+                                                j++;
+                                            }
+                                            @while (j < 5)
+                                            {
+                                                <i class="fa fa-star-o"></i>
+                                                j++;
+                                            }
                                         </div>
                                     </div>
                                 </div>
@@ -342,3 +321,45 @@
     </div>
 </div>
 <!-- Tours grid rightside end -->
+<!--Script ajax-->
+
+<script type="text/javascript">
+    $(function () {
+        $(".change-view-btn").click(function () {
+            if ($(this).hasClass("active-view-btn")) {
+                return false;
+            } else {
+                $(".active-view-btn").removeClass("active-view-btn");
+                $(this).addClass("active-view-btn");
+                if ($(this).attr("id") == "view-grid") {
+                    $("#head-icon").removeClass("fa fa-th-list");
+                    $("#head-icon").addClass("fa fa-th-large");
+
+                    $.ajax({
+                        type: "POST",
+                        url: '/Tours/AjaxView',
+                        dataType: 'html',
+                        data: '{ type: 1 }',
+                        contentType: "application/json; charset=utf-8",
+                        success: function (response) {
+                            $('#load-database').html(response);
+                        }
+                    });
+                } else {
+                    $("#head-icon").removeClass("fa fa-th-large");
+                    $("#head-icon").addClass("fa fa-th-list");
+                    $.ajax({
+                        type: "POST",
+                        url: '/Tours/AjaxView',
+                        dataType: 'html',
+                        data: '{ type: 2 }',
+                        contentType: "application/json; charset=utf-8",
+                        success: function (response) {
+                            $('#load-database').html(response);
+                        }
+                    });
+                }
+            }
+        });
+    });
+</script>
