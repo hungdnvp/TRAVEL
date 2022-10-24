@@ -37,10 +37,10 @@
                                 <button id="view-grid" class="change-view-btn active-view-btn"><i class="fa fa-th-large"></i></button>
                             </div>
                             <div class="search-area">
-                                <select class="selectpicker search-fields" name="location">
-                                    <option>Default Sorting</option>
-                                    <option>High to Low</option>
-                                    <option>Low to High</option>
+                                <select id="sort" class="selectpicker search-fields" name="location">
+                                    <option value="">prices sorting</option>
+                                    <option value="dec">High to Low</option>
+                                    <option value="inc">Low to High</option>
                                 </select>
                             </div>
                         </div>
@@ -51,7 +51,7 @@
                     {
                         var night = tour.NumDay - 1;
                         int j = 0;
-                        <div class="col-lg-6 col-md-6 col-sm-12">
+                        <div id="@tour.MaTour" class="col-lg-6 col-md-6 col-sm-12" price="@ViewBag.Prices[tour.MaTour]">
                             <div class="tour-item">
                                 <div class="item-thumbnail">
                                     <a href="#" class="item-img">
@@ -339,7 +339,8 @@
                         type: "POST",
                         url: '/Tours/AjaxView',
                         dataType: 'html',
-                        data: '{ type: 1 }',
+                        data: '{ type: 1}',
+                        async: true,
                         contentType: "application/json; charset=utf-8",
                         success: function (response) {
                             $('#load-database').html(response);
@@ -352,13 +353,29 @@
                         type: "POST",
                         url: '/Tours/AjaxView',
                         dataType: 'html',
-                        data: '{ type: 2 }',
+                        data: '{ type: 2}',
+                        async: true,
                         contentType: "application/json; charset=utf-8",
                         success: function (response) {
                             $('#load-database').html(response);
                         }
                     });
                 }
+            }
+        });
+    });
+    // sap xep
+    $(function () {
+        $("#sort").on('change', function (e) {
+            if ($("#sort").val() == "") { return false; }
+            else if ($("#sort").val() == "inc") {
+                $('.col-lg-6.col-md-6.col-sm-12').sort(
+                    function (a, b) { return ($(a).attr("price")) > ($(b).attr("price")) ? 1 : -1; }
+                ).prependTo('#load-database');
+            } else if ($("#sort").val() == "dec") {
+                $('.col-lg-6.col-md-6.col-sm-12').sort(
+                    function (a, b) { return ($(a).attr("price")) < ($(b).attr("price")) ? 1 : -1; }
+                ).prependTo('#load-database');
             }
         });
     });
