@@ -24,6 +24,7 @@ namespace TRAVEL.Models
         public virtual DbSet<Ngay> Ngays { get; set; }
         public virtual DbSet<PhanHoi> PhanHois { get; set; }
         public virtual DbSet<PhieuDatTour> PhieuDatTours { get; set; }
+        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<TaiKhoan> TaiKhoans { get; set; }
         public virtual DbSet<Tour> Tours { get; set; }
         public virtual DbSet<Vung> Vungs { get; set; }
@@ -42,6 +43,11 @@ namespace TRAVEL.Models
                 .HasMany(e => e.DanhGias)
                 .WithRequired(e => e.ChiTietTK)
                 .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<ChiTietTK>()
+                .HasMany(e => e.PhanHois)
+                .WithOptional(e => e.ChiTietTK)
+                .HasForeignKey(e => e.MaKH);
 
             modelBuilder.Entity<ChiTietTour>()
                 .HasMany(e => e.Ngays)
@@ -62,7 +68,7 @@ namespace TRAVEL.Models
                 .Map(m => m.ToTable("Tour_DiaDanh").MapLeftKey("MaDiaDanh").MapRightKey("MaTour"));
 
             modelBuilder.Entity<LinkImg>()
-                .Property(e => e.MaLink)
+                .Property(e => e.LinkCode)
                 .IsUnicode(false);
 
             modelBuilder.Entity<LinkImg>()

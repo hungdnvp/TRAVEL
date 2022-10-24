@@ -18,7 +18,7 @@ namespace TRAVEL.Models
         [StringLength(1000)]
         public string TraLoi { get; set; }
 
-        public int? MaChiTietTK { get; set; }
+        public int? MaKH { get; set; }
 
         public virtual ChiTietTK ChiTietTK { get; set; }
     }
