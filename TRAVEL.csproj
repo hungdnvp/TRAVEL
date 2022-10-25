@@ -371,8 +371,9 @@
     <Content Include="Views\Contact\Contact.cshtml" />
     <Content Include="Views\Home\Register.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
-    <Content Include="Views\Shared\_tourlist.cshtml" />
-    <Content Include="Views\Shared\_tourgrid.cshtml" />
+    <Content Include="Views\Tours\_tourlist.cshtml" />
+    <Content Include="Views\Tours\_tourgrid.cshtml" />
+    <Content Include="Views\Tours\Tours_detail.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

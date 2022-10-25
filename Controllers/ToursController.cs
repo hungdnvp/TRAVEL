@@ -80,44 +80,16 @@ namespace TRAVEL.Controllers
                 var tours = Travel.Tours.ToList();
                 if (type == 2)
                 {
-                    return PartialView("_tourlist", tours);
+                    return PartialView("~/Views/Tours/_tourlist", tours);
                 }
-                else { return PartialView("_tourgrid", tours); }
+                else { return PartialView("~/Views/Tours/_tourgrid", tours); }
             }
         }
 
-        [HttpPost]
-        public JsonResult AjaxSort(string type)
+        public ActionResult Tours_detail(int id)
         {
-            List<int> sort = new List<int>();
-            using (MyDbContext Travel = new MyDbContext())
-            {
-                var bgs = Travel.BangGias.OrderBy(s => s.GiaNQ_NguoiLon).ToList();
-                foreach (var bg in bgs)
-                {
-                    Tour t = Travel.Tours.FirstOrDefault(s => s.MaTour == bg.MaTour);
-                    try
-                    {
-                        sort.Add((int)t.MaTour);
-                    }
-                    catch
-                    {
-
-                    }
-
-                }
-            }
-            if (type == "inc")
-            {
-                string js = JsonConvert.SerializeObject(sort);
-                return Json(js);
-            }
-            else
-            {
-                sort.Reverse();
-                string js = JsonConvert.SerializeObject(sort);
-                return Json(sort);
-            }
+            return View(id);
         }
+
     }
 }
