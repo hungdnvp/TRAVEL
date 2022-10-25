@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using TRAVEL.Models;
 
 namespace TRAVEL.Controllers
 {
@@ -11,7 +12,9 @@ namespace TRAVEL.Controllers
         // GET: Blog
         public ActionResult Blog_post()
         {
-            return View();
+            MyDbContext md = new MyDbContext();
+               var model = md.Blogs.ToList();
+            return View(model);
         }
     }
 }
