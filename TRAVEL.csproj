@@ -259,14 +259,15 @@
     <Content Include="assets\img\sub-tours\sub-tours-3.jpg" />
     <Content Include="assets\img\sub-tours\sub-tours.jpg" />
     <Content Include="assets\img\tour\img-1.jpg" />
-    <Content Include="assets\img\tour\img-2.jpg" />
-    <Content Include="assets\img\tour\img-3.jpg" />
-    <Content Include="assets\img\tour\img-4.jpg" />
-    <Content Include="assets\img\tour\img-5.jpg" />
-    <Content Include="assets\img\tour\img-6.jpg" />
-    <Content Include="assets\img\tour\img-7.jpg" />
-    <Content Include="assets\img\tour\img-8.jpg" />
-    <Content Include="assets\img\tour\img-9.jpg" />
+    <Content Include="assets\img\tour\tour-2.jpg" />
+    <Content Include="assets\img\tour\tour-3.jpg" />
+    <Content Include="assets\img\tour\tour-4.jpg" />
+    <Content Include="assets\img\tour\tour-5.jpg" />
+    <Content Include="assets\img\tour\tour-6.jpg" />
+    <Content Include="assets\img\tour\tour-7.jpg" />
+    <Content Include="assets\img\tour\tour-8.jpg" />
+    <Content Include="assets\img\tour\tour-9.jpg" />
+    <Content Include="assets\img\tour\tour-1.jpg" />
     <Content Include="assets\img\travel-reviews-bg.jpg" />
     <Content Include="assets\js\app.js" />
     <Content Include="assets\js\backstretch.js" />
@@ -372,6 +373,9 @@
     <Content Include="Views\Home\Register.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Destinations\Destination_Detail.cshtml" />
+    <Content Include="Views\Tours\_tourlist.cshtml" />
+    <Content Include="Views\Tours\_tourgrid.cshtml" />
+    <Content Include="Views\Tours\Tours_detail.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

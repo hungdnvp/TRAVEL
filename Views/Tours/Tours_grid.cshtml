@@ -1,9 +1,12 @@
 ﻿
 @{
     ViewBag.Title = "Tours_grid";
-    ViewData["sub_link"] = "Tours Grid";
-    ViewData["Title"] = "Tours Grid";
+    ViewData["sub_link"] = "Tours";
+    ViewData["Title"] = "Tours For You";
 }
+@using TRAVEL.Models
+@model IEnumerable<Tour>
+
 
 @Html.Partial("_banner")
 <!-- Tour grid rightside start -->
@@ -17,304 +20,77 @@
                             <h4>
                                 <span class="heading-icon">
                                     <i class="fa fa-caret-right icon-design"></i>
-                                    <i class="fa fa-th-large"></i>
+                                    <i id="head-icon" class="fa fa-th-large"></i>
                                 </span>
-                                <span class="heading">20 Result Found</span>
+                                @if (Model != null)
+                                {
+                                    <span class="heading">@Model.Count() Result Found</span>}
+                                else
+                                {
+                                    <span class="heading">No Result Found</span>
+                                }
                             </h4>
                         </div>
                         <div class="col-xl-8 col-lg-7 col-md-7 col-sm-7">
                             <div class="sorting-options clearfix">
-                                <a href="#" class="change-view-btn"><i class="fa fa-th-list"></i></a>
-                                <a href="#" class="change-view-btn active-view-btn"><i class="fa fa-th-large"></i></a>
+                                <button id="view-list" class="change-view-btn"><i class="fa fa-th-list"></i></button>
+                                <button id="view-grid" class="change-view-btn active-view-btn"><i class="fa fa-th-large"></i></button>
                             </div>
                             <div class="search-area">
-                                <select class="selectpicker search-fields" name="location">
-                                    <option>Default Sorting</option>
-                                    <option>High to Low</option>
-                                    <option>Low to High</option>
+                                <select id="sort" class="selectpicker search-fields" name="location">
+                                    <option value="">prices sorting</option>
+                                    <option value="dec">High to Low</option>
+                                    <option value="inc">Low to High</option>
                                 </select>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-lg-6 col-md-6 col-sm-12">
-                        <div class="tour-item">
-                            <div class="item-thumbnail">
-                                <a href="tours-detail.html" class="item-img">
-                                    <div class="plan-price"><sup>$</sup>600<sub>/ night</sub></div>
-                                    <img src="~/assets/img/tour/img-1.jpg" alt="tours" class="img-fluid">
-                                </a>
-                            </div>
-                            <div class="detail">
-                                <h1 class="title">
-                                    <a href="tours-detail.html">Camping and  mountains</a>
-                                </h1>
-                                <div class="location">
-                                    <a href="tours-detail.html">
-                                        <i class="flaticon-pin"></i> 2726 Shinn Street, New York
+                <div id="load-database" class="row">
+                    @foreach (var tour in Model)
+                    {
+                        var night = tour.NumDay - 1;
+                        int j = 0;
+                        <div id="@tour.MaTour" class="col-lg-6 col-md-6 col-sm-12" price="@ViewBag.Prices[tour.MaTour]">
+                            <div class="tour-item">
+                                <div class="item-thumbnail">
+                                    <a href="/Tours/Tours_detail/@tour.MaTour" class="item-img">
+                                        <div class="plan-price"><sup>$</sup>@ViewBag.Prices[tour.MaTour]<sub>/ night</sub></div>
+                                        <img src="~/assets/@tour.LinkImage" alt="tours" class="img-fluid">
                                     </a>
                                 </div>
-                            </div>
-                            <div class="footer clearfix">
-                                <div class="pull-left">
-                                    <i class="flaticon-calendar"></i> 5 Days / 4 Nights
+                                <div class="detail">
+                                    <h1 class="title">
+                                        <a href="tours-detail.html">@tour.TenTour</a>
+                                    </h1>
+                                    <div class="location">
+                                        <a href="tours-detail.html">
+                                            <i class="flaticon-pin"></i>@tour.DiaDiem
+                                        </a>
+                                    </div>
                                 </div>
-                                <div class="pull-right">
-                                    <div class="ratings">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star-o"></i>
+                                <div class="footer clearfix">
+                                    <div class="pull-left">
+                                        <i class="flaticon-calendar"></i> @tour.NumDay Days /@night; Nights
+                                    </div>
+                                    <div class="pull-right">
+                                        <div class="ratings">
+                                            @for (int i = 0; i < ViewBag.Numstars[tour.MaTour]; i++)
+                                            {
+                                                <i class="fa fa-star"></i>
+                                                j++;
+                                            }
+                                            @while (j < 5)
+                                            {
+                                                <i class="fa fa-star-o"></i>
+                                                j++;
+                                            }
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-sm-12">
-                        <div class="tour-item">
-                            <div class="item-thumbnail">
-                                <a href="tours-detail.html" class="item-img">
-                                    <div class="tag">Sale</div>
-                                    <div class="plan-price"><sup>$</sup>750<sub>/ night</sub></div>
-                                    <img src="~/assets/img/tour/img-2.jpg" alt="tours" class="img-fluid">
-                                </a>
-                            </div>
-                            <div class="detail">
-                                <h1 class="title">
-                                    <a href="tours-detail.html">Best Switzerland Tour</a>
-                                </h1>
-                                <div class="location">
-                                    <a href="tours-detail.html">
-                                        <i class="flaticon-pin"></i> 2726 Shinn Street, New York
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="footer clearfix">
-                                <div class="pull-left">
-                                    <i class="flaticon-calendar"></i> 5 Days / 4 Nights
-                                </div>
-                                <div class="pull-right">
-                                    <div class="ratings">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star-o"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-sm-12">
-                        <div class="tour-item">
-                            <div class="item-thumbnail">
-                                <a href="tours-detail.html" class="item-img">
-                                    <div class="tag">Sale</div>
-                                    <div class="plan-price"><sup>$</sup>950<sub>/ night</sub></div>
-                                    <img src="~/assets/img/tour/img-3.jpg" alt="tours" class="img-fluid">
-                                </a>
-                            </div>
-                            <div class="detail">
-                                <h1 class="title">
-                                    <a href="tours-detail.html">Treasures of Thailand</a>
-                                </h1>
-                                <div class="location">
-                                    <a href="tours-detail.html">
-                                        <i class="flaticon-pin"></i> 2726 Shinn Street, New York
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="footer clearfix">
-                                <div class="pull-left">
-                                    <i class="flaticon-calendar"></i> 5 Days / 4 Nights
-                                </div>
-                                <div class="pull-right">
-                                    <div class="ratings">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star-o"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-sm-12">
-                        <div class="tour-item">
-                            <div class="item-thumbnail">
-                                <a href="tours-detail.html" class="item-img">
-                                    <div class="plan-price"><sup>$</sup>570<sub>/ night</sub></div>
-                                    <img src="~/assets/img/tour/img-4.jpg" alt="tours" class="img-fluid">
-                                </a>
-                            </div>
-                            <div class="detail">
-                                <h1 class="title">
-                                    <a href="tours-detail.html">Australia Sydney City</a>
-                                </h1>
-                                <div class="location">
-                                    <a href="tours-detail.html">
-                                        <i class="flaticon-pin"></i> 2726 Shinn Street, New York
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="footer clearfix">
-                                <div class="pull-left">
-                                    <i class="flaticon-calendar"></i>  5 Days / 4 Nights
-                                </div>
-                                <div class="pull-right">
-                                    <div class="ratings">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star-o"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-sm-12">
-                        <div class="tour-item">
-                            <div class="item-thumbnail">
-                                <a href="tours-detail.html" class="item-img">
-                                    <div class="tag">Sale</div>
-                                    <div class="plan-price"><sup>$</sup>580<sub>/ night</sub></div>
-                                    <img src="~/assets/img/tour/img-5.jpg" alt="tours" class="img-fluid">
-                                </a>
-                            </div>
-                            <div class="detail">
-                                <h1 class="title">
-                                    <a href="tours-detail.html">Discover Italian</a>
-                                </h1>
-                                <div class="location">
-                                    <a href="tours-detail.html">
-                                        <i class="flaticon-pin"></i> 2726 Shinn Street, New York
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="footer clearfix">
-                                <div class="pull-left">
-                                    <i class="flaticon-calendar"></i>  5 Days / 4 Nights
-                                </div>
-                                <div class="pull-right">
-                                    <div class="ratings">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star-o"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-sm-12">
-                        <div class="tour-item">
-                            <div class="item-thumbnail">
-                                <a href="tours-detail.html" class="item-img">
-                                    <div class="tag">Sale</div>
-                                    <div class="plan-price"><sup>$</sup>630<sub>/ night</sub></div>
-                                    <img src="~/assets/img/tour/img-6.jpg" alt="tours" class="img-fluid">
-                                </a>
-                            </div>
-                            <div class="detail">
-                                <h1 class="title">
-                                    <a href="tours-detail.html">Cuba Sailing Adventure</a>
-                                </h1>
-                                <div class="location">
-                                    <a href="tours-detail.html">
-                                        <i class="flaticon-pin"></i> 2726 Shinn Street, New York
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="footer clearfix">
-                                <div class="pull-left">
-                                    <i class="flaticon-calendar"></i>  5 Days / 4 Nights
-                                </div>
-                                <div class="pull-right">
-                                    <div class="ratings">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star-o"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-sm-12">
-                        <div class="tour-item">
-                            <div class="item-thumbnail">
-                                <a href="tours-detail.html" class="item-img">
-                                    <div class="tag">Sale</div>
-                                    <div class="plan-price"><sup>$</sup>700<sub>/ night</sub></div>
-                                    <img src="~/assets/img/tour/img-2.jpg" alt="tours" class="img-fluid">
-                                </a>
-                            </div>
-                            <div class="detail">
-                                <h1 class="title">
-                                    <a href="tours-detail.html">Best Switzerland Tour</a>
-                                </h1>
-                                <div class="location">
-                                    <a href="tours-detail.html">
-                                        <i class="flaticon-pin"></i> 2726 Shinn Street, New York
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="footer clearfix">
-                                <div class="pull-left">
-                                    <i class="flaticon-calendar"></i> 5 Days / 4 Nights
-                                </div>
-                                <div class="pull-right">
-                                    <div class="ratings">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star-o"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-sm-12">
-                        <div class="tour-item">
-                            <div class="item-thumbnail">
-                                <a href="tours-detail.html" class="item-img">
-                                    <div class="plan-price"><sup>$</sup>800<sub>/ night</sub></div>
-                                    <img src="~/assets/img/tour/img-1.jpg" alt="tours" class="img-fluid">
-                                </a>
-                            </div>
-                            <div class="detail">
-                                <h1 class="title">
-                                    <a href="tours-detail.html">Camping and  mountains</a>
-                                </h1>
-                                <div class="location">
-                                    <a href="tours-detail.html">
-                                        <i class="flaticon-pin"></i> 2726 Shinn Street, New York
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="footer clearfix">
-                                <div class="pull-left">
-                                    <i class="flaticon-calendar"></i>  5 Days / 4 Nights
-                                </div>
-                                <div class="pull-right">
-                                    <div class="ratings">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star-o"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    }
                     <div class="col-lg-12">
                         <div class="pagination-box">
                             <nav aria-label="Page navigation example">
@@ -545,3 +321,62 @@
     </div>
 </div>
 <!-- Tours grid rightside end -->
+<!--Script ajax-->
+
+<script type="text/javascript">
+    $(function () {
+        $(".change-view-btn").click(function () {
+            if ($(this).hasClass("active-view-btn")) {
+                return false;
+            } else {
+                $(".active-view-btn").removeClass("active-view-btn");
+                $(this).addClass("active-view-btn");
+                if ($(this).attr("id") == "view-grid") {
+                    $("#head-icon").removeClass("fa fa-th-list");
+                    $("#head-icon").addClass("fa fa-th-large");
+
+                    $.ajax({
+                        type: "POST",
+                        url: '/Tours/AjaxView',
+                        dataType: 'html',
+                        data: '{ type: 1}',
+                        async: true,
+                        contentType: "application/json; charset=utf-8",
+                        success: function (response) {
+                            $('#load-database').html(response);
+                        }
+                    });
+                } else {
+                    $("#head-icon").removeClass("fa fa-th-large");
+                    $("#head-icon").addClass("fa fa-th-list");
+                    $.ajax({
+                        type: "POST",
+                        url: '/Tours/AjaxView',
+                        dataType: 'html',
+                        data: '{ type: 2}',
+                        async: true,
+                        contentType: "application/json; charset=utf-8",
+                        success: function (response) {
+                            $('#load-database').html(response);
+                        }
+                    });
+                }
+            }
+        });
+    });
+    // sap xep
+    $(function () {
+        $("#sort").on('change', function (e) {
+            if ($("#sort").val() == "") { return false; }
+            else if ($("#sort").val() == "inc") {
+                $('.col-lg-6.col-md-6.col-sm-12').sort(
+                    function (a, b) { return ($(a).attr("price")) > ($(b).attr("price")) ? 1 : -1; }
+                ).prependTo('#load-database');
+            } else if ($("#sort").val() == "dec") {
+                $('.col-lg-6.col-md-6.col-sm-12').sort(
+                    function (a, b) { return ($(a).attr("price")) < ($(b).attr("price")) ? 1 : -1; }
+                ).prependTo('#load-database');
+            }
+        });
+    });
+</script>
