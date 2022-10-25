@@ -80,9 +80,9 @@ namespace TRAVEL.Controllers
                 var tours = Travel.Tours.ToList();
                 if (type == 2)
                 {
-                    return PartialView("~/Views/Tours/_tourlist", tours);
+                    return PartialView("_tourlist", tours);
                 }
-                else { return PartialView("~/Views/Tours/_tourgrid", tours); }
+                else { return PartialView("_tourgrid", tours); }
             }
         }
 
