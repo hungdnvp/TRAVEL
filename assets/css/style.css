@@ -1399,29 +1399,29 @@ a {
     float: right;
 }
 
-.option-bar .search-area .search-fields {
-    min-height: 35px;
-    padding: 0;
-    height: 35px;
-    box-shadow: none;
-    border: 1px solid #e8e8e8;
-    background: #fff;
-    border-radius: 3px;
-    cursor: pointer;
+.option-bar .search-area .sort-category-area .search-fields {
+     min-height: 35px;
+     padding: 0;
+     height: 35px;
+     box-shadow: none;
+     border: 1px solid #e8e8e8;
+     background: #fff;
+     border-radius: 3px;
+     cursor: pointer;
 }
 
-.option-bar .search-area .selectBox-dropdown .selectBox-arrow:before {
-    font: normal normal normal 14px/1 FontAwesome;
-    content: "\f078";
-    line-height: 35px;
-    color: #777;
-    font-size: 12px;
+.option-bar .search-area .sort-category-area .selectBox-dropdown .selectBox-arrow:before {
+     font: normal normal normal 14px/1 FontAwesome;
+     content: "\f078";
+     line-height: 35px;
+     color: #777;
+     font-size: 12px;
 }
 
-.option-bar .search-area {
-    width: 170px;
-    margin-top: 10px;
-    float: right;
+.option-bar .search-area .sort-category-area {
+     width: 170px;
+     margin-top: 10px;
+     float: right;
 }
 
 .javaScript-behavior .bg-active:hover{
@@ -5301,19 +5301,19 @@ blockquote footer {
     padding: 40px 0 10px;
 }
 
-.search-area .search-fields {
-    min-height: 45px;
-    padding: 5px 5px 2px 0;
-    box-shadow: none;
-    border: 1px solid #e8e8e8;
-    background: transparent;
-    border-radius: 3px;
-    width: 100% !important;
-    cursor: pointer;
+.search-area .sort-category-area .search-fields {
+min-height: 45px;
+padding: 5px 5px 2px 0;
+box-shadow: none;
+border: 1px solid #e8e8e8;
+background: transparent;
+border-radius: 3px;
+width: 100% !important;
+cursor: pointer;
 }
 
-.search-area .form-group{
-    margin-bottom: 20px;
+.search-area .sort-category-area .form-group {
+     margin-bottom: 20px;
 }
 
 .form-group label,
@@ -5331,43 +5331,43 @@ blockquote footer {
     margin: 0 0 0 20px;
 }
 
-.search-area .search-fields button {
-    border-radius: 1px;
-    box-shadow: none;
-    border: none;
-    background: #fff;
+.search-area .sort-category-area .search-fields button {
+     border-radius: 1px;
+     box-shadow: none;
+     border: none;
+     background: #fff;
 }
 
-.search-area .search-button {
-    cursor: pointer;
-    padding: 13px 20px;
-    letter-spacing: 1px;
-    font-size: 13px;
-    font-weight: 500;
-    text-transform: uppercase;
-    color: #FFF;
-    transition: .5s;
-    border-radius: 2px;
-    border: none;
-    width: 100%;
+.search-area .sort-category-area .search-button {
+     cursor: pointer;
+     padding: 13px 20px;
+     letter-spacing: 1px;
+     font-size: 13px;
+     font-weight: 500;
+     text-transform: uppercase;
+     color: #FFF;
+     transition: .5s;
+     border-radius: 2px;
+     border: none;
+     width: 100%;
 }
 
-.search-area .search-button:hover,
-.search-area .search-button:focus {
-    outline: none;
-    color: #fff;
-    box-shadow: none !important;
-}
+     .search-area .sort-category-area .search-button:hover,
+     .search-area .sort-category-area .search-button:focus {
+          outline: none;
+          color: #fff;
+          box-shadow: none !important;
+     }
 
-.search-area .selectBox-dropdown .selectBox-label {
-    padding: 2px 15px;
-    display: initial;
-    white-space: nowrap;
-    overflow: hidden;
-    line-height: 37px;
-    font-size: 15px;
-    color: #888;
-    font-weight: 500;
+.search-area .sort-category-area .selectBox-dropdown .selectBox-label {
+     padding: 2px 15px;
+     display: initial;
+     white-space: nowrap;
+     overflow: hidden;
+     line-height: 37px;
+     font-size: 15px;
+     color: #888;
+     font-weight: 500;
 }
 
 .selectBox-arrow{
@@ -5375,21 +5375,21 @@ blockquote footer {
     padding-right: 15px;
 }
 
-.search-area .selectBox-options.selectBox-options-bottom {
-    margin: 0;
-    padding: 0;
+.search-area .sort-category-area .selectBox-options.selectBox-options-bottom {
+     margin: 0;
+     padding: 0;
 }
 
-.search-area .selectBox-options, .selectBox-options li a {
-    padding: 9px 15px;
-    font-size: 14px;
-    font-weight: 500;
-    border-bottom: transparent;
-    cursor: pointer;
+.search-area .sort-category-area .selectBox-options, .selectBox-options li a {
+     padding: 9px 15px;
+     font-size: 14px;
+     font-weight: 500;
+     border-bottom: transparent;
+     cursor: pointer;
 }
 
-.search-area .selectBox-options, .selectBox-options li:last-child {
-    border-bottom: none;
+.search-area .sort-category-area .selectBox-options, .selectBox-options li:last-child {
+     border-bottom: none;
 }
 
 .selectBox-dropdown-menu {
@@ -5728,11 +5728,11 @@ button:focus {
     top: 12px;
 }
 
-.b3 .search-area .selectBox-dropdown .selectBox-label {
-    padding: 0;
-    font-size: 15px;
-    color: #888;
-}
+     .b3 .search-area .sort-category-area .selectBox-dropdown .selectBox-label {
+          padding: 0;
+          font-size: 15px;
+          color: #888;
+     }
 
 .b3 .inline-search-area .search-col {
     width: 18%;
@@ -6041,13 +6041,13 @@ button:focus {
         top: 15px;
     }
 
-    .banner-inner-2 .search-area .selectBox-dropdown .selectBox-label {
-        line-height: 22px;
-    }
+     .banner-inner-2 .search-area .sort-category-area .selectBox-dropdown .selectBox-label {
+          line-height: 22px;
+     }
 
-    .banner-inner-2 .search-area .search-fields{
-        min-height: 40px;
-    }
+     .banner-inner-2 .search-area .sort-category-area .search-fields {
+          min-height: 40px;
+     }
 
     .banner-inner-2 .btn-md {
         border-radius: 3px;
@@ -6396,10 +6396,10 @@ button:focus {
         line-height: 38px;
     }
 
-    .search-area .search-button {
-        cursor: pointer;
-        padding: 10px 20px 9px;
-    }
+     .search-area .sort-category-area .search-button {
+          cursor: pointer;
+          padding: 10px 20px 9px;
+     }
 
     .pt-40 {
         padding-top: 40px;
