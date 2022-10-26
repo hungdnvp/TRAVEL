@@ -11,7 +11,7 @@ namespace TRAVEL.Models
     {
         [Key]
         [StringLength(10)]
-        public string LinkCode { get; set; }
+        public string MaLink { get; set; }
 
         [Column("LinkImg")]
         [StringLength(100)]

@@ -6,10 +6,10 @@ using System.Web.Mvc;
 
 namespace TRAVEL.Areas.Admin.Controllers
 {
-    public class AdminHomeController : Controller
+    public class ManagerController : Controller
     {
-        // GET: Admin/AdminHome
-        public ActionResult AdminHome()
+        // GET: Admin/Manager
+        public ActionResult DashBoard()
         {
             return View();
         }

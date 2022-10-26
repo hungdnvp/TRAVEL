@@ -27,6 +27,7 @@ namespace TRAVEL.Models
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<TaiKhoan> TaiKhoans { get; set; }
         public virtual DbSet<Tour> Tours { get; set; }
+        public virtual DbSet<TravelType> TravelTypes { get; set; }
         public virtual DbSet<Vung> Vungs { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -43,11 +44,6 @@ namespace TRAVEL.Models
                 .HasMany(e => e.DanhGias)
                 .WithRequired(e => e.ChiTietTK)
                 .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<ChiTietTK>()
-                .HasMany(e => e.PhanHois)
-                .WithOptional(e => e.ChiTietTK)
-                .HasForeignKey(e => e.MaKH);
 
             modelBuilder.Entity<ChiTietTour>()
                 .HasMany(e => e.Ngays)
@@ -68,7 +64,7 @@ namespace TRAVEL.Models
                 .Map(m => m.ToTable("Tour_DiaDanh").MapLeftKey("MaDiaDanh").MapRightKey("MaTour"));
 
             modelBuilder.Entity<LinkImg>()
-                .Property(e => e.LinkCode)
+                .Property(e => e.MaLink)
                 .IsUnicode(false);
 
             modelBuilder.Entity<LinkImg>()
@@ -109,6 +105,11 @@ namespace TRAVEL.Models
                 .HasMany(e => e.DanhGias)
                 .WithRequired(e => e.Tour)
                 .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Tour>()
+                .HasMany(e => e.TravelTypes)
+                .WithMany(e => e.Tours)
+                .Map(m => m.ToTable("Tour_TravelType").MapLeftKey("MaTour").MapRightKey("MaTravelType"));
         }
     }
 }

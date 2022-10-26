@@ -16,6 +16,7 @@ namespace TRAVEL.Models
             DanhGias = new HashSet<DanhGia>();
             PhieuDatTours = new HashSet<PhieuDatTour>();
             DiaDanhs = new HashSet<DiaDanh>();
+            TravelTypes = new HashSet<TravelType>();
         }
 
         [Key]
@@ -54,5 +55,8 @@ namespace TRAVEL.Models
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DiaDanh> DiaDanhs { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TravelType> TravelTypes { get; set; }
     }
 }

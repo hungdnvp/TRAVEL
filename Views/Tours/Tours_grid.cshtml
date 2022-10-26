@@ -38,9 +38,8 @@
                             </div>
                             <div class="search-area">
                                 <select id="sort" class="selectpicker search-fields" name="location">
-                                    <option value="">prices sorting</option>
-                                    <option value="dec">High to Low</option>
                                     <option value="inc">Low to High</option>
+                                    <option value="dec">High to Low</option>
                                 </select>
                             </div>
                         </div>
@@ -51,11 +50,11 @@
                     {
                         var night = tour.NumDay - 1;
                         int j = 0;
-                        <div id="@tour.MaTour" class="col-lg-6 col-md-6 col-sm-12" price="@ViewBag.Prices[tour.MaTour]">
+                        <div id="@tour.MaTour" class="col-lg-6 col-md-6 col-sm-12" price="@tour.Gia">
                             <div class="tour-item">
                                 <div class="item-thumbnail">
                                     <a href="/Tours/Tours_detail/@tour.MaTour" class="item-img">
-                                        <div class="plan-price"><sup>$</sup>@ViewBag.Prices[tour.MaTour]<sub>/ night</sub></div>
+                                        <div class="plan-price"><sup>$</sup>@tour.Gia<sub>/ night</sub></div>
                                         <img src="~/assets/@tour.LinkImage" alt="tours" class="img-fluid">
                                     </a>
                                 </div>
@@ -91,7 +90,7 @@
                             </div>
                         </div>
                     }
-                    <div class="col-lg-12">
+                    <div id="tour-page" class="col-lg-12">
                         <div class="pagination-box">
                             <nav aria-label="Page navigation example">
                                 <ul class="pagination">
@@ -110,10 +109,10 @@
                 <div class="sidebar">
                     <!-- Search area2 start -->
                     <div class="widget search-area2">
-                        <h5 class="sidebar-title">Book This Tours</h5>
-                        <form class="inline-search-area" method="GET">
+                        <h5 class="sidebar-title" style="color: rgb(255, 33, 79) ">Complete Form to<br /> Search Tours</h5>
+                        <form class="inline-search-area" method="POST">
                             <div class="form-group search-col">
-                                <input type="text" class="form-control" placeholder="Destination, City.....">
+                                <input id="des-input" type="text" class="form-control" placeholder="Destination, City.....">
                                 <i class="flaticon-search icon-append"></i>
                             </div>
                             <div class="form-group search-col">
@@ -125,13 +124,12 @@
                                 <i class="flaticon-calendar icon-append"></i>
                             </div>
                             <div class="form-group search-col">
-                                <select class="selectpicker search-fields btn-block form-control bdr" name="travel-type">
-                                    <option>Travel Type</option>
-                                    <option>Adventure</option>
-                                    <option>Escorted Tour</option>
-                                    <option>River Cruise</option>
-                                    <option>Hiking</option>
-                                    <option>Suffing</option>
+                                <select id="tour-type" class="selectpicker search-fields btn-block form-control bdr" name="travel-type">
+                                    <option value="">Travel Type</option>
+                                    @foreach (TravelType type in (List<TravelType>)ViewBag.TravelTypes)
+                                    {
+                                        <option value="@type.MaTravelType">@type.TravelTypeName</option>
+                                    }
                                 </select>
                                 <i class="flaticon-download icon-append"></i>
                             </div>
@@ -142,155 +140,126 @@
                                     <div class="clearfix"></div>
                                 </div>
                             </div>
-                            <div class="form-group search-col mb-0">
+                            <!-- Star Rating start -->
+                            <div class="widget duration">
+                                <h5 class="sidebar-title">Star Rating</h5>
+                                <form class="inline-search-area" method="GET">
+                                    <div class="form-group mb-0" id="star-div">
+                                        <div class="form-check checkbox-theme">
+                                            <input class="form-check-input" type="radio" name="star-rate" value="5" id="star1">
+                                            <label class="form-check-label" for="star1">
+                                                <span class="ratings">
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                </span>
+                                            </label>
+                                        </div>
+                                        <div class="form-check checkbox-theme">
+                                            <input class="form-check-input" type="radio" name="star-rate" value="4" id="star2">
+                                            <label class="form-check-label" for="star2">
+                                                <span class="ratings">
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star-o"></i>
+                                                </span>
+                                            </label>
+                                        </div>
+                                        <div class="form-check checkbox-theme">
+                                            <input class="form-check-input" type="radio" name="star-rate" value="3" id="star3">
+                                            <label class="form-check-label" for="star3">
+                                                <span class="ratings">
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star-o"></i>
+                                                    <i class="fa fa-star-o"></i>
+                                                </span>
+                                            </label>
+                                        </div>
+                                        <div class="form-check checkbox-theme">
+                                            <input class="form-check-input" type="radio" name="star-rate" value="2" id="star4">
+                                            <label class="form-check-label" for="star4">
+                                                <span class="ratings">
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star-o"></i>
+                                                    <i class="fa fa-star-o"></i>
+                                                    <i class="fa fa-star-o"></i>
+                                                </span>
+                                            </label>
+                                        </div>
+                                        <div class="form-check checkbox-theme mb-0">
+                                            <input class="form-check-input" type="radio" name="star-rate" value="1" id="star5">
+                                            <label class="form-check-label" for="star5">
+                                                <span class="ratings">
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star-o"></i>
+                                                    <i class="fa fa-star-o"></i>
+                                                    <i class="fa fa-star-o"></i>
+                                                    <i class="fa fa-star-o"></i>
+                                                </span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <!-- Duration start -->
+                            <div class="widget duration">
+                                <h5 class="sidebar-title">Duration</h5>
+                                <form class="inline-search-area" method="GET">
+                                    <div class="form-group mb-0">
+                                        <div class="form-check checkbox-theme">
+                                            <input class="form-check-input" type="radio" value="1" id="day-tour1" name="duration">
+                                            <label class="form-check-label" for="day-tour1">
+                                                1 Day Tour
+                                            </label>
+                                        </div>
+                                        <div class="form-check checkbox-theme">
+                                            <input class="form-check-input" type="radio" value="2" id="day-tour2" name="duration">
+                                            <label class="form-check-label" for="day-tour2">
+                                                2 Days /1 Night
+                                            </label>
+                                        </div>
+                                        <div class="form-check checkbox-theme">
+                                            <input class="form-check-input" type="radio" value="3" id="day-tour3" name="duration">
+                                            <label class="form-check-label" for="day-tour3">
+                                                3 Days /2 Night
+                                            </label>
+                                        </div>
+                                        <div class="form-check checkbox-theme">
+                                            <input class="form-check-input" type="radio" value="4" id="day-tour4" name="duration">
+                                            <label class="form-check-label" for="day-tour4">
+                                                4 Days /3 Night
+                                            </label>
+                                        </div>
+                                        <div class="form-check checkbox-theme">
+                                            <input class="form-check-input" type="radio" value="5" id="day-tour5" name="duration">
+                                            <label class="form-check-label" for="day-tour5">
+                                                5 Days /4 Night
+                                            </label>
+                                        </div>
+                                        <div class="form-check checkbox-theme mb-0">
+                                            <input class="form-check-input" type="radio" value="6" id="day-tour6" name="duration">
+                                            <label class="form-check-label" for="day-tour5">
+                                                More
+                                            </label>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+
+                            <div id="submit-search" class="form-group search-col mb-0">
                                 <a href="#" class="btn-theme btn-md btn-block">Search</a>
                             </div>
                         </form>
                     </div>
-                    <!-- Star Rating start -->
-                    <div class="widget duration">
-                        <h5 class="sidebar-title">Star Rating</h5>
-                        <form class="inline-search-area" method="GET">
-                            <div class="form-group mb-0">
-                                <div class="form-check checkbox-theme">
-                                    <input class="form-check-input" type="checkbox" value="" id="star1">
-                                    <label class="form-check-label" for="star1">
-                                        <span class="ratings">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </span>
-                                    </label>
-                                </div>
-                                <div class="form-check checkbox-theme">
-                                    <input class="form-check-input" type="checkbox" value="" id="star2">
-                                    <label class="form-check-label" for="star2">
-                                        <span class="ratings">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star-o"></i>
-                                        </span>
-                                    </label>
-                                </div>
-                                <div class="form-check checkbox-theme">
-                                    <input class="form-check-input" type="checkbox" value="" id="star3">
-                                    <label class="form-check-label" for="star3">
-                                        <span class="ratings">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                        </span>
-                                    </label>
-                                </div>
-                                <div class="form-check checkbox-theme">
-                                    <input class="form-check-input" type="checkbox" value="" id="star4">
-                                    <label class="form-check-label" for="star4">
-                                        <span class="ratings">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                        </span>
-                                    </label>
-                                </div>
-                                <div class="form-check checkbox-theme mb-0">
-                                    <input class="form-check-input" type="checkbox" value="" id="star5">
-                                    <label class="form-check-label" for="star5">
-                                        <span class="ratings">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                        </span>
-                                    </label>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <!-- Duration start -->
-                    <div class="widget duration">
-                        <h5 class="sidebar-title">Duration</h5>
-                        <form class="inline-search-area" method="GET">
-                            <div class="form-group mb-0">
-                                <div class="form-check checkbox-theme">
-                                    <input class="form-check-input" type="checkbox" value="" id="day-tour1">
-                                    <label class="form-check-label" for="day-tour1">
-                                        1 Day Tour
-                                    </label>
-                                </div>
-                                <div class="form-check checkbox-theme">
-                                    <input class="form-check-input" type="checkbox" value="" id="day-tour2">
-                                    <label class="form-check-label" for="day-tour2">
-                                        2 - 5 Days Tour
-                                    </label>
-                                </div>
-                                <div class="form-check checkbox-theme">
-                                    <input class="form-check-input" type="checkbox" value="" id="day-tour3">
-                                    <label class="form-check-label" for="day-tour3">
-                                        4 - 10 Days Tour
-                                    </label>
-                                </div>
-                                <div class="form-check checkbox-theme">
-                                    <input class="form-check-input" type="checkbox" value="" id="day-tour4">
-                                    <label class="form-check-label" for="day-tour4">
-                                        8 - 20 Days Tour
-                                    </label>
-                                </div>
-                                <div class="form-check checkbox-theme mb-0">
-                                    <input class="form-check-input" type="checkbox" value="" id="day-tour5">
-                                    <label class="form-check-label" for="day-tour5">
-                                        16 - 40 Days Tour
-                                    </label>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <!-- Activity type start -->
-                    <div class="widget activity-type">
-                        <h5 class="sidebar-title">Activity Type</h5>
-                        <form class="inline-search-area" method="GET">
-                            <div class="form-group mb-0">
-                                <div class="form-check checkbox-theme">
-                                    <input class="form-check-input" type="checkbox" value="" id="adventure">
-                                    <label class="form-check-label" for="adventure">
-                                        Adventure
-                                    </label>
-                                </div>
-                                <div class="form-check checkbox-theme">
-                                    <input class="form-check-input" type="checkbox" value="" id="camping">
-                                    <label class="form-check-label" for="camping">
-                                        Camping
-                                    </label>
-                                </div>
-                                <div class="form-check checkbox-theme">
-                                    <input class="form-check-input" type="checkbox" value="" id="kayaking">
-                                    <label class="form-check-label" for="kayaking">
-                                        Kayaking
-                                    </label>
-                                </div>
-                                <div class="form-check checkbox-theme">
-                                    <input class="form-check-input" type="checkbox" value="" id="trekking">
-                                    <label class="form-check-label" for="trekking">
-                                        Trekking
-                                    </label>
-                                </div>
-                                <div class="form-check checkbox-theme mb-0">
-                                    <input class="form-check-input" type="checkbox" value="" id="skiing">
-                                    <label class="form-check-label" for="skiing">
-                                        Skiing
-                                    </label>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
+
+
                     <!-- Question start -->
                     <div class="widget question">
                         <h5 class="sidebar-title">Get a Question?</h5>
@@ -324,11 +293,37 @@
 <!--Script ajax-->
 
 <script type="text/javascript">
+
+    $(document).ready(function () {
+        $("#submit-search").click(function () {
+            var destination = $('#des-input').val();
+            var matourtype = parseInt($('#tour-type').val());
+            var favorite = parseInt($("input[name='star-rate']:checked").val());
+            var duration = parseInt($("input[name='duration']:checked").val());
+            $.ajax({
+                type: "POST",
+                url: '/Tours/TourSearch',
+                dataType: 'html',
+                data: JSON.stringify({ des: destination, tourtype: matourtype, star: favorite, dura: duration }),
+                async: true,
+                contentType: "application/json; charset=utf-8",
+                success: function (response) {
+                    $('#load-database').html(response);
+                    $page.appendTo('#load-database');
+                }
+            });
+        });
+    });
+
+    // switch display list or grid
+    $page = $('#tour-page');
     $(function () {
         $(".change-view-btn").click(function () {
             if ($(this).hasClass("active-view-btn")) {
                 return false;
             } else {
+                $('a.selectBox span.selectBox-label').text('Low to Hight');
+                $('#sort').val('inc');
                 $(".active-view-btn").removeClass("active-view-btn");
                 $(this).addClass("active-view-btn");
                 if ($(this).attr("id") == "view-grid") {
@@ -344,6 +339,7 @@
                         contentType: "application/json; charset=utf-8",
                         success: function (response) {
                             $('#load-database').html(response);
+                            $page.appendTo('#load-database');
                         }
                     });
                 } else {
@@ -358,6 +354,7 @@
                         contentType: "application/json; charset=utf-8",
                         success: function (response) {
                             $('#load-database').html(response);
+                            $page.appendTo('#load-database');
                         }
                     });
                 }
@@ -367,16 +364,29 @@
     // sap xep
     $(function () {
         $("#sort").on('change', function (e) {
-            if ($("#sort").val() == "") { return false; }
-            else if ($("#sort").val() == "inc") {
-                $('.col-lg-6.col-md-6.col-sm-12').sort(
-                    function (a, b) { return ($(a).attr("price")) > ($(b).attr("price")) ? 1 : -1; }
-                ).prependTo('#load-database');
+
+            if ($("#sort").val() == "inc") {
+                if ($('.active-view-btn').attr('id') == 'view-grid') {
+                    $('.col-lg-6.col-md-6.col-sm-12').sort(
+                        function (a, b) { return ($(a).attr("price")) > ($(b).attr("price")) ? 1 : -1; }
+                    ).prependTo('#load-database');
+                } else {
+                    $('.tour-item-3').sort(
+                        function (a, b) { return ($(a).attr("price")) > ($(b).attr("price")) ? 1 : -1; }
+                    ).prependTo('#load-database');
+                }
             } else if ($("#sort").val() == "dec") {
-                $('.col-lg-6.col-md-6.col-sm-12').sort(
-                    function (a, b) { return ($(a).attr("price")) < ($(b).attr("price")) ? 1 : -1; }
-                ).prependTo('#load-database');
+                if ($('.active-view-btn').attr('id') == 'view-grid') {
+                    $('.col-lg-6.col-md-6.col-sm-12').sort(
+                        function (a, b) { return ($(a).attr("price")) < ($(b).attr("price")) ? 1 : -1; }
+                    ).prependTo('#load-database');
+                } else {
+                    $('.tour-item-3').sort(
+                        function (a, b) { return ($(a).attr("price")) < ($(b).attr("price")) ? 1 : -1; }
+                    ).prependTo('#load-database');
+                }
             }
         });
     });
+
 </script>
