@@ -2,15 +2,73 @@
 @model PagedList.IPagedList<Blog>
 @using PagedList.Mvc;
 @{
-     ViewBag.Title = "Blog_sidebar";
+     ViewBag.Title = "Blog List";
 }
 @Html.Partial("_banner")
-@Html.Partial("blog_rightside")
+
 
 <!-- Blog section start -->
 <div class="blog-section content-area-2">
      <div class="container">
           <div class="row">
+               <div class="col-lg-12 col-md-12">
+                    <div class="option-bar">
+                         <div class="row clearfix">
+                              <div class="col-xl-4 col-lg-5 col-md-5 col-sm-5">
+                                   <h4>
+                                        <span class="heading-icon">
+                                             <i class="fa fa-caret-right icon-design"></i>
+                                             <i class="fa fa-th-large"></i>
+                                        </span>
+                                        @if (Model != null)
+                                        {
+                                             var count = Model.LongCount<Blog>();
+                                             if (count > 1)
+                                             {
+                         <span class="heading">@count Results Found</span> }
+                    else
+                    {
+          <span class="heading">@count Result Found</span>}
+}
+                                   </h4>
+                              </div>
+                              <div class="col-xl-8 col-lg-7 col-md-7 col-sm-7">
+                                   <div class="sorting-options clearfix">
+                                        <a href="#" class="change-view-btn active-view-btn"><i class="fa fa-th-list"></i></a>
+                                        <a href="/Blog/Index" class="change-view-btn "><i class="fa fa-th-large"></i></a>
+                                   </div>
+                                   @*<div class="search-area">
+                                        <select class="selectpicker search-fields" name="location">
+                                             <option>Name</option>
+                                             <option>Author</option>
+                                             <option>Tag</option>
+                                             <option>Category</option>
+                                        </select>
+                                   </div>*@
+
+                                   <div class="search-area">
+                                        <select class="selectpicker search-fields" name="location">
+                                             <option>Default Sorting</option>
+                                             <option>High to Low</option>
+                                             <option>Low to High</option>
+                                             <option>A - Z</option>
+                                             <option>Z - A</option>
+                                        </select>
+                                   </div>
+                                   <div class="search-area">
+                                        <select class="selectpicker search-fields" name="location">
+                                             <option>Name of Blog</option>
+                                             <option>Published Date</option>
+                                             <option>Comments</option>
+                                             <option>Reactions</option>
+                                        </select>
+
+                                   </div>
+                              </div>
+                         </div>
+                    </div>
+               </div>
+
                <div class="col-lg-8 col-md-12">
                     @if (Model.Count != 0)
                     {
@@ -18,9 +76,24 @@
                          {
                               <div class="blog-item-2">
                                    <div class="blog-photo clip-home">
-                                        <img src="~/assets/img/blog/img-2.jpg" alt="blog" class="img-fluid">
+                                        <img src="~/assets/img/blog/@item.Link_CoverImg" alt="blog" class="img-fluid">
                                         <div class="date-box clip-home">
-                                             <span>23</span>Jun
+                                             <span>@item.NgayDang.ToString().Split('/')[1]</span>
+                                             @switch (@item.NgayDang.ToString().Split('/')[0])
+                                             {
+                                                  case "1":<span>Jan</span> break;
+                                                  case "2": <span>Feb</span> break;
+                                                  case "3": <span>Mar</span> break;
+                                                  case "4": <span>Apr</span> break;
+                                                  case "5": <span>May</span> break;
+                                                  case "6": <span>Jun</span> break;
+                                                  case "7": <span>Jul</span> break;
+                                                  case "8": <span>Aug</span> break;
+                                                  case "9": <span>Sep</span> break;
+                                                  case "10": <span>Oct</span> break;
+                                                  case "11": <span>Nov</span> break;
+                                                  case "12": <span>Dec</span>break;
+                                             }
                                         </div>
                                    </div>
                                    <div class="detail">
@@ -30,9 +103,9 @@
                                              <span><a href="#"><i class="fa fa-heart-o"></i>27</a></span>
                                         </div>
                                         <h3>
-                                             <a href="blog-detail.html">7 Places to visit this winter</a>
+                                             <a href="/Blog/Blog_detail/@item.Blog_ID">@item.Ten</a>
                                         </h3>
-                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries.But also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop</p>
+                                        <p>@item.MoTa</p>
                                    </div>
                               </div>
                          }
@@ -41,25 +114,57 @@
                     else
                     {
                          <script>
-                              alert('There is no result')
-                              var url = "/Tour/Index";
+                              alert('No result found!')
+                              var url = "/Blog/Blog_sidebar";
                               window.location.href = url;
                          </script>
                     }
-                    <div class="pagination-box">
-                         <nav aria-label="Page navigation example">
-                              <ul class="pagination">
-                                   <li class="page-item"><a class="page-link" href="#"><span aria-hidden="true">«</span></a></li>
-                                   <li class="page-item"><a class="page-link active" href="#">1</a></li>
-                                   <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                   <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                   <li class="page-item"><a class="page-link" href="#"><span aria-hidden="true">»</span></a></li>
-                              </ul>
-                         </nav>
+                    @{
+                         var num_page = @Model.PageCount;
+                         //var num_page = 16;
+                         var curr_page = @Model.PageNumber;
+
+                    }
+                    <div class="col-lg-12">
+                         <div class="pagination-box">
+                              <nav aria-label="Page navigation example">
+                                   <ul class="pagination">
+                                        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+                                        @Html.PagedListPager(Model, page => Url.Action("Blog_sidebar", new { page }))
+                                        @*@if (curr_page > 1)
+                                                                           {
+                                                                 <li class="page-item"><a class="page-link" href="/Blog/?page=@(curr_page-1)"><span aria-hidden="true">«</span></a></li>}
+                                                                           <li class="page-item"><a class="page-link" onclick="true" href="/Blog/Blog_sidebar?page=1">1</a></li>
+                                                                           @if (num_page > 1)
+                                                                           {
+                                                                                for (int i = 2; i <= 6; i++)
+                                                                                {
+                                                                 <li class="page-item"><a class="page-link" onclick="true" href="/Blog/Blog_sidebar?page=@i">@i</a></li>
+                                   }
+                                                       }
+                                                                           @if (curr_page < num_page)
+                                                                           {
+                                                                 <li class="page-item"><a class="page-link" href="/Blog/Blog_sidebar?page=@(curr_page+1)"><span aria-hidden="true">»</span></a></li> }*@
+                                   </ul>
+                              </nav>
+                         </div>
                     </div>
-                    @Html.PagedListPager(Model, page => Url.Action("Blog_sidebar", new { page })
+
                </div>
+               @Html.Partial("blog_rightside")
           </div>
      </div>
 </div>
 <!-- Blog section end -->
+
+@*<script>
+     const curr_location = location.href;
+     var a_tag_list = document.getElementsByClassName("page-link");
+     Array.from(a_tag_list).forEach((e) => {
+          if (e.href === curr_location) {
+               e.classList.add("active");
+          }
+     })
+
+</script>*@
+-
