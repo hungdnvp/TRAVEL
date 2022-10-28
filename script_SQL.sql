@@ -41,4 +41,27 @@ INSERT INTO Tour_TravelType VALUES(7,4);
 INSERT INTO Tour_TravelType VALUES(8,3);
 INSERT INTO Tour_TravelType VALUES(8,2);
 GO
+-- 28/10--
+ALTER TABLE Tour
+ADD LinkVideo VARCHAR(200);
 
+GO
+
+CREATE TABLE DichVu
+(
+	MaDichVu INT IDENTITY PRIMARY KEY,
+	TenDichVu NVARCHAR(500),
+	MoTa NVARCHAR(2000)
+);
+GO
+CREATE TABLE DichVu_Tour
+(
+	MaDichVu INT,
+	MaTour INT,
+	PRIMARY KEY (MaDichVu,MaTour),
+	FOREIGN KEY (MaDichVu) REFERENCES DichVu(MaDichVu),
+	FOREIGN KEY (MaTour) REFERENCES Tour(MaTour)
+);
+GO
+DROP TABLE DichVuTour
+GO
