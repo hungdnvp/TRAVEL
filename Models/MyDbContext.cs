@@ -19,7 +19,7 @@ namespace TRAVEL.Models
         public virtual DbSet<ChiTietTour> ChiTietTours { get; set; }
         public virtual DbSet<DanhGia> DanhGias { get; set; }
         public virtual DbSet<DiaDanh> DiaDanhs { get; set; }
-        public virtual DbSet<DichVuTour> DichVuTours { get; set; }
+        public virtual DbSet<DichVu> DichVus { get; set; }
         public virtual DbSet<LinkImg> LinkImgs { get; set; }
         public virtual DbSet<Ngay> Ngays { get; set; }
         public virtual DbSet<PhanHoi> PhanHois { get; set; }
@@ -63,6 +63,11 @@ namespace TRAVEL.Models
                 .WithMany(e => e.DiaDanhs)
                 .Map(m => m.ToTable("Tour_DiaDanh").MapLeftKey("MaDiaDanh").MapRightKey("MaTour"));
 
+            modelBuilder.Entity<DichVu>()
+                .HasMany(e => e.Tours)
+                .WithMany(e => e.DichVus)
+                .Map(m => m.ToTable("DichVu_Tour").MapLeftKey("MaDichVu").MapRightKey("MaTour"));
+
             modelBuilder.Entity<LinkImg>()
                 .Property(e => e.MaLink)
                 .IsUnicode(false);
@@ -99,6 +104,10 @@ namespace TRAVEL.Models
 
             modelBuilder.Entity<Tour>()
                 .Property(e => e.LinkImage)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Tour>()
+                .Property(e => e.LinkVideo)
                 .IsUnicode(false);
 
             modelBuilder.Entity<Tour>()

@@ -15,6 +15,7 @@ namespace TRAVEL.Models
             BangGias = new HashSet<BangGia>();
             DanhGias = new HashSet<DanhGia>();
             PhieuDatTours = new HashSet<PhieuDatTour>();
+            DichVus = new HashSet<DichVu>();
             DiaDanhs = new HashSet<DiaDanh>();
             TravelTypes = new HashSet<TravelType>();
         }
@@ -42,6 +43,9 @@ namespace TRAVEL.Models
 
         public int? NumDay { get; set; }
 
+        [StringLength(200)]
+        public string LinkVideo { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BangGia> BangGias { get; set; }
 
@@ -52,6 +56,9 @@ namespace TRAVEL.Models
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PhieuDatTour> PhieuDatTours { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DichVu> DichVus { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DiaDanh> DiaDanhs { get; set; }

@@ -12,7 +12,6 @@ namespace TRAVEL.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public ChiTietTour()
         {
-            DichVuTours = new HashSet<DichVuTour>();
             LinkImgs = new HashSet<LinkImg>();
             Ngays = new HashSet<Ngay>();
             Tours = new HashSet<Tour>();
@@ -26,9 +25,6 @@ namespace TRAVEL.Models
 
         [StringLength(500)]
         public string PlaceVisit { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DichVuTour> DichVuTours { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<LinkImg> LinkImgs { get; set; }

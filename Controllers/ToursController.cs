@@ -133,14 +133,21 @@ namespace TRAVEL.Controllers
             }
         }
 
+        // Detail Tour
         public ActionResult Tours_detail(int id)
         {
             Load_Page();
             ViewBag.Numstar = numstars[id];
+            List<string> imgs = new List<string>();
             using (MyDbContext Travel = new MyDbContext())
             {
                 var tour = Travel.Tours.Find(id);
-
+                var Link = Travel.LinkImgs.Where(c => c.MaChiTietTour == tour.MaChiTietTour).ToList();
+                foreach (var link in Link)
+                {
+                    imgs.Add(link.LinkImg1);
+                }
+                ViewBag.Imgs = imgs;
                 return View(tour);
 
             }

@@ -54,48 +54,31 @@
                     <!-- main slider carousel items -->
                     <div class="carousel-inner">
                         <div class="active item carousel-item" data-slide-number="0">
-                            <img src="~/assets/img/tour/img-1.jpg" class="img-fluid" alt="slider">
+                            <img src="~/assets/@Model.LinkImage" class="img-fluid" alt="slider">
                         </div>
-                        <div class="item carousel-item" data-slide-number="1">
-                            <img src="~/assets/img/tour/img-2.jpg" class="img-fluid" alt="slider">
-                        </div>
-                        <div class="item carousel-item" data-slide-number="2">
-                            <img src="~/assets/img/tour/img-3.jpg" class="img-fluid" alt="slider">
-                        </div>
-                        <div class="item carousel-item" data-slide-number="4">
-                            <img src="~/assets/img/tour/img-4.jpg" class="img-fluid" alt="slider">
-                        </div>
-                        <div class="item carousel-item" data-slide-number="5">
-                            <img src="~/assets/img/tour/img-5.jpg" class="img-fluid" alt="slider">
-                        </div>
+                        @foreach (string it in ViewBag.Imgs)
+                        {
+                            <div class="item carousel-item" data-slide-number="1">
+                                <img src="~/assets/img/tour/@it" class="img-fluid" alt="slider">
+                            </div>
+                        }
+
                     </div>
                     <!-- main slider carousel nav controls -->
                     <ul class="carousel-indicators smail-item list-inline nav nav-justified">
                         <li class="list-inline-item active">
                             <a id="carousel-selector-0" class="selected" data-slide-to="0" data-target="#itemDetailsSlider">
-                                <img src="~/assets/img/tour/img-1.jpg" class="img-fluid" alt="slider">
+                                <img src="~/assets/@Model.LinkImage" class="img-fluid" alt="slider">
                             </a>
                         </li>
-                        <li class="list-inline-item">
-                            <a id="carousel-selector-1" data-slide-to="1" data-target="#itemDetailsSlider">
-                                <img src="~/assets/img/tour/img-2.jpg" class="img-fluid" alt="slider">
-                            </a>
-                        </li>
-                        <li class="list-inline-item">
-                            <a id="carousel-selector-2" data-slide-to="2" data-target="#itemDetailsSlider">
-                                <img src="~/assets/img/tour/img-3.jpg" class="img-fluid" alt="slider">
-                            </a>
-                        </li>
-                        <li class="list-inline-item">
-                            <a id="carousel-selector-3" data-slide-to="3" data-target="#itemDetailsSlider">
-                                <img src="~/assets/img/tour/img-4.jpg" class="img-fluid" alt="slider">
-                            </a>
-                        </li>
-                        <li class="list-inline-item">
-                            <a id="carousel-selector-4" data-slide-to="4" data-target="#itemDetailsSlider">
-                                <img src="~/assets/img/tour/img-5.jpg" class="img-fluid" alt="slider">
-                            </a>
-                        </li>
+                        @foreach (string it in ViewBag.Imgs)
+                        {
+                            <li class="list-inline-item">
+                                <a id="carousel-selector-1" data-slide-to="1" data-target="#itemDetailsSlider">
+                                    <img src="~/assets/img/tour/@it" class="img-fluid" alt="slider">
+                                </a>
+                            </li>
+                        }
                     </ul>
                 </div>
                 <!-- Tabbing box start -->
@@ -121,22 +104,19 @@
                         <div class="tab-pane fade active show" id="one" role="tabpanel" aria-labelledby="one-tab">
                             <div class="properties-description">
                                 <h3 class="heading-2">Information</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas in pulvinar neque. Nulla finibus lobortis pulvinar. Donec a consectetur nulla. Nulla posuere sapien vitae lectus suscipit, et pulvinar nisi tincidunt. Aliquam erat volutpat. Curabitur convallis fringilla diam sed aliquam. Sed tempor iaculis massa faucibus feugiat. In fermentum facilisis massa, a consequat purus viverra a. Aliquam pellentesque nibh et nibh feugiat gravida. Maecenas ultricies, diam vitae semper placerat, velit risus accumsan nisl, eget tempor lacus est vel nunc. Proin accumsan elit sed neque euismod fringilla. Curabitur lobortis nunc velit, et fermentum urna dapibus non. Vivamus magna lorem, elementum id gravida ac, laoreet tristique augue. Maecenas dictum lacus eu nunc porttitor, ut hendrerit arcu efficitur.</p>
+                                <p>@Model.Mota</p>
                                 <br>
+                                <h3 class="heading-2">Services served include</h3>
+                                <br />
                                 <div class="information-table manage-table">
                                     <ul>
-                                        <li>
-                                            <div class="information-info">Departure</div>
-                                            <div class="information-info2">Kathmandu International Airport</div>
-                                        </li>
-                                        <li>
-                                            <div class="information-info">Departure Time</div>
-                                            <div class="information-info2">Please arrive by 9:15 AM for a prompt departure at 9:30 AM</div>
-                                        </li>
-                                        <li>
-                                            <div class="information-info">Return Time</div>
-                                            <div class="information-info2">Approximately 8.30PM</div>
-                                        </li>
+                                        @foreach (var service in Model.DichVus.ToList())
+                                        {
+                                            <li>
+                                                <div class="information-info">@service.TenDichVu</div>
+                                                <div class="information-info2">@service.MoTa</div>
+                                            </li>
+                                        }
                                         <li>
                                             <div class="information-info">Dress Code</div>
                                             <div class="information-info2">Casual, comfortable and light</div>
@@ -286,7 +266,7 @@
                         <div class="tab-pane fade " id="4" role="tabpanel" aria-labelledby="4-tab">
                             <div class="inside-properties mb-30">
                                 <h3 class="heading-2">Video</h3>
-                                <iframe src="https://www.youtube.com/embed/5e0LxrLSzok" allowfullscreen=""></iframe>
+                                <iframe src="@Model.LinkVideo" allowfullscreen=""></iframe>
                             </div>
                         </div>
                         <div class="tab-pane fade " id="three" role="tabpanel" aria-labelledby="three-tab">
