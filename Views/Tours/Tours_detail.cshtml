@@ -4,10 +4,16 @@
     ViewData["sub_link"] = "Tours";
     ViewData["Title"] = "Tours Detail";
 }
-
+@using TRAVEL.Models
+@model Tour
 
 @Html.Partial("_banner")
 <!-- Tour details page start -->
+@{
+    int i = 0;
+    var night = Model.NumDay - 1;
+
+}
 <div class="tour-details-page content-area-2">
     <div class="container">
         <div class="row">
@@ -17,13 +23,18 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="title">
-                                    <h3>Australia Sydney City</h3>
+                                    <h3>@Model.DiaDiem</h3>
                                     <div class="ratings">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star-o"></i>
+                                        @for (int j = 1; j < ViewBag.Numstar; j++)
+                                        {
+                                            <i class="fa fa-star"></i>
+                                            i++;
+                                        }
+                                        @while (i < 5)
+                                        {
+                                            <i class="fa fa-star-o"></i>
+                                            i++;
+                                        }
                                         <span>( 7 Reviews )</span>
                                     </div>
                                 </div>
@@ -31,9 +42,9 @@
                             <div class="col-md-12">
                                 <div class="tour-infomation">
                                     <ul>
-                                        <li><i class="flaticon-calendar"></i> 3 Days 2 Nights</li>
+                                        <li><i class="flaticon-calendar"></i> @Model.NumDay Days @night Nights</li>
                                         <li><i class="flaticon-team"></i> Group: 5 - 10 People</li>
-                                        <li><i class="flaticon-pin"></i> Thailand</li>
+                                        <li><i class="flaticon-pin"></i> @Model.DiaDiem</li>
                                         <li><i class="flaticon-user"></i> Min Age: 18+</li>
                                     </ul>
                                 </div>

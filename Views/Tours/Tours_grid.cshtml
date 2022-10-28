@@ -60,10 +60,10 @@
                                 </div>
                                 <div class="detail">
                                     <h1 class="title">
-                                        <a href="tours-detail.html">@tour.TenTour</a>
+                                        <a href="/Tours/Tours_detail/@tour.MaTour">@tour.TenTour</a>
                                     </h1>
                                     <div class="location">
-                                        <a href="tours-detail.html">
+                                        <a href="/Tours/Tours_detail/@tour.MaTour">
                                             <i class="flaticon-pin"></i>@tour.DiaDiem
                                         </a>
                                     </div>
@@ -296,15 +296,20 @@
 
     $(document).ready(function () {
         $("#submit-search").click(function () {
-            var destination = $('#des-input').val();
+            var destination = $('#des-input').val().toLowerCase();
             var matourtype = parseInt($('#tour-type').val());
             var favorite = parseInt($("input[name='star-rate']:checked").val());
             var duration = parseInt($("input[name='duration']:checked").val());
+            var view = $('.active-view-btn').attr('id');
+            if (!matourtype) matourtype = -1;
+            if (!favorite) favorite = -1;
+            if (!duration) duration = -1;
+            if (favorite == -1 && duration == -1 && matourtype == -1 && destination == '') return false;
             $.ajax({
                 type: "POST",
                 url: '/Tours/TourSearch',
                 dataType: 'html',
-                data: JSON.stringify({ des: destination, tourtype: matourtype, star: favorite, dura: duration }),
+                data: JSON.stringify({ part: view, des: destination, tourtype: matourtype, star: favorite, dura: duration }),
                 async: true,
                 contentType: "application/json; charset=utf-8",
                 success: function (response) {

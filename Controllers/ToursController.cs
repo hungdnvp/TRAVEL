@@ -73,21 +73,77 @@ namespace TRAVEL.Controllers
 
         //Search Tour
         [HttpPost]
-        public ActionResult TourSearch(string des, int tourtype, int star, int dura)
+        public ActionResult TourSearch(string part, string des, int tourtype, int star, int dura)
         {
             Load_Page();
             ViewBag.Numstars = numstars;
             using (MyDbContext Travel = new MyDbContext())
             {
+                List<Tour> tours = Travel.Tours.ToList();
+                if (star != -1)
+                {
+                    foreach (var item in numstars)
+                    {
+                        if (item.Value != star)
+                        {
+                            try
+                            {
+                                tours.Remove(Travel.Tours.Find(item.Key));
+                            }
+                            catch { }
+                        }
+                    }
+                }
+                if (des != "")
+                {
+                    try
+                    {
+                        tours = tours.Where(c => c.DiaDiem.ToLower().Contains(des) || c.TenTour.ToLower().Contains(des)).ToList();
+                    }
+                    catch { }
+                }
+                if (dura != -1)
+                {
+                    try
+                    {
+                        tours = tours.Where(c => c.NumDay == dura).ToList();
+                    }
+                    catch { }
+                }
+                if (tourtype != -1)
+                {
+                    try
+                    {
+                        var ls = Travel.TravelTypes.Where(p => p.MaTravelType == tourtype).FirstOrDefault();
+                        tours = (List<Tour>)tours.Where(c => c.TravelTypes.Contains(ls));
+                    }
+                    catch { }
+                }
 
-                return PartialView("_tourlist");
+                if (part == "view-grid")
+                {
+                    return PartialView("_tourgrid", tours);
+                }
+
+                else
+                {
+                    return PartialView("_tourlist", tours);
+                }
 
             }
         }
 
         public ActionResult Tours_detail(int id)
         {
-            return View(id);
+            Load_Page();
+            ViewBag.Numstar = numstars[id];
+            using (MyDbContext Travel = new MyDbContext())
+            {
+                var tour = Travel.Tours.Find(id);
+
+                return View(tour);
+
+            }
         }
 
     }
