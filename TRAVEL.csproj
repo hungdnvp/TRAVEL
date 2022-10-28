@@ -598,6 +598,7 @@
     <Content Include="assets\img\travel-reviews-bg.jpg" />
     <Content Include="assets\js\app.js" />
     <Content Include="assets\js\backstretch.js" />
+    <Content Include="assets\js\blog.js" />
     <Content Include="assets\js\bootstrap-submenu.js" />
     <Content Include="assets\js\bootstrap.min.js" />
     <Content Include="assets\js\daterangepicker.min.js" />
