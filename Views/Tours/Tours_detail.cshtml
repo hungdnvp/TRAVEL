@@ -8,6 +8,7 @@
 @model Tour
 
 @Html.Partial("_banner")
+
 <!-- Tour details page start -->
 @{
     int i = 0;
@@ -25,7 +26,7 @@
                                 <div class="title">
                                     <h3>@Model.DiaDiem</h3>
                                     <div class="ratings">
-                                        @for (int j = 1; j < ViewBag.Numstar; j++)
+                                        @for (int j = 1; j < ViewBag.Numstar[Model.MaTour]; j++)
                                         {
                                             <i class="fa fa-star"></i>
                                             i++;
@@ -104,19 +105,10 @@
                         <div class="tab-pane fade active show" id="one" role="tabpanel" aria-labelledby="one-tab">
                             <div class="properties-description">
                                 <h3 class="heading-2">Information</h3>
-                                <p>@Model.Mota</p>
-                                <br>
-                                <h3 class="heading-2">Services served include</h3>
+                                <p>@ViewBag.chitiettour.MoTaTour</p>
                                 <br />
                                 <div class="information-table manage-table">
                                     <ul>
-                                        @foreach (var service in Model.DichVus.ToList())
-                                        {
-                                            <li>
-                                                <div class="information-info">@service.TenDichVu</div>
-                                                <div class="information-info2">@service.MoTa</div>
-                                            </li>
-                                        }
                                         <li>
                                             <div class="information-info">Dress Code</div>
                                             <div class="information-info2">Casual, comfortable and light</div>
@@ -145,113 +137,96 @@
                                         </li>
                                     </ul>
                                 </div>
+                                <br>
+                                <h3 class="heading-2">Services served include</h3>
+                                <br />
+                                <div class="information-table manage-table">
+                                    <ul>
+                                        @foreach (var service in ViewBag.services)
+                                        {
+                                            <li>
+                                                <div class="information-info">@service.TenDichVu</div>
+                                                <div class="information-info2">@service.MoTa</div>
+                                            </li>
+                                        }
+                                    </ul>
+                                </div>
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <h3 class="heading-2">Related Tours</h3>
                                     </div>
-                                    <div class="col-lg-6 col-md-6">
-                                        <div class="tour-item">
-                                            <div class="item-thumbnail">
-                                                <a href="tours-detail.html" class="item-img">
-                                                    <div class="plan-price"><sup>$</sup>750<sub>/ night</sub></div>
-                                                    <img src="~/assets/img/tour/img-1.jpg" alt="tours" class="img-fluid">
-                                                </a>
-                                            </div>
-                                            <div class="detail">
-                                                <h1 class="title">
-                                                    <a href="tours-detail.html">Camping and  mountains</a>
-                                                </h1>
-                                                <div class="location">
-                                                    <a href="tours-detail.html">
-                                                        <i class="flaticon-pin"></i> 2726 Shinn Street, New York
+                                    @foreach (Tour related in ViewBag.related)
+                                    {
+                                        var neight = related.NumDay - 1;
+                                        int k = 0;
+                                        <div class="col-lg-6 col-md-6">
+                                            <div class="tour-item">
+                                                <div class="item-thumbnail">
+                                                    <a href="/Tours/Tours_detail/@related.MaTour" class="item-img">
+                                                        <div class="plan-price"><sup>$</sup>@related.Gia<sub>/ night</sub></div>
+                                                        <img src="~/assets/@related.LinkImage" alt="tours" class="img-fluid">
                                                     </a>
                                                 </div>
-                                            </div>
-                                            <div class="footer clearfix">
-                                                <div class="pull-left">
-                                                    <i class="flaticon-calendar"></i>  5 Days / 4 Nights
+                                                <div class="detail">
+                                                    <h1 class="title">
+                                                        <a href="/Tours/Tours_detail/@related.MaTour">@related.TenTour</a>
+                                                    </h1>
+                                                    <div class="location">
+                                                        <a href="/Tours/Tours_detail/@related.MaTour">
+                                                            <i class="flaticon-pin"></i> @related.DiaDiem
+                                                        </a>
+                                                    </div>
                                                 </div>
-                                                <div class="pull-right">
-                                                    <div class="ratings">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star-o"></i>
+                                                <div class="footer clearfix">
+                                                    <div class="pull-left">
+                                                        <i class="flaticon-calendar"></i>  @related.NumDay Days / @night Nights
+                                                    </div>
+                                                    <div class="pull-right">
+                                                        <div class="ratings">
+                                                            @for (int j = 0; j < ViewBag.Numstar[related.MaTour]; j++)
+                                                            {
+                                                                <i class="fa fa-star"></i>
+                                                                k++;
+                                                            }
+                                                            @while (k < 5)
+                                                            {
+                                                                <i class="fa fa-star-o"></i>
+                                                                k++;
+                                                            }
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="col-lg-6 col-md-6">
-                                        <div class="tour-item">
-                                            <div class="item-thumbnail">
-                                                <a href="tours-detail.html" class="item-img">
-                                                    <div class="tag">Sale</div>
-                                                    <div class="plan-price"><sup>$</sup>600<sub>/ night</sub></div>
-                                                    <img src="~/assets/img/tour/img-2.jpg" alt="tours" class="img-fluid">
-                                                </a>
-                                            </div>
-                                            <div class="detail">
-                                                <h1 class="title">
-                                                    <a href="tours-detail.html">Best Switzerland Tour</a>
-                                                </h1>
-                                                <div class="location">
-                                                    <a href="tours-detail.html">
-                                                        <i class="flaticon-pin"></i> 2726 Shinn Street, New York
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="footer clearfix">
-                                                <div class="pull-left">
-                                                    <i class="flaticon-calendar"></i> 5 Days / 4 Nights
-                                                </div>
-                                                <div class="pull-right">
-                                                    <div class="ratings">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star-o"></i>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    }
                                 </div>
                             </div>
                         </div>
                         <div class="tab-pane fade " id="6" role="tabpanel" aria-labelledby="6-tab">
                             <div class="properties-amenities mb-30">
-                                <h3 class="heading-2">Itinerary</h3>
+                                <h2 class="heading-2">Itinerary</h2>
                                 <div class="itinerary-section clearfix">
-                                    <div class="itinerary">
-                                        <div class="number">
-                                            <a href="#">1</a>
+                                    @foreach (Ngay day in ViewBag.ngays)
+                                    {
+                                        <div class="itinerary">
+                                            <div class="number">
+                                                <a href="#">@day.MaNgay</a>
+                                            </div>
+                                            <div class="itinerary-info">
+                                                <h4 style="color: #13cdf2">Day @day.MaNgay: @day.TieuDe</h4>
+                                                @foreach (ChiTietNgay day_detail in ViewBag.chitietngays)
+                                                {
+                                                    if (day_detail.MaNgay == day.MaNgay)
+                                                    {
+                                                        <h5>@day_detail.GioHoatDong</h5>
+                                                        <p>@day_detail.NoiDung</p>
+                                                    }
+                                                }
+                                            </div>
                                         </div>
-                                        <div class="itinerary-info">
-                                            <h3>Day 1: Departure</h3>
-                                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries.But also the leap into electronic typesetting,</p>
-                                        </div>
-                                    </div>
-                                    <div class="itinerary">
-                                        <div class="number">
-                                            <a href="#">2</a>
-                                        </div>
-                                        <div class="itinerary-info">
-                                            <h3>Day 2: Adventure Beggins</h3>
-                                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries.But also the leap into electronic typesetting,</p>
-                                        </div>
-                                    </div>
-                                    <div class="itinerary mb-0">
-                                        <div class="number">
-                                            <a href="#">3</a>
-                                        </div>
-                                        <div class="itinerary-info">
-                                            <h3>Day 3: Historical Tour</h3>
-                                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries.But also the leap into electronic typesetting,</p>
-                                        </div>
-                                    </div>
+                                    }
+
+
                                 </div>
                             </div>
                         </div>
@@ -259,7 +234,7 @@
                             <div class="location mb-30">
                                 <h3 class="heading-2">Location</h3>
                                 <div class="map">
-                                    <div id="contactMap" class="contact-map"></div>
+                                    <div id="contactMap" class="contact-map" style="height:600px; width:100%; margin-top:10px; margin-bottom:20px;"></div>
                                 </div>
                             </div>
                         </div>
@@ -313,46 +288,29 @@
                                 <!-- Comments section start -->
                                 <div class="comments-section clearfix mb-40">
                                     <ul class="comments">
-                                        <li>
-                                            <div class="comment">
-                                                <div class="comment-author">
-                                                    <a href="#">
-                                                        <img src="~/assets/img/avatar/avatar.jpg" alt="blog">
-                                                    </a>
-                                                </div>
-                                                <div class="comment-content">
-                                                    <div class="comment-meta">
-                                                        <h3>
-                                                            Maikel Alisa
-                                                        </h3>
-                                                        <div class="comment-meta">
-                                                            8:42 PM 1/28/2022<a href="#">Reply</a>
-                                                        </div>
+                                        @foreach (var dg in ViewBag.reviews)
+                                        {
+                                            <li>
+                                                <div class="comment">
+                                                    <div class="comment-author">
+                                                        <a href="#">
+                                                            <img src="~/assets/@ViewBag.accounts[dg.Key].LinkAvatar" alt="blog">
+                                                        </a>
                                                     </div>
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec luctus tincidunt aliquam. Aliquam gravida massa at sem vulputate interdum et vel eros.</p>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="comment mb-0">
-                                                <div class="comment-author">
-                                                    <a href="#">
-                                                        <img src="~/assets/img/avatar/avatar-3.jpg" alt="blog">
-                                                    </a>
-                                                </div>
-                                                <div class="comment-content mrg-bdr">
-                                                    <div class="comment-meta">
-                                                        <h3>
-                                                            Anne Brady
-                                                        </h3>
+                                                    <div class="comment-content">
                                                         <div class="comment-meta">
-                                                            8:42 PM 1/28/2022<a href="#">Reply</a>
+                                                            <h3>
+                                                                @ViewBag.accounts[dg.Key].Hoten
+                                                            </h3>
+                                                            <div class="comment-meta">
+                                                                @ViewBag.reviews[dg.Key].ThoiGian<a href="#">Reply</a>
+                                                            </div>
                                                         </div>
+                                                        <p>@ViewBag.reviews[dg.Key].Review</p>
                                                     </div>
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec luctus tincidunt aliquam. Aliquam gravida massa at sem vulputate interdum et vel eros.</p>
                                                 </div>
-                                            </div>
-                                        </li>
+                                            </li>
+                                        }
                                     </ul>
                                 </div>
                                 <!-- Contact-1 start -->
@@ -511,3 +469,37 @@
     </div>
 </div>
 <!-- Tour details page end -->
+<!-- Load Map google-->
+<!--Script api google map -->
+<script type="text/javascript">
+    $(function () {
+        var map;
+        var myLatlng = new google.maps.LatLng(@Model.lat, @Model.lng);
+        var myOptions = {
+            zoom: 15,
+            center: myLatlng,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        }
+        map = new google.maps.Map(document.getElementById("contactMap"), myOptions);
+        // Biến text chứa nội dung sẽ được hiển thị
+        var text;
+        text = "<p align='center' style='height:120px'><img src='/assets/@Model.LinkImage' alt='icon map' style='width:100%;height:100%'/><br><b style='color:#00F' " +
+            "style='text-align:center'>@Model.DiaDiem<br />" +
+            "</b></p>";
+        var infowindow = new google.maps.InfoWindow(
+            {
+                content: text,
+                size: new google.maps.Size(60, 40),
+                position: myLatlng
+            });
+        infowindow.open(map);
+        var marker = new google.maps.Marker({
+            position: myLatlng,
+            map: map,
+            title: "@Model.DiaDiem"
+        });
+
+    });
+</script>
+
+

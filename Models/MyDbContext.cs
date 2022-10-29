@@ -41,6 +41,10 @@ namespace TRAVEL.Models
                 .IsUnicode(false);
 
             modelBuilder.Entity<ChiTietTK>()
+                .Property(e => e.LinkAvatar)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<ChiTietTK>()
                 .HasMany(e => e.DanhGias)
                 .WithRequired(e => e.ChiTietTK)
                 .WillCascadeOnDelete(false);
@@ -49,6 +53,10 @@ namespace TRAVEL.Models
                 .HasMany(e => e.Ngays)
                 .WithRequired(e => e.ChiTietTour)
                 .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<DanhGia>()
+                .Property(e => e.ThoiGian)
+                .IsUnicode(false);
 
             modelBuilder.Entity<DiaDanh>()
                 .Property(e => e.Img)
@@ -108,6 +116,14 @@ namespace TRAVEL.Models
 
             modelBuilder.Entity<Tour>()
                 .Property(e => e.LinkVideo)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Tour>()
+                .Property(e => e.lat)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Tour>()
+                .Property(e => e.lng)
                 .IsUnicode(false);
 
             modelBuilder.Entity<Tour>()

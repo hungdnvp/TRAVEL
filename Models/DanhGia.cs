@@ -21,6 +21,12 @@ namespace TRAVEL.Models
 
         public int? NumStar { get; set; }
 
+        [StringLength(2000)]
+        public string Review { get; set; }
+
+        [StringLength(50)]
+        public string ThoiGian { get; set; }
+
         public virtual ChiTietTK ChiTietTK { get; set; }
 
         public virtual Tour Tour { get; set; }

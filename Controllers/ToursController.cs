@@ -137,12 +137,47 @@ namespace TRAVEL.Controllers
         public ActionResult Tours_detail(int id)
         {
             Load_Page();
-            ViewBag.Numstar = numstars[id];
+            ViewBag.Numstar = numstars;
             List<string> imgs = new List<string>();
             using (MyDbContext Travel = new MyDbContext())
             {
-                var tour = Travel.Tours.Find(id);
-                var Link = Travel.LinkImgs.Where(c => c.MaChiTietTour == tour.MaChiTietTour).ToList();
+                Tour tour = Travel.Tours.Find(id);
+                List<LinkImg> Link = Travel.LinkImgs.Where(c => c.MaChiTietTour == tour.MaChiTietTour).ToList();
+                List<DichVu> services = tour.DichVus.ToList();
+                // service
+                ViewBag.services = services;
+                ChiTietTour chitiettour = Travel.ChiTietTours.Where(c => c.MaChiTietTour == tour.MaChiTietTour).FirstOrDefault();
+                // chi tiet tour
+                ViewBag.chitiettour = chitiettour;
+                List<Ngay> ngays = Travel.Ngays.Where(c => c.MaChiTietTour == chitiettour.MaChiTietTour).OrderBy(c => c.MaNgay).ToList();
+                //ngay
+                ViewBag.ngays = ngays;
+                List<ChiTietNgay> chitietngays = Travel.ChiTietNgays.Where(c => c.MaChiTietTour == chitiettour.MaChiTietTour).OrderBy(c => c.MaNgay).ToList();
+                ViewBag.chitietngays = chitietngays;
+                // review comment
+                Dictionary<int, ChiTietTK> account_reviews = new Dictionary<int, ChiTietTK>();
+                Dictionary<int, DanhGia> reviews = new Dictionary<int, DanhGia>();
+                foreach (DanhGia dg in Travel.DanhGias.Where(c => c.MaTour == tour.MaTour).OrderBy(c => c.MaChiTietTK))
+                {
+                    reviews.Add(dg.MaChiTietTK, dg);
+                    ChiTietTK tk = Travel.ChiTietTKs.Find(dg.MaChiTietTK);
+                    account_reviews.Add(dg.MaChiTietTK, tk);
+                }
+                ViewBag.accounts = account_reviews;
+                ViewBag.reviews = reviews;
+                // TOur RELATED
+                HashSet<Tour> tour_related = new HashSet<Tour>();
+                foreach (DiaDanh dd in tour.DiaDanhs.ToList())
+                {
+                    var lis = dd.Tours.ToList();
+                    lis.Remove(tour);
+                    foreach (Tour t in lis)
+                    {
+                        tour_related.Add(t);
+                    }
+                }
+                ViewBag.related = tour_related;
+                // LINK IMG
                 foreach (var link in Link)
                 {
                     imgs.Add(link.LinkImg1);
