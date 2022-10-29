@@ -1,0 +1,53 @@
+﻿@using TRAVEL.Models;
+@model PagedList.IPagedList<Blog>
+
+@if (Model.Count != 0)
+{
+     foreach (var item in Model)
+     {
+<div class="blog-item-2">
+     <div class="blog-photo clip-home">
+          <img src="~/assets/img/blog/@item.Link_CoverImg" alt="blog" class="img-fluid">
+          <div class="date-box clip-home">
+               <span>@item.NgayDang.ToString().Split('/')[1]</span>
+               @switch (@item.NgayDang.ToString().Split('/')[0])
+               {
+                    case "1":<span>Jan</span> break;
+                    case "2": <span>Feb</span> break;
+                    case "3": <span>Mar</span> break;
+                    case "4": <span>Apr</span> break;
+                    case "5": <span>May</span> break;
+                    case "6": <span>Jun</span> break;
+                    case "7": <span>Jul</span> break;
+                    case "8": <span>Aug</span> break;
+                    case "9": <span>Sep</span> break;
+                    case "10": <span>Oct</span> break;
+                    case "11": <span>Nov</span> break;
+                    case "12": <span>Dec</span>break;
+               }
+          </div>
+     </div>
+     <div class="detail">
+          <div class="post-meta">
+               <span><a href="#"><i class="flaticon-user"></i>Amdin</a></span>
+               <span><a href="#"><i class="flaticon-comment"></i>27</a></span>
+               <span><a href="#"><i class="fa fa-heart-o"></i>27</a></span>
+          </div>
+          <h3>
+               <a href="/Blog/Blog_detail/@item.Blog_ID">@item.Ten</a>
+          </h3>
+          <p>@item.MoTa</p>
+     </div>
+</div> }
+
+               }
+               else
+               {
+<script>
+     alert('No result found!')
+     var url = "/Blog/Blog_sidebar";
+     window.location.href = url;
+</script>}
+@{ var num_page = @Model.PageCount;
+                    //var num_page = 16;
+                    var curr_page = @Model.PageNumber; }

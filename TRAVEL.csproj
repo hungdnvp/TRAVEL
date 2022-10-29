@@ -598,7 +598,6 @@
     <Content Include="assets\img\travel-reviews-bg.jpg" />
     <Content Include="assets\js\app.js" />
     <Content Include="assets\js\backstretch.js" />
-    <Content Include="assets\js\blog.js" />
     <Content Include="assets\js\bootstrap-submenu.js" />
     <Content Include="assets\js\bootstrap.min.js" />
     <Content Include="assets\js\daterangepicker.min.js" />
@@ -891,6 +890,8 @@
     <Content Include="README.md" />
     <Content Include="Views\Blog\Blog_sidebar.cshtml" />
     <Content Include="Views\Shared\blog_rightside.cshtml" />
+    <Content Include="Views\Blog\_index.cshtml" />
+    <Content Include="Views\Blog\_blogsidebar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include=".git\branches\" />

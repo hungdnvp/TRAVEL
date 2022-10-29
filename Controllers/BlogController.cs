@@ -8,39 +8,49 @@ using PagedList;
 
 namespace TRAVEL.Controllers
 {
-    public class BlogController : Controller
-    {
-        // GET: Blog
-        public ActionResult Index(int ? page, string sortby="",string sort_type="",string name="", string author="", string category = "", string tag="" )
-        {
-            MyDbContext md = new MyDbContext();
-            var model = md.Blogs.ToList();
+     public class BlogController : Controller
+     {
+          // GET: Blog
+          public ActionResult Index(int? page)
+          {
+               MyDbContext md = new MyDbContext();
+               var model = md.Blogs.ToList();
+               int pageSize = 6;
+               int no_of_page = (page ?? 1);
+               return View(model.ToPagedList(no_of_page, pageSize));
+          }
+          //[HttpPost]
+          public ActionResult ajaxSortIndex(int? page, int? sortby, int? sort_type)
+          {
 
+               MyDbContext md = new MyDbContext();
+               var model = md.Blogs.ToList();
+               ViewBag.sort_type = sort_type;
                switch (sortby)
                {
-                    case "name":
-                         if (sort_type == "ascend")
+                    case 1:
+                         if (sort_type == 2)
                          {
                               model = model.OrderBy(x => x.Ten).ToList();
                          }
-                         else if (sort_type == "descend")
+                         else if (sort_type == 3)
                          {
                               model = model.OrderByDescending(x => x.Ten).ToList();
                          }
 
                          break;
-                    case "post_date":
-                         if (sort_type == "ascend")
+                    case 2:
+                         if (sort_type == 6)
                          {
                               model = model.OrderBy(x => x.NgayDang).ToList();
                          }
-                         else if (sort_type == "descend")
+                         else if (sort_type == 7)
                          {
                               model = model.OrderByDescending(x => x.NgayDang).ToList();
                          }
                          break;
 
-                    //case "comments":
+                    //case "num_of_comments":
 
                     //     if (sort_type == "ascend")
                     //     {
@@ -56,7 +66,7 @@ namespace TRAVEL.Controllers
                     //     }
                     //     break;
 
-                    //case "reactions":
+                    //case "num_of_reactions":
 
                     //     if (sort_type == "ascend")
                     //     {
@@ -70,29 +80,36 @@ namespace TRAVEL.Controllers
                     //     {
 
                     //     }
+                    //     break;
+                    //case "all":
+
                     //     break;
 
                     default:
                          break;
                }
-               model = searchModelByName(searchModelByAuthor(searchModelByCategory(searchModelByTag(model, tag), category), author), name);
+               //model = searchModelByName(searchModelByAuthor(searchModelByCategory(searchModelByTag(model, tag), category), author), name);
                int pageSize = 6;
+               //int no_of_page = 1;
                int no_of_page = (page ?? 1);
-               return View(model.ToPagedList(no_of_page, pageSize));
-        }
-          public ActionResult Blog_sidebar(int ? page)
+
+               return PartialView("_index", model.ToPagedList(no_of_page, pageSize));
+          }
+
+
+          public ActionResult Blog_sidebar(int? page)
           {
                MyDbContext md = new MyDbContext();
                var model = md.Blogs.ToList();
                int pageSize = 6;
                int no_of_page = (page ?? 1);
 
-               return View(model.ToPagedList(no_of_page, pageSize));
+               return PartialView("_blogsidebar", model.ToPagedList(no_of_page, pageSize));
           }
           public ActionResult Blog_detail(int id)
           {
                var md = new MyDbContext();
-               var Blog_dt_model = md.Blogs.Single(b => b.Blog_ID== id);
+               var Blog_dt_model = md.Blogs.Single(b => b.Blog_ID == id);
                return View(Blog_dt_model);
           }
           public List<Blog> searchModelByName(List<Blog> model, string name)
