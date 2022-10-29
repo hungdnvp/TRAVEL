@@ -25,64 +25,57 @@ namespace TRAVEL.Controllers
                          }
                          else if (sort_type == "descend")
                          {
-                              //model = model.OrderByDescending()
+                              model = model.OrderByDescending(x => x.Ten).ToList();
                          }
-                         else
-                         {
 
-                         }
                          break;
                     case "post_date":
                          if (sort_type == "ascend")
                          {
-
+                              model = model.OrderBy(x => x.NgayDang).ToList();
                          }
                          else if (sort_type == "descend")
                          {
-
-                         }
-                         else
-                         {
-
+                              model = model.OrderByDescending(x => x.NgayDang).ToList();
                          }
                          break;
 
-                    case "comments":
+                    //case "comments":
 
-                         if (sort_type == "ascend")
-                         {
+                    //     if (sort_type == "ascend")
+                    //     {
 
-                         }
-                         else if (sort_type == "descend")
-                         {
+                    //     }
+                    //     else if (sort_type == "descend")
+                    //     {
 
-                         }
-                         else
-                         {
+                    //     }
+                    //     else
+                    //     {
 
-                         }
-                         break;
+                    //     }
+                    //     break;
 
-                    case "reactions":
+                    //case "reactions":
 
-                         if (sort_type == "ascend")
-                         {
+                    //     if (sort_type == "ascend")
+                    //     {
 
-                         }
-                         else if (sort_type == "descend")
-                         {
+                    //     }
+                    //     else if (sort_type == "descend")
+                    //     {
 
-                         }
-                         else
-                         {
+                    //     }
+                    //     else
+                    //     {
 
-                         }
-                         break;
+                    //     }
+                    //     break;
 
                     default:
-                         model = searchModelByName(searchModelByAuthor(searchModelByCategory(searchModelByTag(model, tag), category), author), name);
                          break;
                }
+               model = searchModelByName(searchModelByAuthor(searchModelByCategory(searchModelByTag(model, tag), category), author), name);
                int pageSize = 6;
                int no_of_page = (page ?? 1);
                return View(model.ToPagedList(no_of_page, pageSize));

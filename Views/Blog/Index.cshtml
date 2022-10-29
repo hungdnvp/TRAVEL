@@ -37,6 +37,12 @@
                                    </div>
                                    <div class="search-area">
                                         <select class="selectpicker search-fields select-sort-details" name="location" style="display:block;">
+                                             @*<li class='select_sort_details_item'><a rel='1'>Default</a></li>
+                                             <li class='select_sort_details_item'><a rel='2'>A-Z</a></li>
+                                             <li class='select_sort_details_item'><a rel='3'>Z-A</a></li>*@
+                                             <option value="1">Default</option>
+                                             <option value="2">A-Z</option>
+                                             <option value="3">Z-A</option>
                                         </select>
                                    </div>
                                    <div class="search-area">
@@ -146,6 +152,7 @@ else
      var sort_select_tag = $(".select-sort");
      sort_select_tag.on("change", function () {
           var value = parseInt($(this).val());
+          console.log(value);
           $(".select-sort-details-selectBox-dropdown-menu").empty();
           switch (value) {
                case 1:
@@ -169,7 +176,21 @@ else
                          "<li class='select_sort_details_item'><a rel='5'>Low to High</a></li>"
                     )
                     break;
+               case 4:
+                    $(".select-sort-details-selectBox-dropdown-menu").append(
+                         "<li class='select_sort_details_item'><a rel='1'>Default</a></li>" +
+                         "<li class='select_sort_details_item'><a rel='4'>High to Low</a></li>" +
+                         "<li class='select_sort_details_item'><a rel='5'>Low to High</a></li>"
+                    )
+                    break;
+
                default:
+                    $(".select-sort-details-selectBox-dropdown-menu").append(
+                         "<li class='select_sort_details_item'><a rel='1'>Default</a></li>" +
+                         "<li class='select_sort_details_item'><a rel='2'>A-Z</a></li>" +
+                         "<li class='select_sort_details_item'><a rel='3'>Z-A</a></li>"
+                    )
+
                     console.log("error");
                     break;
 
