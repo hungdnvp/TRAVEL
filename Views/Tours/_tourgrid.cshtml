@@ -6,11 +6,11 @@
 {
     var night = tour.NumDay - 1;
     int i = 0;
-    <div class="col-lg-6 col-md-6 col-sm-12">
+    <div class="col-lg-6 col-md-6 col-sm-12" price="@tour.Gia">
         <div class="tour-item">
             <div class="item-thumbnail">
-                <a href="#" class="item-img">
-                    <div class="plan-price"><sup>$</sup>@ViewBag.Prices[tour.MaTour]<sub>/ night</sub></div>
+                <a href="/Tours/Tours_detail/@tour.MaTour" class="item-img">
+                    <div class="plan-price"><sup>$</sup>@tour.Gia<sub>/ night</sub></div>
                     <img src="~/assets/@tour.LinkImage" alt="tours" class="img-fluid">
                 </a>
             </div>

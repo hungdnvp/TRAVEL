@@ -159,7 +159,7 @@ $(function () {
         doAnimations($animatingElems);
     });
     $('#carouselExampleIndicators').carousel({
-        interval: 3000,
+        interval: 1200,
         pause: "false"
     });
 
@@ -327,69 +327,69 @@ $(function () {
     });
 
 
-    // Google map activation
-    function LoadMap(propertes) {
-        var defaultLat = 40.7110411;
-        var defaultLng = -74.0110326;
-        var mapOptions = {
-            center: new google.maps.LatLng(defaultLat, defaultLng),
-            zoom: 15,
-            scrollwheel: false,
-            styles: [
-                {
-                    featureType: "administrative",
-                    elementType: "labels",
-                    stylers: [
-                        { visibility: "off" }
-                    ]
-                },
-                {
-                    featureType: "water",
-                    elementType: "labels",
-                    stylers: [
-                        { visibility: "off" }
-                    ]
-                },
-                {
-                    featureType: 'poi.business',
-                    stylers: [{ visibility: 'off' }]
-                },
-                {
-                    featureType: 'transit',
-                    elementType: 'labels.icon',
-                    stylers: [{ visibility: 'off' }]
-                },
-            ]
-        };
-        var map = new google.maps.Map(document.getElementById("contactMap"), mapOptions);
-        var infoWindow = new google.maps.InfoWindow();
-        var myLatlng = new google.maps.LatLng(40.7110411, -74.0110326);
+    //// Google map activation
+    //function LoadMap(propertes) {
+    //    var defaultLat = 40.7110411;
+    //    var defaultLng = -74.0110326;
+    //    var mapOptions = {
+    //        center: new google.maps.LatLng(defaultLat, defaultLng),
+    //        zoom: 15,
+    //        scrollwheel: true,
+    //        styles: [
+    //            {
+    //                featureType: "administrative",
+    //                elementType: "labels",
+    //                stylers: [
+    //                    { visibility: "off" }
+    //                ]
+    //            },
+    //            {
+    //                featureType: "water",
+    //                elementType: "labels",
+    //                stylers: [
+    //                    { visibility: "off" }
+    //                ]
+    //            },
+    //            {
+    //                featureType: 'poi.business',
+    //                stylers: [{ visibility: 'off' }]
+    //            },
+    //            {
+    //                featureType: 'transit',
+    //                elementType: 'labels.icon',
+    //                stylers: [{ visibility: 'off' }]
+    //            },
+    //        ]
+    //    };
+    //    var map = new google.maps.Map(document.getElementById("contactMap"), mapOptions);
+    //    var infoWindow = new google.maps.InfoWindow();
+    //    var myLatlng = new google.maps.LatLng(40.7110411, -74.0110326);
 
-        var marker = new google.maps.Marker({
-            position: myLatlng,
-            map: map
-        });
-        (function (marker) {
-            google.maps.event.addListener(marker, "click", function (e) {
-                infoWindow.setContent("" +
-                    "<div class='map-properties contact-map-content'>" +
-                    "<div class='map-content'>" +
-                    "<p class='address'>123 Kathal St. Tampa City </p>" +
-                    "<ul class='map-properties-list'> " +
-                    "<li><i class='fa fa-phone'></i>  +XXXX XXXX XXX</li> " +
-                    "<li><i class='fa fa-envelope'></i>  info@themevessel.com</li> " +
-                    "<li><a href='index.html'><i class='fa fa-globe'></i>  http://http://themevessel.com</li></a> " +
-                    "</ul>" +
-                    "</div>" +
-                    "</div>");
-                infoWindow.open(map, marker);
-            });
-        })(marker);
-    }
+    //    var marker = new google.maps.Marker({
+    //        position: myLatlng,
+    //        map: map
+    //    });
+    //    (function (marker) {
+    //        google.maps.event.addListener(marker, "click", function (e) {
+    //            infoWindow.setContent("" +
+    //                "<div class='map-properties contact-map-content'>" +
+    //                "<div class='map-content'>" +
+    //                "<p class='address'>123 Kathal St. Tampa City </p>" +
+    //                "<ul class='map-properties-list'> " +
+    //                "<li><i class='fa fa-phone'></i>  +XXXX XXXX XXX</li> " +
+    //                "<li><i class='fa fa-envelope'></i>  info@themevessel.com</li> " +
+    //                "<li><a href='index.html'><i class='fa fa-globe'></i>  http://http://themevessel.com</li></a> " +
+    //                "</ul>" +
+    //                "</div>" +
+    //                "</div>");
+    //            infoWindow.open(map, marker);
+    //        });
+    //    })(marker);
+    //}
 
-    if ($('#contactMap').length) {
-        LoadMap();
-    }
+    //if ($('#contactMap').length) {
+    //    LoadMap();
+    //}
 
 
 
