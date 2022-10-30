@@ -889,9 +889,10 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="README.md" />
     <Content Include="Views\Blog\Blog_sidebar.cshtml" />
-    <Content Include="Views\Shared\blog_rightside.cshtml" />
+    <Content Include="Views\Shared\_blog_rightside.cshtml" />
     <Content Include="Views\Blog\_index.cshtml" />
     <Content Include="Views\Blog\_blogsidebar.cshtml" />
+    <Content Include="Views\Blog\_blogdetail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include=".git\branches\" />

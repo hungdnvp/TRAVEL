@@ -5,14 +5,34 @@
                <h5 class="sidebar-title">Search Blog</h5>
                <div class="search-area">
                     <select class="selectpicker search-fields" name="location">
-                         <option>Name</option>
-                         <option>Author</option>
-                         <option>Tag</option>
-                         <option>Category</option>
+                         <option value="name">Name</option>
+                         <option value="author">Author</option>
+                         <option value="tag">Tag</option>
+                         <option value="category">Category</option>
                     </select>
                </div>
                <form class="form-search" method="GET">
                     <input type="text" class="form-control" placeholder="Search">
+                    <script>
+                         var search_tag = $("#selectpicker search-fields").val();
+                         switch (search_tag) {
+                              case "name":
+                                   $("#form-control").val() = ViewBag.name;
+                                   break;
+                              case "author":
+                                   $("#form-control").val() = ViewBag.author;
+                                   break;
+                              case "tag":
+                                   $("#form-control").val() = ViewBag.tag;
+                                   break;
+                              case "category":
+                                   $("#form-control").val() = ViewBag.category;
+                                   break;
+                              default:
+                                   //$("#form-control").val() = ViewBag.name;
+                                   break;
+                         }
+                    </script>
                     <button type="submit" class="btn"><i class="fa fa-search"></i></button>
                </form>
           </div>

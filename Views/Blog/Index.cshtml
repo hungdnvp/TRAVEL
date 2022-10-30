@@ -36,21 +36,15 @@
                               </div>
                               <div class="search-area">
                                    @*<select class="selectpicker search-fields select-sort-details" name="location" style="display:block;">*@
-                                   <select class="selectpicker search-fields select-sort-details" name="location" style="display:block;">
-
-                                        @*<option class='select_sort_details_item'><a class='details_link' rel='1'>Default</a></option>
-
-                                             <option class='select_sort_details_item'><a class='details_link' rel='2'>A-Z</a></option>
-
-                                             <option class='select_sort_details_item'><a class='details_link' rel='3'>Z-A</a></option>*@
-                                        @*<option value="1">Default</option>
-                                             <option value="2">A-Z</option>
-                                             <option value="3">Z-A</option>*@
+                                   <select class="selectpicker search-fields select-sort-details" name="location" id="select-drop-down" style="display:block;">
+                                        <option value="1">Default</option>
+                                        <option value="2">A-Z</option>
+                                        <option value="3">Z-A</option>
                                    </select>
                               </div>
                               <div class="search-area">
                                    <select id="sortitem" class="selectpicker search-fields select-sort" name="location">
-                                        <option value="0">Sort Blog by</option>
+                                        <option value="" selected disabled>sort blog by</option>
                                         <option value="1">Name of Blog</option>
                                         <option value="2">Published Date</option>
                                         <option value="3">Comments</option>
@@ -104,6 +98,8 @@
 <!-- Blog section end -->
 <!-- script to active page button-->
 <script>
+     var aaa = $("span[class='selectBox-label']");
+     console.log(aaa);
      var sort_select_tag = $(".select-sort");
      sort_select_tag.on("change", function () {
           var value = parseInt($(this).val());
@@ -150,6 +146,7 @@
                     break;
 
           }
+
           $(".details_link").click(function () {
                var rel = parseInt($(this).attr('rel'));
                $page = $("#pager");
@@ -166,17 +163,67 @@
                          $('#body_view').html(response);
                          $page.appendTo('#body_view');
                     }
-               });
+               }).then((response) => {
+                    var a = $("span[class='selectBox-label']");
+                    a.parent().removeClass("selectBox-menuShowing").removeClass("selectBox-menuShowing-top");
+                    var ul = $(this).parent().parent();
+                    ul.removeClass("selectBox-options-top").removeClass("selectBox-options-bottom");
+                    ul.css("display", 'none');
+                    a[0].innerHTML = $(this).text();
+               })
           });
      });
 
-
 </script>
 
-<script>
-     $('#select-sort-details').on('change', function () {
-          $('#selectBox selectpicker search-fields select-sort-details selectBox-dropdown').text(this.value);
-     });
-</script>
+@*<script>
+          $('#select-sort-details').on('change', function () {
+               $('#selectBox selectpicker search-fields select-sort-details selectBox-dropdown').text(this.value);
+          });
+     </script>*@
 @*<script src="~/assets/js/blog.js" type="text/javascript"></script>*@
 
+
+<script>
+
+     //$(".select_sort_details_item").click(function () {
+
+     //     //$(".details_link").click(function () {
+     //     //e.preventDefault();
+     //     var display = $(".details_link").attr('rel');
+     //     switch (display) {
+     //          case 1:
+     //               //$(".selectBox-label").text("Default");
+     //               $(".selectBox-label").html("Default");
+     //               break;
+     //          case 2:
+     //               $(".selectBox-label").text("A-Z");
+
+     //               break;
+     //          case 3:
+     //               $(".selectBox-label").text("Z-A");
+
+     //               break;
+     //          case 4:
+     //               $(".selectBox-label").text("High to Low");
+
+     //               break;
+     //          case 5:
+     //               $(".selectBox-label").text("Low to High");
+
+     //               break;
+     //          case 6:
+     //               $(".selectBox-label").text("Oldest-Newest");
+
+     //               break;
+     //          case 7:
+     //               $(".selectBox-label").text("Newest-Oldest");
+
+     //               break;
+     //          default:
+     //               $(".selectBox-label").text("sort blog by");
+     //               break;
+     //     }
+     //     console.log(display);
+     //})
+</script>

@@ -2,7 +2,9 @@
 @model Blog
 @{
      ViewBag.Title = "Blog Detail";
-     //Layout = "~/Views/Shared/_Layout.cshtml";
+     Layout = "~/Views/Shared/_Layout.cshtml";
+     ViewData["sub_link"] = "Blog List";
+
 }
 @Html.Partial("_banner")
 <div class="blog-section content-area-2">
@@ -26,21 +28,21 @@
                                         <a href="/Blog/Index" class="change-view-btn"><i class="fa fa-th-large"></i></a>
                                    </div>
                                    @*<div class="search-area">
-                                        <select class="selectpicker search-fields" name="location">Search by
-                                             <option>Name</option>
-                                             <option>Author</option>
-                                             <option>Tag</option>
-                                             <option>Category</option>
-                                        </select>
-                                   </div>*@
+                                             <select class="selectpicker search-fields" name="location">Search by
+                                                  <option>Name</option>
+                                                  <option>Author</option>
+                                                  <option>Tag</option>
+                                                  <option>Category</option>
+                                             </select>
+                                        </div>*@
                                    @*<div class="search-area">
-                                        <select class="selectpicker search-fields" name="location">
-                                             <option>Name of Blog</option>
-                                             <option>Published Date</option>
-                                             <option>Comments</option>
-                                             <option>Reactions</option>
-                                        </select>
-                                   </div>*@
+                                             <select class="selectpicker search-fields" name="location">
+                                                  <option>Name of Blog</option>
+                                                  <option>Published Date</option>
+                                                  <option>Comments</option>
+                                                  <option>Reactions</option>
+                                             </select>
+                                        </div>*@
                               </div>
                          </div>
                     </div>
@@ -248,9 +250,9 @@
 </div>
 
 @*<script>
-    (function () {
-        var txt = document.createElement("textarea");
-        txt.innerHTML = @Model.NoiDung;
-        document.getElementById("content").innerHTML = txt.value;
-    }())
-</script>*@
+         (function () {
+             var txt = document.createElement("textarea");
+             txt.innerHTML = @Model.NoiDung;
+             document.getElementById("content").innerHTML = txt.value;
+         }())
+     </script>*@
