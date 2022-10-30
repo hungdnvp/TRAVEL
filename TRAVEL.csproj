@@ -138,7 +138,6 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
-    <Compile Include="Areas\Admin\Controllers\AdminHomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\DiaDanhsController.cs" />
     <Compile Include="Areas\Admin\Controllers\ManagerController.cs" />
     <Compile Include="Controllers\BlogController.cs" />
@@ -856,9 +855,9 @@
     <Content Include="obj\Debug\TRAVEL.csproj.AssemblyReference.cache" />
     <Content Include="obj\Debug\TRAVEL.csproj.CopyComplete" />
     <Content Include="obj\Debug\TRAVEL.csproj.CoreCompileInputs.cache" />
-	<Content Include="Areas\Admin\Views\Manager\DashBoard.cshtml" />
-	<Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
-	<Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Admin\Views\Manager\DashBoard.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
     <None Include="packages.config" />
     <Content Include="Views\Tours\Tours_grid.cshtml" />
     <Content Include="Views\Shared\_banner.cshtml" />
