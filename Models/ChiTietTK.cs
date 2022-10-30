@@ -31,6 +31,9 @@ namespace TRAVEL.Models
 
         public int? MaTaiKhoan { get; set; }
 
+        [StringLength(100)]
+        public string LinkAvatar { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DanhGia> DanhGias { get; set; }
 

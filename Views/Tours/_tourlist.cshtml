@@ -1,0 +1,54 @@
+﻿@using TRAVEL.Models
+@model IEnumerable<Tour>
+
+@foreach (var tour in Model)
+{
+    var night = tour.NumDay - 1;
+    int i = 0;
+    <div class="tour-item-3" price="@tour.Gia">
+        <div class="row">
+            <div class="col-lg-5 col-md-5 col-pad">
+                <div class="item-thumbnail">
+                    <a href="/Tours/Tours_detail/@tour.MaTour" class="item-img">
+                        <div class="tag">Sale</div>
+                        <img src="~/assets/@tour.LinkImage" alt="tours-list" class="img-fluid">
+                        <div class="plan-price"><sup>$</sup>@tour.Gia<sub>/ night</sub></div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-7 col-md-7 col-pad">
+                <div class="detail">
+                    <h1 class="title">
+                        <a href="/Tours/Tours_detail/@tour.MaTour">@tour.TenTour</a>
+                    </h1>
+                    <div class="location">
+                        <a href="/Tours/Tours_detail/@tour.MaTour">
+                            <i class="flaticon-pin"></i>@tour.DiaDiem
+                        </a>
+                    </div>
+                    <p>@tour.Mota</p>
+                </div>
+                <div class="ftr">
+                    <div class="pull-left">
+                        <i class="flaticon-calendar"></i> @tour.NumDay Days / @night Nights
+                    </div>
+                    <div class="pull-right">
+                        <div class="ratings">
+                            @for (int j = 0; j < ViewBag.Numstars[tour.MaTour]; j++)
+                            {
+                                <i class="fa fa-star"></i>
+                                i++;
+                            }
+                            @while (i < 5)
+                            {
+                                <i class="fa fa-star-o"></i>
+                                i++;
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+

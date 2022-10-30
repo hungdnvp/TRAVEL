@@ -48,10 +48,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
@@ -136,7 +138,10 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+
     <Compile Include="Areas\Admin\Controllers\AdminHomeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\DiaDanhsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ManagerController.cs" />
     <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Controllers\CaptchaController.cs" />
     <Compile Include="Controllers\ContactController.cs" />
@@ -154,7 +159,7 @@
     <Compile Include="Models\ChiTietTour.cs" />
     <Compile Include="Models\DanhGia.cs" />
     <Compile Include="Models\DiaDanh.cs" />
-    <Compile Include="Models\DichVuTour.cs" />
+    <Compile Include="Models\DichVu.cs" />
     <Compile Include="Models\LinkImg.cs" />
     <Compile Include="Models\MyDbContext.cs" />
     <Compile Include="Models\Ngay.cs" />
@@ -163,235 +168,12 @@
     <Compile Include="Models\sysdiagram.cs" />
     <Compile Include="Models\TaiKhoan.cs" />
     <Compile Include="Models\Tour.cs" />
+    <Compile Include="Models\TravelType.cs" />
     <Compile Include="Models\Vung.cs" />
-    <Compile Include="obj\Debug\.NETFramework,Version=v4.6.1.AssemblyAttributes.cs" />
+    <Compile Include="obj\Debug\.NETFramework,Version=v4.8.AssemblyAttributes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include=".gitattributes" />
-    <Content Include=".gitignore" />
-    <Content Include=".git\COMMIT_EDITMSG" />
-    <Content Include=".git\config" />
-    <Content Include=".git\description" />
-    <Content Include=".git\FETCH_HEAD" />
-    <Content Include=".git\HEAD" />
-    <Content Include=".git\hooks\applypatch-msg.sample" />
-    <Content Include=".git\hooks\commit-msg.sample" />
-    <Content Include=".git\hooks\fsmonitor-watchman.sample" />
-    <Content Include=".git\hooks\post-update.sample" />
-    <Content Include=".git\hooks\pre-applypatch.sample" />
-    <Content Include=".git\hooks\pre-commit.sample" />
-    <Content Include=".git\hooks\pre-merge-commit.sample" />
-    <Content Include=".git\hooks\pre-push.sample" />
-    <Content Include=".git\hooks\pre-rebase.sample" />
-    <Content Include=".git\hooks\pre-receive.sample" />
-    <Content Include=".git\hooks\prepare-commit-msg.sample" />
-    <Content Include=".git\hooks\update.sample" />
-    <Content Include=".git\index" />
-    <Content Include=".git\info\exclude" />
-    <Content Include=".git\logs\HEAD" />
-    <Content Include=".git\logs\refs\heads\khongthao" />
-    <Content Include=".git\logs\refs\heads\master" />
-    <Content Include=".git\logs\refs\heads\quanghung" />
-    <Content Include=".git\logs\refs\remotes\origin\HEAD" />
-    <Content Include=".git\logs\refs\remotes\origin\khongthao" />
-    <Content Include=".git\logs\refs\remotes\origin\linhphuong" />
-    <Content Include=".git\logs\refs\remotes\origin\master" />
-    <Content Include=".git\logs\refs\remotes\origin\quanghung" />
-    <Content Include=".git\logs\refs\remotes\origin\thanhtu" />
-    <Content Include=".git\objects\00\cec1b2a92418c578bfae90aeb5e7490261c16e" />
-    <Content Include=".git\objects\03\2f16b63210c3f361c813ed445ea395df4ac425" />
-    <Content Include=".git\objects\06\7aa87f718d4c1f0b97a98f28f243409eaf1303" />
-    <Content Include=".git\objects\06\b37d9645823472192cd02b78059a9750a66732" />
-    <Content Include=".git\objects\0a\8938c1eed65ac20d16961afee5272c22435a6a" />
-    <Content Include=".git\objects\0a\f42cf64a3357958d960fec9697bf74ed95246b" />
-    <Content Include=".git\objects\0b\9c0ff80e641cdc1ea4941f256ae62f82e55713" />
-    <Content Include=".git\objects\0e\a1910b8205813d32b99bf43badeb55573ce95d" />
-    <Content Include=".git\objects\0f\c14509e24d31990526ee3a9613bdb59ec8f66c" />
-    <Content Include=".git\objects\11\f679a9c782dd48016237a723926108174a8340" />
-    <Content Include=".git\objects\12\8c0736634aabc1bd72140266a38027524cf8d4" />
-    <Content Include=".git\objects\13\0a2198a590c153fb8fa562e53633782f53611c" />
-    <Content Include=".git\objects\17\26eaef2ecb1d227eb5aaafa405bd1612fdc34c" />
-    <Content Include=".git\objects\17\4904b12e553eb5a91b11ecfd6a6b5010cd6c78" />
-    <Content Include=".git\objects\19\40948051b9f78c5716f4cc5e58326f18869c89" />
-    <Content Include=".git\objects\1a\056a92bd843cb6f3f7a90c583e40173c8a5995" />
-    <Content Include=".git\objects\1a\d0e667d9e03aa364c08715d8b7cb17609383e3" />
-    <Content Include=".git\objects\1e\d96b4aa05fb52c02ca0f4ae0ad49ccc76c43c0" />
-    <Content Include=".git\objects\1f\797894133d4e3936821b5054614af0884d260c" />
-    <Content Include=".git\objects\21\3f2c5fb833857a9640f639bf54879d3be12f25" />
-    <Content Include=".git\objects\22\3f0e19f93ce7a09932a75982428612ef08beaa" />
-    <Content Include=".git\objects\23\98193ae184516151739caec281f796f45821b6" />
-    <Content Include=".git\objects\23\cf784b7f9389fcec3585ee5bbba7e371c76d77" />
-    <Content Include=".git\objects\25\c2e8dc5fc05d3951b14e966bb511971d04d580" />
-    <Content Include=".git\objects\26\03bc76261eb91b404105dfc2b3ddc7e7b85a28" />
-    <Content Include=".git\objects\27\3e8b9af434cfe64e25b9a4534b96ed321af578" />
-    <Content Include=".git\objects\2c\0f3ab41946449b6eac5a20fb9031ef76cece88" />
-    <Content Include=".git\objects\2d\9d932a4241bf286eba75815cc3aa11163ca0e1" />
-    <Content Include=".git\objects\2e\eb9369c107feea6147c8a6049bb37978857f89" />
-    <Content Include=".git\objects\2f\9f4b620f23fde42076f39d3a6181777d1f1d2c" />
-    <Content Include=".git\objects\31\7001b985ac73e782d9baaca64f8151fea0edaf" />
-    <Content Include=".git\objects\33\54ef2d73abe8aa11ba493738e4dfed22642a72" />
-    <Content Include=".git\objects\38\4d873fb364e258010a2a8e98021ddc8552fe9c" />
-    <Content Include=".git\objects\38\dfab3592ea1c9e6de3c19fa2f6617f5467e0d3" />
-    <Content Include=".git\objects\38\ea2142ebabd8484b7bf7aea6b84403d000336b" />
-    <Content Include=".git\objects\3a\6dfaad0901e1dc6a8e6f0b103cfec10babf6ed" />
-    <Content Include=".git\objects\3a\b3cc093f0b14113f7dcad5a60f62153cb6cf34" />
-    <Content Include=".git\objects\3a\da5529a9c363b5342bacdb93fb1c026afcbee8" />
-    <Content Include=".git\objects\3f\6854a0131c0fb17d590030d5e017f3e3e17c3b" />
-    <Content Include=".git\objects\3f\dd80216a7b94b30ed73e9f145a6f8309f47d68" />
-    <Content Include=".git\objects\40\892fb9a0cc2e25b4efc620f9140316417e7aa0" />
-    <Content Include=".git\objects\42\98ad0974ee76cecb11ab6991b870ed54f66063" />
-    <Content Include=".git\objects\43\84ca7741e6d1e2ebaed09a82fe696b8276c2cd" />
-    <Content Include=".git\objects\44\18126a3b3d6025db52de8390287ecb99e9c612" />
-    <Content Include=".git\objects\47\31996fc0849cc232de7773498a848eb6eda0b1" />
-    <Content Include=".git\objects\47\94c778853d7f7a93bb4705251c5bb185b9d0a3" />
-    <Content Include=".git\objects\4a\22b5f24ff6acb17de7d3bf7549f7d700b811ae" />
-    <Content Include=".git\objects\4b\7c2dfe4b7eee8455cd1381eae26b78cbbd0c4e" />
-    <Content Include=".git\objects\4d\7ef535ee22c24c362b42df90504c663ec82275" />
-    <Content Include=".git\objects\4e\b03648b0972b363e3e008b5f4bbd7ec80c0f62" />
-    <Content Include=".git\objects\4e\bd33de9a2e53f6b8dfcf31671b17fe7d5586ea" />
-    <Content Include=".git\objects\4f\c9d2f11d84dabd82e2e6f68836e2d58cd13cd9" />
-    <Content Include=".git\objects\50\c2d98c81fd99c601e29fe808da1acf3d2869ce" />
-    <Content Include=".git\objects\52\7933ec76ed89dd475c78287749cb0dd49013cd" />
-    <Content Include=".git\objects\52\842caef7363129f618b389782a91d5075510ee" />
-    <Content Include=".git\objects\52\8f99c71e0918e29f20b63a076ee51e9e7d13e7" />
-    <Content Include=".git\objects\55\4869f9e3f7b10f7e7ff2bdb94b203eb1462929" />
-    <Content Include=".git\objects\55\e03283a38c2051dae0e840df3f026afcd12033" />
-    <Content Include=".git\objects\57\a8969fedf1b6f0ec4da9ed06701c35f8275ba9" />
-    <Content Include=".git\objects\57\dcf83ab2155ec5afed22c8c4609076555b2a0a" />
-    <Content Include=".git\objects\59\2b57022fb10b63835f7e7571a9244f12ee0e20" />
-    <Content Include=".git\objects\59\bdaddd15140b82d9729d674761c38d56a19400" />
-    <Content Include=".git\objects\5b\3f21236b4d21d0be2b973138d7d723fce18fb5" />
-    <Content Include=".git\objects\5b\98d0aa77ce5bd5ed05bd7eac2ead9d7836e5da" />
-    <Content Include=".git\objects\5b\ec85834eb6e63fefbb8eab8270a06b9621cb59" />
-    <Content Include=".git\objects\5d\a1c613c62d78e9c3e6960951e6cf97344aaa27" />
-    <Content Include=".git\objects\5e\35a6207759387153373ddbe10195f587971da4" />
-    <Content Include=".git\objects\5f\87649b3b21089fac1488780ca45f0749b11f47" />
-    <Content Include=".git\objects\60\af1770df95d6eb2e539165a536758221770383" />
-    <Content Include=".git\objects\61\2a02270efc57976b7b6da9956d1ef977d8afc7" />
-    <Content Include=".git\objects\61\bf034ff88f53b3ba43a8a5bb5275c3d652e3e2" />
-    <Content Include=".git\objects\63\582b21aba62d6594aa768f840b7b629a50d8f5" />
-    <Content Include=".git\objects\63\c2a48af642f032715b6357b3b7697b8cea5a8e" />
-    <Content Include=".git\objects\64\207e8dde2d9880c968e4be15850f48911a3dca" />
-    <Content Include=".git\objects\64\65fed2ebdfddf15f77fffd1f2075f7492712b6" />
-    <Content Include=".git\objects\66\392becf5da9f4b57928513e6c6310af4e1c87c" />
-    <Content Include=".git\objects\66\53606e253980082ef7043e7eb7944c4d447a7a" />
-    <Content Include=".git\objects\68\453806af9352d1c280321eb438c06b4a5e03fc" />
-    <Content Include=".git\objects\6a\0c9c57cd95338ed2c867acaa7ae288550cdc76" />
-    <Content Include=".git\objects\6b\22580697d01c807eb377c705406b210b46e861" />
-    <Content Include=".git\objects\6c\bccd023ae2ae45fa01ae154f1fe2c7e4cbfdcb" />
-    <Content Include=".git\objects\6c\c9fc9bc62309e7cfabee91d8dac75211d5c6d0" />
-    <Content Include=".git\objects\6d\acd153a30b149ccd167e05f847a6b047c620a7" />
-    <Content Include=".git\objects\6e\24f08871e788a126931f57466b55b2612338bf" />
-    <Content Include=".git\objects\6e\9df4497485db22d4d55ebadfb1e45b6ef660f1" />
-    <Content Include=".git\objects\70\3af461a8947028281d4de1d704916873c336d0" />
-    <Content Include=".git\objects\70\d75f1e9f2a57046aa526bacd20fe2eb51736e3" />
-    <Content Include=".git\objects\73\fa20b735250360a099af873888e52a729488a7" />
-    <Content Include=".git\objects\75\39049cd9feee162d5504cd723560e7918497e9" />
-    <Content Include=".git\objects\75\5d3437e4dba3d6239dbffa27878c5f01652377" />
-    <Content Include=".git\objects\77\a2d071cf7e9710022b73a9102ef937d3d4c677" />
-    <Content Include=".git\objects\7a\5c1f2901e9863d8e9f15034e9a18a4450a3654" />
-    <Content Include=".git\objects\7b\711ac2d20b042b89324817165d0acfa00e1efc" />
-    <Content Include=".git\objects\7c\31c08638ccf8807ee3b8680be14926c171481e" />
-    <Content Include=".git\objects\7c\c06622896161e7bfc9ef3780769a004f4fc1fa" />
-    <Content Include=".git\objects\80\ba1aaf82599c6ae3aa77f39919c63b9572a73a" />
-    <Content Include=".git\objects\81\5b2baeb034abf722c12178e1fb5af18dce30c2" />
-    <Content Include=".git\objects\81\872dea58376e17b476394bc19c4fdca533e9b6" />
-    <Content Include=".git\objects\82\b6f3f1018d73a40b10c6fd058f5c51783e61f4" />
-    <Content Include=".git\objects\83\0f00d4c2be2d2199b68211b323d3fe37c92146" />
-    <Content Include=".git\objects\83\3b871342d60650db25741ab0fe7fa884e5ca0a" />
-    <Content Include=".git\objects\83\8562e140cc86303eeeb6d8864d8ce4c57353f8" />
-    <Content Include=".git\objects\87\fd3a8e9761dbeb782c9be6ca14a8d93cf8b842" />
-    <Content Include=".git\objects\8a\559091370898f43bc76225d6cc7b711ebb7fcb" />
-    <Content Include=".git\objects\8b\38d01fbb1dac6184aace23e462393259c876c8" />
-    <Content Include=".git\objects\8b\cd5321f1aae8dd65e9de75c8e28e830f834b0f" />
-    <Content Include=".git\objects\8d\a8152353bb4d6d88bccb285f77fd72645d97c1" />
-    <Content Include=".git\objects\90\171222d7ae451c999182d1e15e2953875ed7b4" />
-    <Content Include=".git\objects\91\1526ef10a6bcd2c3e71b50e62afac55ce6f1e8" />
-    <Content Include=".git\objects\91\6457e8c6a7abe61187668aa0ceae9123bf38c5" />
-    <Content Include=".git\objects\93\277ebd60d126dccca998739824a4a2ad6781f7" />
-    <Content Include=".git\objects\93\2f657f254edfc8123dcb18cc4149afbb98cb43" />
-    <Content Include=".git\objects\96\56b98e1eda8441315fbcf90d4cd377b6fbf6b4" />
-    <Content Include=".git\objects\98\3ce61029efa52bbe035a4f6ff0ed2605591bbd" />
-    <Content Include=".git\objects\99\f2af75b68032e3cc5df911d65e00efe2db5a84" />
-    <Content Include=".git\objects\9b\1463c98750fd6e28c9b3a1247caa7e530b4d7d" />
-    <Content Include=".git\objects\9c\169e39d9b255552ac27c9108d6882e8024a470" />
-    <Content Include=".git\objects\9c\ac6704ba073a1c1822678fe7af257bf348b22c" />
-    <Content Include=".git\objects\9d\f510936cb82343a40467c472fb57ecf6e772fe" />
-    <Content Include=".git\objects\a3\baaa3c4f3198d58aaf771ae72fb6c85583e13a" />
-    <Content Include=".git\objects\a5\e4a70aac67a9f0e30b442c5764f5ae4d86ef9c" />
-    <Content Include=".git\objects\a6\af021378a48172ec17da1dda8e74b82dc9220c" />
-    <Content Include=".git\objects\a9\01fc693b553d30d27fb93d59958a5ef539c808" />
-    <Content Include=".git\objects\aa\1567cd6c674c204d5bdec52aa6516efe644e0b" />
-    <Content Include=".git\objects\aa\ed30876e18c1deae6f0faa7e8087cbc17b6f15" />
-    <Content Include=".git\objects\b1\8cf11f8c04bbfea5b2280551fd498afa870376" />
-    <Content Include=".git\objects\b1\9f143914a9462c27b92ab617f82ee1b1f63a67" />
-    <Content Include=".git\objects\b3\9e4da519dbf3fb8e9046000f1c581708c0f63b" />
-    <Content Include=".git\objects\b3\acf4ea8dba8598e7067c9284b727c01513a085" />
-    <Content Include=".git\objects\b4\611605920c2f5e3c1425b05f038c517944c77b" />
-    <Content Include=".git\objects\b4\7cdc19d5b14cbd12a66ab99aa6e398d7a37b7c" />
-    <Content Include=".git\objects\b4\927a0834edd790bbde5fc770bbcadedfd86e24" />
-    <Content Include=".git\objects\b9\5474e34fc572a74f2c48f6a46c6de1c0d926de" />
-    <Content Include=".git\objects\bb\c105d251ab2abb4db3bd8c36963593826051aa" />
-    <Content Include=".git\objects\bc\4ba0df65231b1ea9474217e5dbfdaa12c707f9" />
-    <Content Include=".git\objects\bd\8810b6e62b7ba0201395676af2989976945582" />
-    <Content Include=".git\objects\bf\44951fd79530280b25c1a056a65c28c36f4516" />
-    <Content Include=".git\objects\bf\e679cbb27ff18d3213599a73e118ae266fd744" />
-    <Content Include=".git\objects\c2\c5d711dc242f77b01bd33b5f0346468fc5bf02" />
-    <Content Include=".git\objects\c7\3b4265d01ed1ba91f4917bd340e3c8662b33d7" />
-    <Content Include=".git\objects\cb\fb15b4ed406d41bbd7531e82501d5eb136b772" />
-    <Content Include=".git\objects\cc\80ab328f3500051e6a621dbee102f8b178feee" />
-    <Content Include=".git\objects\ce\9035d884d64014ee3850e5e6ba997ea1f878ec" />
-    <Content Include=".git\objects\cf\670930dc6f0fb65b0df2aed09b0f6ab7a9d733" />
-    <Content Include=".git\objects\d2\9fbdabda5eff4c375094d3ef906bd10816ab68" />
-    <Content Include=".git\objects\d3\2dcc0d0e46a7e6a3cc8baf3212eb62b0b8ed96" />
-    <Content Include=".git\objects\d4\d0bb21be097eff33fd7acdfa4023fe1eebb3c4" />
-    <Content Include=".git\objects\d7\23e6928fda9c9cb1b980c1a40a326556b97838" />
-    <Content Include=".git\objects\d7\e33eb7a2971b1ccef5f90bea3a3284e02180b8" />
-    <Content Include=".git\objects\dc\5dbfe4e1c4015e8e8358f76856a7a7ce8e9c1f" />
-    <Content Include=".git\objects\df\a13f1e6e69e66739045d32e755e7a33f94e3b6" />
-    <Content Include=".git\objects\e0\207689c49795a362ff516f401429305ca4bdd8" />
-    <Content Include=".git\objects\e0\b34fae1742f371079bd945f7bdd09fa1af2bc3" />
-    <Content Include=".git\objects\e1\6db32d2762621c97f828b1e05927eba6f9eacc" />
-    <Content Include=".git\objects\e1\90290567aabd8ab61063e6d5c09d8a1e08bc06" />
-    <Content Include=".git\objects\e3\11f5795e853ef00013e19abf9201b98a1999af" />
-    <Content Include=".git\objects\e4\d10a1f69c0fcac986c1a0964dcf183f0ce1aa8" />
-    <Content Include=".git\objects\e5\1564755c12181d14a4fc2a5e9917c063cfd3b2" />
-    <Content Include=".git\objects\e6\a66a37d8edbf6c2832ddfdad4278e930bbaee2" />
-    <Content Include=".git\objects\e8\19fead040ba1a1fa10a7274f36ca66f89ba825" />
-    <Content Include=".git\objects\e8\721bf9ca8f8a3a0fdc0172d50cb06ae92642e2" />
-    <Content Include=".git\objects\e9\5a950ba08ebbc2b08e15e4ededf8de40e84d5d" />
-    <Content Include=".git\objects\ea\0b005f4f2c0d3ea8c328104bbafd8705c39b38" />
-    <Content Include=".git\objects\ea\152733d1f750007c8a466b905c73e87e529730" />
-    <Content Include=".git\objects\ea\c35dd9ee63fb69ae4377c826b60001ee9dea49" />
-    <Content Include=".git\objects\eb\5ae2d352c8f5cf647084512e2af60826ddfb5b" />
-    <Content Include=".git\objects\eb\8ffb25924d0ffe536d8e2296c3bee13a98a7d8" />
-    <Content Include=".git\objects\ec\df8cf56c0f54f75b053a697a1427f60ab1f453" />
-    <Content Include=".git\objects\f1\21f46a79576310f1e35015dd8465e26eb1896f" />
-    <Content Include=".git\objects\f1\85b84d7c345604714c9e3791139c212239bb23" />
-    <Content Include=".git\objects\f2\349065e1068f4fb44b34ecc1b4ab3fa41f3275" />
-    <Content Include=".git\objects\f3\18ba81f31caa248686b0a9dd7459e714437e63" />
-    <Content Include=".git\objects\f4\b422e8f91012b2edfeec177c9d41edc9909731" />
-    <Content Include=".git\objects\f8\51f7ebfbdcbedab208101a73d3843a7d454767" />
-    <Content Include=".git\objects\fa\105db538cf7fd02f4570473a51a0ea6ce6201c" />
-    <Content Include=".git\objects\fa\e801b841e4a1dc006d853132dae58004ec5b85" />
-    <Content Include=".git\objects\fb\bdc5f4a6dbe29b033554134a58a1d4a1fe0483" />
-    <Content Include=".git\objects\fe\ef422b186c979144db9e05475c61d49c8d8e24" />
-    <Content Include=".git\objects\pack\pack-cf548059cf339b4f56975d125e48d176a5cde2b9.idx" />
-    <Content Include=".git\objects\pack\pack-cf548059cf339b4f56975d125e48d176a5cde2b9.pack" />
-    <Content Include=".git\objects\pack\pack-d5263b127a2e768a3f2368a6d11b7e840337ef24.idx" />
-    <Content Include=".git\objects\pack\pack-d5263b127a2e768a3f2368a6d11b7e840337ef24.pack" />
-    <Content Include=".git\ORIG_HEAD" />
-    <Content Include=".git\packed-refs" />
-    <Content Include=".git\refs\heads\khongthao" />
-    <Content Include=".git\refs\heads\master" />
-    <Content Include=".git\refs\heads\quanghung" />
-    <Content Include=".git\refs\remotes\origin\HEAD" />
-    <Content Include=".git\refs\remotes\origin\khongthao" />
-    <Content Include=".git\refs\remotes\origin\linhphuong" />
-    <Content Include=".git\refs\remotes\origin\master" />
-    <Content Include=".git\refs\remotes\origin\quanghung" />
-    <Content Include=".git\refs\remotes\origin\thanhtu" />
     <Content Include="Areas\Admin\Data\assetsF\demo\chart-area-demo.js" />
     <Content Include="Areas\Admin\Data\assetsF\demo\chart-bar-demo.js" />
     <Content Include="Areas\Admin\Data\assetsF\demo\chart-pie-demo.js" />
@@ -587,14 +369,19 @@
     <Content Include="assets\img\sub-tours\sub-tours-3.jpg" />
     <Content Include="assets\img\sub-tours\sub-tours.jpg" />
     <Content Include="assets\img\tour\img-1.jpg" />
-    <Content Include="assets\img\tour\img-2.jpg" />
-    <Content Include="assets\img\tour\img-3.jpg" />
-    <Content Include="assets\img\tour\img-4.jpg" />
-    <Content Include="assets\img\tour\img-5.jpg" />
-    <Content Include="assets\img\tour\img-6.jpg" />
-    <Content Include="assets\img\tour\img-7.jpg" />
-    <Content Include="assets\img\tour\img-8.jpg" />
-    <Content Include="assets\img\tour\img-9.jpg" />
+    <Content Include="assets\img\tour\tour-1-1.jpg" />
+    <Content Include="assets\img\tour\tour-1-2.jpg" />
+    <Content Include="assets\img\tour\tour-1-3.jpg" />
+    <Content Include="assets\img\tour\tour-1-4.jpg" />
+    <Content Include="assets\img\tour\tour-2.jpg" />
+    <Content Include="assets\img\tour\tour-3.jpg" />
+    <Content Include="assets\img\tour\tour-4.jpg" />
+    <Content Include="assets\img\tour\tour-5.jpg" />
+    <Content Include="assets\img\tour\tour-6.jpg" />
+    <Content Include="assets\img\tour\tour-7.jpg" />
+    <Content Include="assets\img\tour\tour-8.jpg" />
+    <Content Include="assets\img\tour\tour-9.jpg" />
+    <Content Include="assets\img\tour\tour-1.jpg" />
     <Content Include="assets\img\travel-reviews-bg.jpg" />
     <Content Include="assets\js\app.js" />
     <Content Include="assets\js\backstretch.js" />
@@ -634,6 +421,10 @@
     <Content Include="bin\Microsoft.Web.Infrastructure.dll" />
     <Content Include="bin\Newtonsoft.Json.dll" />
     <Content Include="bin\Newtonsoft.Json.xml" />
+    <Content Include="bin\PagedList.dll" />
+    <Content Include="bin\PagedList.Mvc.dll" />
+    <Content Include="bin\PagedList.Mvc.xml" />
+    <Content Include="bin\PagedList.xml" />
     <Content Include="bin\roslyn\csc.exe" />
     <Content Include="bin\roslyn\csi.exe" />
     <Content Include="bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll" />
@@ -702,6 +493,35 @@
     <Content Include="obj\Debug\TempPE\Models.TravelVietNamModel.Context.cs.dll" />
     <Content Include="obj\Debug\TempPE\Models.TravelVietNamModel.cs.dll" />
     <Content Include="obj\Debug\TempPE\Models.TravelVietNamModel.Designer.cs.dll" />
+    <Content Include="Content\css\blog.css" />
+    <Content Include="Content\css\booking.css" />
+    <Content Include="Content\css\destination.css" />
+    <Content Include="Content\css\home.css" />
+    <Content Include="Content\css\lightslider.css" />
+    <Content Include="Content\css\listdes.css" />
+    <Content Include="Content\css\login.css" />
+    <Content Include="Content\css\tour-place.css" />
+    <Content Include="Content\css\tour.css" />
+    <Content Include="Content\fonts\Note.txt" />
+    <Content Include="Content\js\booking.js" />
+    <Content Include="Content\js\destination.js" />
+    <Content Include="Content\js\index.js" />
+    <Content Include="Content\js\jquery-3.5.1.min.js" />
+    <Content Include="Content\js\jquery.filterizr.min.js" />
+    <Content Include="Content\js\JQuery3.3.1.js" />
+    <Content Include="Content\js\lightslider.js" />
+    <Content Include="Content\js\listdes.js" />
+    <Content Include="Content\js\login.js" />
+    <Content Include="Content\js\mapoid.js" />
+    <Content Include="Content\js\mapoid.min.js" />
+    <Content Include="Content\js\popper.min.js" />
+    <Content Include="Content\js\script.js" />
+    <Content Include="Content\js\top_tours.js" />
+    <Content Include="Content\js\tour-place.js" />
+    <Content Include="Content\js\tour.js" />
+    <Content Include="Content\PagedList.css" />
+    <Content Include="favicon.ico" />
+    <Content Include="Global.asax" />
     <Content Include="obj\Debug\TRAVEL.csproj.FileListAbsolute.txt" />
     <Content Include="obj\Debug\TRAVEL.dll" />
     <Content Include="obj\Debug\TRAVEL.pdb" />
@@ -734,31 +554,13 @@
     <Content Include="packages\EntityFramework.6.2.0\tools\EntityFramework.PowerShell.dll" />
     <Content Include="packages\EntityFramework.6.2.0\tools\EntityFramework.PowerShell.Utility.dll" />
     <Content Include="packages\EntityFramework.6.2.0\tools\migrate.exe" />
-    <Content Include="packages\EntityFramework.6.4.4\build\Microsoft.Data.Entity.Build.Tasks.dll" />
-    <Content Include="packages\EntityFramework.6.4.4\Icon.png" />
-    <Content Include="packages\EntityFramework.6.4.4\lib\net40\EntityFramework.dll" />
-    <Content Include="packages\EntityFramework.6.4.4\lib\net40\EntityFramework.SqlServer.dll" />
-    <Content Include="packages\EntityFramework.6.4.4\lib\net40\EntityFramework.SqlServer.xml" />
-    <Content Include="packages\EntityFramework.6.4.4\lib\net40\EntityFramework.xml" />
-    <Content Include="packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll" />
-    <Content Include="packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll" />
-    <Content Include="packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.xml" />
-    <Content Include="packages\EntityFramework.6.4.4\lib\net45\EntityFramework.xml" />
-    <Content Include="packages\EntityFramework.6.4.4\lib\netstandard2.1\EntityFramework.dll" />
-    <Content Include="packages\EntityFramework.6.4.4\lib\netstandard2.1\EntityFramework.SqlServer.dll" />
-    <Content Include="packages\EntityFramework.6.4.4\lib\netstandard2.1\EntityFramework.SqlServer.xml" />
-    <Content Include="packages\EntityFramework.6.4.4\lib\netstandard2.1\EntityFramework.xml" />
-    <Content Include="packages\EntityFramework.6.4.4\tools\about_EntityFramework6.help.txt" />
-    <Content Include="packages\EntityFramework.6.4.4\tools\net40\any\ef6.exe" />
-    <Content Include="packages\EntityFramework.6.4.4\tools\net40\any\ef6.pdb" />
-    <Content Include="packages\EntityFramework.6.4.4\tools\net40\win-x86\ef6.exe" />
-    <Content Include="packages\EntityFramework.6.4.4\tools\net40\win-x86\ef6.pdb" />
-    <Content Include="packages\EntityFramework.6.4.4\tools\net45\any\ef6.exe" />
-    <Content Include="packages\EntityFramework.6.4.4\tools\net45\any\ef6.pdb" />
-    <Content Include="packages\EntityFramework.6.4.4\tools\net45\win-x86\ef6.exe" />
-    <Content Include="packages\EntityFramework.6.4.4\tools\net45\win-x86\ef6.pdb" />
-    <Content Include="packages\EntityFramework.6.4.4\tools\netcoreapp3.0\any\ef6.dll" />
-    <Content Include="packages\EntityFramework.6.4.4\tools\netcoreapp3.0\any\ef6.pdb" />
+    <Content Include="Areas\Admin\Views\AdminHome\AdminHome.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Admin\Views\DiaDanhs\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\DiaDanhs\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\DiaDanhs\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\DiaDanhs\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\DiaDanhs\Index.cshtml" />
     <None Include="packages\jQuery.3.4.1\Content\Scripts\jquery-3.4.1-vsdoc.js" />
     <Content Include="packages\jQuery.3.4.1\Content\Scripts\jquery-3.4.1.js" />
     <Content Include="packages\jQuery.3.4.1\Content\Scripts\jquery-3.4.1.min.js" />
@@ -871,8 +673,25 @@
     <Content Include="packages\Newtonsoft.Json.12.0.2\lib\portable-net40+sl5+win8+wp8+wpa81\Newtonsoft.Json.xml" />
     <Content Include="packages\Newtonsoft.Json.12.0.2\lib\portable-net45+win8+wp8+wpa81\Newtonsoft.Json.dll" />
     <Content Include="packages\Newtonsoft.Json.12.0.2\lib\portable-net45+win8+wp8+wpa81\Newtonsoft.Json.xml" />
+    <Content Include="packages\PagedList.1.17.0.0\lib\net40\PagedList.dll" />
+    <Content Include="packages\PagedList.1.17.0.0\lib\net40\PagedList.xml" />
+    <Content Include="packages\PagedList.Mvc.4.5.0.0\Content\Content\PagedList.css" />
+    <Content Include="packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll" />
+    <Content Include="packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.XML" />
     <Content Include="packages\WebGrease.1.6.0\lib\WebGrease.dll" />
     <Content Include="packages\WebGrease.1.6.0\tools\WG.EXE" />
+    <None Include="Scripts\jquery-3.4.1-vsdoc.js" />
+    <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.4.1.js" />
+    <Content Include="Scripts\jquery-3.4.1.min.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -898,6 +717,11 @@
     <Folder Include=".git\branches\" />
     <Folder Include=".git\objects\info\" />
     <Folder Include=".git\refs\tags\" />
+    <Content Include="Scripts\jquery-3.4.1.min.map" />
+    <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="obj\Debug\TempPE\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="assets\fonts\flaticon\font\Flaticon.eot" />
@@ -1057,12 +881,13 @@
     <Content Include="bin\roslyn\VBCSCompiler.exe.config" />
     <Content Include="bin\TRAVEL.dll.config" />
     <Content Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
-    <Content Include="obj\Debug\edmxResourcesToEmbed\Models\TravelVietNamModel.csdl" />
-    <Content Include="obj\Debug\edmxResourcesToEmbed\Models\TravelVietNamModel.msl" />
-    <Content Include="obj\Debug\edmxResourcesToEmbed\Models\TravelVietNamModel.ssdl" />
+
+    <Content Include="obj\Debug\TRAVEL.csproj.AssemblyReference.cache" />
     <Content Include="obj\Debug\TRAVEL.csproj.CopyComplete" />
     <Content Include="obj\Debug\TRAVEL.csproj.CoreCompileInputs.cache" />
-    <Content Include="obj\Debug\TRAVEL.csprojAssemblyReference.cache" />
+    <Content Include="Areas\Admin\Views\Manager\DashBoard.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
     <None Include="packages.config" />
     <Content Include="Views\Tours\Tours_grid.cshtml" />
     <Content Include="Views\Shared\_banner.cshtml" />
@@ -1071,8 +896,11 @@
     <Content Include="Views\Contact\Contact.cshtml" />
     <Content Include="Views\Home\Register.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
-    <Content Include="Views\Captcha\Index.cshtml" />
     <Content Include="Views\Blog\Blog_detail.cshtml" />
+    <Content Include="Views\Destinations\Destination_Detail.cshtml" />
+    <Content Include="Views\Tours\_tourlist.cshtml" />
+    <Content Include="Views\Tours\_tourgrid.cshtml" />
+    <Content Include="Views\Tours\Tours_detail.cshtml" />
     <Content Include="packages\Antlr.3.5.0.2\.signature.p7s" />
     <Content Include="packages\Antlr.3.5.0.2\Antlr.3.5.0.2.nupkg" />
     <Content Include="packages\bootstrap.3.4.1\.signature.p7s" />
@@ -1101,28 +929,6 @@
     <Content Include="packages\EntityFramework.6.2.0\tools\EntityFramework.psm1" />
     <Content Include="packages\EntityFramework.6.2.0\tools\init.ps1" />
     <Content Include="packages\EntityFramework.6.2.0\tools\install.ps1" />
-    <Content Include="packages\EntityFramework.6.4.4\.signature.p7s" />
-    <Content Include="packages\EntityFramework.6.4.4\buildTransitive\EntityFramework.props" />
-    <Content Include="packages\EntityFramework.6.4.4\buildTransitive\EntityFramework.targets" />
-    <Content Include="packages\EntityFramework.6.4.4\buildTransitive\netcoreapp3.0\EntityFramework.props" />
-    <Content Include="packages\EntityFramework.6.4.4\buildTransitive\netcoreapp3.0\EntityFramework.targets" />
-    <Content Include="packages\EntityFramework.6.4.4\build\EntityFramework.DefaultItems.props" />
-    <Content Include="packages\EntityFramework.6.4.4\build\EntityFramework.props" />
-    <Content Include="packages\EntityFramework.6.4.4\build\EntityFramework.targets" />
-    <Content Include="packages\EntityFramework.6.4.4\build\netcoreapp3.0\EntityFramework.props" />
-    <Content Include="packages\EntityFramework.6.4.4\build\netcoreapp3.0\EntityFramework.targets" />
-    <Content Include="packages\EntityFramework.6.4.4\content\net40\App.config.install.xdt" />
-    <Content Include="packages\EntityFramework.6.4.4\content\net40\App.config.transform" />
-    <Content Include="packages\EntityFramework.6.4.4\content\net40\Web.config.install.xdt" />
-    <Content Include="packages\EntityFramework.6.4.4\content\net40\Web.config.transform" />
-    <Content Include="packages\EntityFramework.6.4.4\EntityFramework.6.4.4.nupkg" />
-    <Content Include="packages\EntityFramework.6.4.4\tools\EntityFramework6.PS2.psd1" />
-    <Content Include="packages\EntityFramework.6.4.4\tools\EntityFramework6.PS2.psm1" />
-    <Content Include="packages\EntityFramework.6.4.4\tools\EntityFramework6.psd1" />
-    <Content Include="packages\EntityFramework.6.4.4\tools\EntityFramework6.psm1" />
-    <Content Include="packages\EntityFramework.6.4.4\tools\init.ps1" />
-    <Content Include="packages\EntityFramework.6.4.4\tools\install.ps1" />
-    <Content Include="packages\EntityFramework.6.4.4\tools\netcoreapp3.0\any\ef6.runtimeconfig.json" />
     <Content Include="packages\jQuery.3.4.1\.signature.p7s" />
     <Content Include="packages\jQuery.3.4.1\Content\Scripts\jquery-3.4.1.min.map" />
     <Content Include="packages\jQuery.3.4.1\Content\Scripts\jquery-3.4.1.slim.min.map" />
@@ -1190,8 +996,13 @@
     <Content Include="packages\Newtonsoft.Json.12.0.2\.signature.p7s" />
     <Content Include="packages\Newtonsoft.Json.12.0.2\LICENSE.md" />
     <Content Include="packages\Newtonsoft.Json.12.0.2\Newtonsoft.Json.12.0.2.nupkg" />
+    <Content Include="packages\PagedList.1.17.0.0\.signature.p7s" />
+    <Content Include="packages\PagedList.1.17.0.0\PagedList.1.17.0.0.nupkg" />
+    <Content Include="packages\PagedList.Mvc.4.5.0.0\.signature.p7s" />
+    <Content Include="packages\PagedList.Mvc.4.5.0.0\PagedList.Mvc.4.5.0.0.nupkg" />
     <Content Include="packages\WebGrease.1.6.0\.signature.p7s" />
     <Content Include="packages\WebGrease.1.6.0\WebGrease.1.6.0.nupkg" />
+    <Content Include="Views\Captcha\Index.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -1221,15 +1032,6 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-    <PropertyGroup>
-      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
-    </PropertyGroup>
-    <Error Condition="!Exists('packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
-    <Error Condition="!Exists('packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
-    <Error Condition="!Exists('packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
-  </Target>
-  <Import Project="packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

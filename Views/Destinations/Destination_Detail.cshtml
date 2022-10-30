@@ -1,0 +1,272 @@
+﻿@using TRAVEL.Models;
+
+@{
+    ViewBag.Title = Model[0].TenDiaDanh;
+    ViewData["sub_link"] = "Destination Detail";
+}
+
+
+@Html.Partial("_banner")
+<!-- Tour details page start -->
+<div class="tour-details-page content-area-2">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-12">
+                <div class="destination-section mb-40">
+                    <div id="content">
+                    </div>
+                    <!-- Phần mô tả cũ-->
+                    @*<div class="mb-40">
+                        <h3 class=""> @Model[0].TenDiaDanh</h3>
+                        <p>
+                            @Model[0].MoTa
+                        </p>
+                    </div>
+                    <div class="mb-40">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6">
+                                <div class="category">
+                                    <div class="category_bg_box cat-1-bg">
+                                        <div class="category-overlay">
+                                            <div class="category-content">
+                                                <h5 class="category-title"></h5>
+                                                <h4 class="category-subtitle"><i class="flaticon-pin"></i> Rome</h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6">
+                                <div class="category">
+                                    <div class="category_bg_box cat-5-bg">
+                                        <div class="category-overlay">
+                                            <div class="category-content">
+                                                <h5 class="category-title">77 Tours</h5>
+                                                <h4 class="category-subtitle"><i class="flaticon-pin"></i> Thailand</h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>*@
+                </div>
+                    @*<p class="mb-40">Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi amet sunt nisi commodi facere, ullam debitis a sequi dolore molestias, nostrum fugiat dolorum deleniti cupiditate impedit, laboriosam dolor beatae modi atque! Incidunt, deleniti, vel quis voluptatum sint vero porro corporis eaque ipsa deserunt ullam quaerat quae, doloribus laboriosam ipsum et iusto. Unde quae aliquid minima vitae ut repellat nostrum, corporis animi dolor iste necessitatibus quaerat saepe asperiores maxime inventore, quam perferendis neque pariatur ipsa voluptatum sunt! Neque molestiae ad, quibusdam blanditiis quasi repellat doloremque illum incidunt suscipit. Corrupti, facilis ab?</p>*@
+                    <div class="mb-40">
+                        <h3 class="heading-2">Good To Know</h3>
+                        <div class="information-table manage-table">
+                            <ul>
+                                <li>
+                                    <div class="information-info">Ethnic</div>
+                                    <div class="information-info2">@Model[0].DanToc/div>
+                                </li>
+                                <li>
+                                    <div class="information-info">Cities</div>
+                                    <div class="information-info2">@Model[0].ThanhPho</div>
+                                </li>
+                                <li>
+                                    <div class="information-info">Local food</div>
+                                    <div class="information-info2">@Model[0].DacSan</div>
+                                </li>
+                                <li>
+                                    <div class="information-info">Area</div>
+                                    <div class="information-info2">@Model[0].DienTich</div>
+                                </li>
+                                <li>
+                                    <div class="information-info">Population</div>
+                                    <div class="information-info2">@Model[0].DanSo</div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h3 class="heading-2">Related Tours</h3>
+                    </div>
+                    @foreach(var item in @ViewBag.Tour)
+                    { 
+                        <div class="col-lg-6 col-md-6">
+                            <div class="tour-item">
+                                <div class="item-thumbnail">
+                                    <a href="tours-detail.html" class="item-img">
+                                        <div class="plan-price"><sup>$</sup>750<sub>/ night</sub></div>
+                                        <img src="assets/img/tour/img-1.jpg" alt="tours" class="img-fluid">
+                                    </a>
+                                </div>
+                                <div class="detail">
+                                    <h1 class="title">
+                                        <a href="tours-detail.html">@item.TenTour</a>
+                                    </h1>
+                                    <div class="location">
+                                        <a href="tours-detail.html">
+                                            <i class="flaticon-pin"></i> @item.DiaDiem
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="footer clearfix">
+                                    <div class="pull-left">
+                                        <i class="flaticon-calendar"></i>  5 Days / 4 Nights
+                                    </div>
+                                    <div class="pull-right">
+                                        <div class="ratings">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star-o"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    
+                    @*<div class="col-lg-6 col-md-6">
+                        <div class="tour-item">
+                            <div class="item-thumbnail">
+                                <a href="tours-detail.html" class="item-img">
+                                    <div class="tag">Sale</div>
+                                    <div class="plan-price"><sup>$</sup>600<sub>/ night</sub></div>
+                                    <img src="assets/img/tour/img-2.jpg" alt="tours" class="img-fluid">
+                                </a>
+                            </div>
+                            <div class="detail">
+                                <h1 class="title">
+                                    <a href="tours-detail.html">@ViewBag.Tour[0].Gia</a>
+                                </h1>
+                                <div class="location">
+                                    <a href="tours-detail.html">
+                                        <i class="flaticon-pin"></i> 2726 Shinn Street, New York
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="footer clearfix">
+                                <div class="pull-left">
+                                    <i class="flaticon-calendar"></i> 5 Days / 4 Nights
+                                </div>
+                                <div class="pull-right">
+                                    <div class="ratings">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star-o"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>*@
+                     @*Recent posts start*@ 
+                    <div class="widget recent-posts">
+                        <h4 class="sidebar-title">Recent Posts</h4>
+                        <div class="media mb-4">
+                            <a class="pr-3" href="tours-detail.html">
+                                <img src="assets/img/sub-tours/sub-tours.jpg" alt="sub-tours">
+                            </a>
+                            <div class="media-body align-self-center">
+                                <h5>
+                                    <a href="tours-detail.html">Australia Sydney City</a>
+                                </h5>
+                                <div class="listing-post-meta">
+                                    Oct 27, 2021 | <a href="#">Tour</a>
+                                </div>
+                            </div>
+                        </div>
+                        @*<div class="media mb-4">
+                            <a class="pr-3" href="tours-detail.html">
+                                <img src="assets/img/sub-tours/sub-tours-2.jpg" alt="sub-tours">
+                            </a>
+                            <div class="media-body align-self-center">
+                                <h5>
+                                    <a href="tours-detail.html">Camping and  mountains</a>
+                                </h5>
+                                <div class="listing-post-meta">
+                                    Nov 23, 2021 | <a href="#">Tour</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="media">
+                            <a class="pr-3" href="tours-detail.html">
+                                <img src="assets/img/sub-tours/sub-tours-3.jpg" alt="sub-tours">
+                            </a>
+                            <div class="media-body align-self-center">
+                                <h5>
+                                    <a href="tours-detail.html">Best Switzerland Tour</a>
+                                </h5>
+                                <div class="listing-post-meta">
+                                    Jan 17, 2022 | <a href="#">Tour</a>
+                                </div>
+                            </div>
+                        </div>*@
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-12">
+                <div class="sidebar">
+                 
+                    <!-- Search box start -->
+                    <!--<div class="widget search-box">
+                        <h5 class="sidebar-title">Search</h5>
+                        <form class="form-search" method="GET">
+                            <input type="text" class="form-control" placeholder="Search">
+                            <button type="submit" class="btn"><i class="fa fa-search"></i></button>
+                        </form>
+                    </div>-->
+                    <!-- Question start -->
+                    <!--<div class="widget question">
+                        <h5 class="sidebar-title">Get a Question?</h5>
+
+                        <ul class="contact-info">
+                            <li>
+                                <i class="flaticon-pin"></i>236 Hoang Quoc Viet, Hanoi
+                            </li>
+                            <li>
+                                <i class="flaticon-mail"></i><a href="mailto:linhphuong150701@gmail.com">info@linhphuong150701@gmail.com</a>
+                            </li>
+                            <li>
+                                <i class="flaticon-phone"></i><a href="tel:+0477-85x6-552">+0477 85x6 552</a>
+                            </li>
+                        </ul>
+
+                        <div class="social-list clearfix">
+                            <ul>
+                                <li><a href="https://www.facebook.com/" class="facebook-bg"><i class="fa fa-facebook"></i></a></li>
+                                <li><a href="#" class="twitter-bg"><i class="fa fa-twitter"></i></a></li>
+                                <li><a href="#" class="google-bg"><i class="fa fa-google-plus"></i></a></li>
+                                <li><a href="#" class="rss-bg"><i class="fa fa-rss"></i></a></li>
+                                <li><a href="#" class="linkedin-bg"><i class="fa fa-linkedin"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>-->
+                    <!-- Tags start -->
+                    <!--<div class="widget tags clearfix">
+                        <h5 class="sidebar-title">Tags</h5>
+                        <ul class="tags">
+                         
+                                <li><a href="#">.</a></li>
+                                <li><a href="#">Tips</a></li>
+                                <li><a href="#">Traveling</a></li>
+                                <li><a href="#">Ideas</a></li>
+                                <li><a href="#">Theme</a></li>
+                                <li><a href="#">City Guide</a></li>
+                                <li><a href="#">Events</a></li>
+                                <li><a href="#">Outdoor</a></li>
+                                <li><a href="#">UI-UX</a></li>
+                            
+
+                        </ul>
+                    </div>-->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    (function () {
+        var txt = document.createElement("textarea");
+        console.log("test")
+        txt.innerHTML = `@(Model[0].MoTa)`;
+        document.getElementById("content").innerHTML = txt.value;
+    }())
+</script>
+<!-- Tour details page end -->
