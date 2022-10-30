@@ -63,6 +63,14 @@ namespace TRAVEL.Models
                 .IsUnicode(false);
 
             modelBuilder.Entity<DiaDanh>()
+                .Property(e => e.DanToc)
+                .IsFixedLength();
+
+            modelBuilder.Entity<DiaDanh>()
+                .Property(e => e.DanSo)
+                .IsFixedLength();
+
+            modelBuilder.Entity<DiaDanh>()
                 .HasMany(e => e.Tours)
                 .WithMany(e => e.DiaDanhs)
                 .Map(m => m.ToTable("Tour_DiaDanh").MapLeftKey("MaDiaDanh").MapRightKey("MaTour"));

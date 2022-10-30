@@ -1,0 +1,50 @@
+﻿@model TRAVEL.Models.DiaDanh
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>DiaDanh</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Vung.TenVung)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Vung.TenVung)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TenDiaDanh)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TenDiaDanh)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Img)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Img)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MoTa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MoTa)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.MaDiaDanh }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
