@@ -15,7 +15,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>TRAVEL</RootNamespace>
     <AssemblyName>TRAVEL</AssemblyName>
-    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
@@ -138,6 +138,8 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+
+    <Compile Include="Areas\Admin\Controllers\AdminHomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\DiaDanhsController.cs" />
     <Compile Include="Areas\Admin\Controllers\ManagerController.cs" />
     <Compile Include="Controllers\BlogController.cs" />
@@ -149,6 +151,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BangGia.cs" />
     <Compile Include="Models\Blog.cs" />
     <Compile Include="Models\ChiTietNgay.cs" />
@@ -478,6 +481,18 @@
     <Content Include="bin\TRAVEL.dll" />
     <Content Include="bin\TRAVEL.pdb" />
     <Content Include="bin\WebGrease.dll" />
+    <Content Include="Content\PagedList.css" />
+    <Content Include="favicon.ico" />
+    <Content Include="Global.asax" />
+    <Content Include="obj\Debug\TempPE\Context.DbModel.Context.cs.dll" />
+    <Content Include="obj\Debug\TempPE\Context.DbModel.Designer.cs.dll" />
+    <Content Include="obj\Debug\TempPE\Models..Designer.cs.dll" />
+    <Content Include="obj\Debug\TempPE\Models.Model1.Context.cs.dll" />
+    <Content Include="obj\Debug\TempPE\Models.Model1.cs.dll" />
+    <Content Include="obj\Debug\TempPE\Models.Model1.Designer.cs.dll" />
+    <Content Include="obj\Debug\TempPE\Models.TravelVietNamModel.Context.cs.dll" />
+    <Content Include="obj\Debug\TempPE\Models.TravelVietNamModel.cs.dll" />
+    <Content Include="obj\Debug\TempPE\Models.TravelVietNamModel.Designer.cs.dll" />
     <Content Include="Content\css\blog.css" />
     <Content Include="Content\css\booking.css" />
     <Content Include="Content\css\destination.css" />
@@ -691,6 +706,17 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="README.md" />
+    <Content Include="Views\Blog\Blog_sidebar.cshtml" />
+    <Content Include="Views\Shared\_blog_rightside.cshtml" />
+    <Content Include="Views\Blog\_index.cshtml" />
+    <Content Include="Views\Blog\_blogsidebar.cshtml" />
+    <Content Include="Views\Blog\_blogdetail.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include=".git\branches\" />
+    <Folder Include=".git\objects\info\" />
+    <Folder Include=".git\refs\tags\" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
   </ItemGroup>
@@ -840,6 +866,9 @@
     <Content Include="Areas\Admin\Data\scss\_custom-variables\_support.scss" />
     <Content Include="Areas\Admin\Data\scss\_theme\_common.scss" />
     <Content Include="Areas\Admin\Data\scss\_theme\_theme.scss" />
+    <Content Include="Areas\Admin\Views\AdminHome\AdminHome.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
     <Content Include="bin\roslyn\csc.exe.config" />
     <Content Include="bin\roslyn\csc.rsp" />
     <Content Include="bin\roslyn\csi.exe.config" />
@@ -852,6 +881,7 @@
     <Content Include="bin\roslyn\VBCSCompiler.exe.config" />
     <Content Include="bin\TRAVEL.dll.config" />
     <Content Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+
     <Content Include="obj\Debug\TRAVEL.csproj.AssemblyReference.cache" />
     <Content Include="obj\Debug\TRAVEL.csproj.CopyComplete" />
     <Content Include="obj\Debug\TRAVEL.csproj.CoreCompileInputs.cache" />
@@ -861,11 +891,12 @@
     <None Include="packages.config" />
     <Content Include="Views\Tours\Tours_grid.cshtml" />
     <Content Include="Views\Shared\_banner.cshtml" />
-    <Content Include="Views\Blog\Blog_post.cshtml" />
+    <Content Include="Views\Blog\Index.cshtml" />
     <Content Include="Views\Destinations\Destination_mansory.cshtml" />
     <Content Include="Views\Contact\Contact.cshtml" />
     <Content Include="Views\Home\Register.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="Views\Blog\Blog_detail.cshtml" />
     <Content Include="Views\Destinations\Destination_Detail.cshtml" />
     <Content Include="Views\Tours\_tourlist.cshtml" />
     <Content Include="Views\Tours\_tourgrid.cshtml" />

@@ -1,10 +1,6 @@
-using System;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Data.Entity;
-using System.Linq;
-
 namespace TRAVEL.Models
 {
+
     public partial class MyDbContext : DbContext
     {
         public MyDbContext()
@@ -145,4 +141,5 @@ namespace TRAVEL.Models
                 .Map(m => m.ToTable("Tour_TravelType").MapLeftKey("MaTour").MapRightKey("MaTravelType"));
         }
     }
+
 }

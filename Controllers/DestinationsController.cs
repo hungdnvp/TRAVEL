@@ -4,12 +4,15 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using TRAVEL.Models;
+
 using PagedList;
+
 
 namespace TRAVEL.Controllers
 {
     public class DestinationsController : Controller
     {
+
         // GET: Destinations
 
         public ActionResult Destination_mansory( int? page, string search = "", int? mavung=0)
@@ -62,7 +65,6 @@ namespace TRAVEL.Controllers
                 return View(model);
 
             }
-
 
         }
     }

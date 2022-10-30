@@ -4,8 +4,10 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using TRAVEL.Models;
+
 using Newtonsoft;
 using Newtonsoft.Json;
+
 
 namespace TRAVEL.Controllers
 {
@@ -42,6 +44,7 @@ namespace TRAVEL.Controllers
 
         public ActionResult Tours_grid()
         {
+
             Load_Page();
             ViewBag.Numstars = numstars;
             using (MyDbContext Travel = new MyDbContext())
@@ -131,6 +134,7 @@ namespace TRAVEL.Controllers
                 }
 
             }
+
         }
 
         // Detail Tour
