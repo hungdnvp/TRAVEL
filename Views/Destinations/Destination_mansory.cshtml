@@ -1,24 +1,37 @@
 ﻿@using TRAVEL.Models;
-
+@model PagedList.IPagedList<TRAVEL.Models.DiaDanh>
+@using PagedList.Mvc;
 
 @{
-    ViewBag.Title = "Destination_mansory";
+    ViewBag.Title = "Destination ";
     ViewData["sub_link"] = "Destination Mansory";
 }
+@*<link rel="stylesheet" type="text/css" href="~/Content/css/lightslider.css" />
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+<script src="https://kit.fontawesome.com/cecfe00ec6.js" crossorigin="anonymous"></script>
+<script src="~/Content/js/jquery-3.5.1.min.js"></script>
+<script type="text/javascript" src="~/Content/js/JQuery3.3.1.js"></script>
+<script type="text/javascript" src="~/Content/js/lightslider.js"></script>*@
+@*<script src="https://kit.fontawesome.com/a858033a2a.js" crossorigin="anonymous"></script>*@
+@*<link rel="stylesheet" href="~/Content/css/bootstrap.css">*@
+<link type="text/css" rel="stylesheet" href="~/Content/css/listdes.css" />
 @Html.Partial("_banner")
 <!-- Destination strat -->
 <div class="destination d-2 content-area-2">
     <div class="container">
         <div class="row">
-            
+
             @foreach (DiaDanh dd in Model)
             {
                 <div class="col-lg-4 col-md-6 col-sm-12">
                     <div class="category">
                         <div class="category_bg_box cat-1-bg">
+
                             <div class="category-overlay">
                                 <div class="category-content">
-                                    <h5 class="category-title">24 Tours</h5>
+                                    <img src=" @Url.Content("~/Content/images/Destination2/"+ dd.Img)" />
+                                    <h5 class="category-title">@dd.Tours.Count() Tours</h5>
                                     <a href="Destination_Detail/@dd.MaDiaDanh">
                                         <h4 class="category-subtitle"><i class="flaticon-pin"></i> @dd.TenDiaDanh</h4>
                                     </a>
@@ -28,117 +41,169 @@
                     </div>
                 </div>
             }
-            
+
             @*<div class="col-lg-4 col-md-6 col-sm-12">
-                <div class="category">
-                    <div class="category_bg_box cat-5-bg">
-                        <div class="category-overlay">
-                            <div class="category-content">
-                                <h5 class="category-title">77 Tours</h5>
-                                <h4 class="category-subtitle"><i class="flaticon-pin"></i> Thailand</h4>
+                    <div class="category">
+                        <div class="category_bg_box cat-5-bg">
+                            <div class="category-overlay">
+                                <div class="category-content">
+                                    <h5 class="category-title">77 Tours</h5>
+                                    <h4 class="category-subtitle"><i class="flaticon-pin"></i> Thailand</h4>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-4 col-md-6 col-sm-12">
-                <div class="category">
-                    <div class="category_bg_box cat-3-bg">
-                        <div class="category-overlay">
-                            <div class="category-content">
-                                <h5 class="category-title">182 Tours</h5>
-                                <h4 class="category-subtitle"><i class="flaticon-pin"></i> Sydney</h4>
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <div class="category">
+                        <div class="category_bg_box cat-3-bg">
+                            <div class="category-overlay">
+                                <div class="category-content">
+                                    <h5 class="category-title">182 Tours</h5>
+                                    <h4 class="category-subtitle"><i class="flaticon-pin"></i> Sydney</h4>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-4 col-md-6 col-sm-12">
-                <div class="category">
-                    <div class="category_bg_box cat-2-bg">
-                        <div class="category-overlay">
-                            <div class="category-content">
-                                <h5 class="category-title">242Tours</h5>
-                                <h4 class="category-subtitle"><i class="flaticon-pin"></i> Paris</h4>
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <div class="category">
+                        <div class="category_bg_box cat-2-bg">
+                            <div class="category-overlay">
+                                <div class="category-content">
+                                    <h5 class="category-title">242Tours</h5>
+                                    <h4 class="category-subtitle"><i class="flaticon-pin"></i> Paris</h4>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-4 col-md-6 col-sm-12">
-                <div class="category">
-                    <div class="category_bg_box cat-3-bg">
-                        <div class="category-overlay">
-                            <div class="category-content">
-                                <h5 class="category-title">182 Tours</h5>
-                                <h4 class="category-subtitle"><i class="flaticon-pin"></i> Sydney</h4>
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <div class="category">
+                        <div class="category_bg_box cat-3-bg">
+                            <div class="category-overlay">
+                                <div class="category-content">
+                                    <h5 class="category-title">182 Tours</h5>
+                                    <h4 class="category-subtitle"><i class="flaticon-pin"></i> Sydney</h4>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-4 col-md-6 col-sm-12">
-                <div class="category">
-                    <div class="category_bg_box cat-1-bg">
-                        <div class="category-overlay">
-                            <div class="category-content">
-                                <h5 class="category-title">24 Tours</h5>
-                                <h4 class="category-subtitle"><i class="flaticon-pin"></i> Rome</h4>
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <div class="category">
+                        <div class="category_bg_box cat-1-bg">
+                            <div class="category-overlay">
+                                <div class="category-content">
+                                    <h5 class="category-title">24 Tours</h5>
+                                    <h4 class="category-subtitle"><i class="flaticon-pin"></i> Rome</h4>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-4 col-md-6 col-sm-12">
-                <div class="category">
-                    <div class="category_bg_box cat-5-bg">
-                        <div class="category-overlay">
-                            <div class="category-content">
-                                <h5 class="category-title">77 Tours</h5>
-                                <h4 class="category-subtitle"><i class="flaticon-pin"></i> Thailand</h4>
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <div class="category">
+                        <div class="category_bg_box cat-5-bg">
+                            <div class="category-overlay">
+                                <div class="category-content">
+                                    <h5 class="category-title">77 Tours</h5>
+                                    <h4 class="category-subtitle"><i class="flaticon-pin"></i> Thailand</h4>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-4 col-md-6 col-sm-12">
-                <div class="category">
-                    <div class="category_bg_box cat-1-bg">
-                        <div class="category-overlay">
-                            <div class="category-content">
-                                <h5 class="category-title">24 Tours</h5>
-                                <h4 class="category-subtitle"><i class="flaticon-pin"></i> Rome</h4>
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <div class="category">
+                        <div class="category_bg_box cat-1-bg">
+                            <div class="category-overlay">
+                                <div class="category-content">
+                                    <h5 class="category-title">24 Tours</h5>
+                                    <h4 class="category-subtitle"><i class="flaticon-pin"></i> Rome</h4>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-4 col-md-6 col-sm-12">
-                <div class="category">
-                    <div class="category_bg_box cat-2-bg">
-                        <div class="category-overlay">
-                            <div class="category-content">
-                                <h5 class="category-title">242Tours</h5>
-                                <h4 class="category-subtitle"><i class="flaticon-pin"></i> Paris</h4>
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <div class="category">
+                        <div class="category_bg_box cat-2-bg">
+                            <div class="category-overlay">
+                                <div class="category-content">
+                                    <h5 class="category-title">242Tours</h5>
+                                    <h4 class="category-subtitle"><i class="flaticon-pin"></i> Paris</h4>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>*@
+                </div>*@
+
             <div class="col-lg-12">
                 <div class="pagination-box">
                     <nav aria-label="Page navigation example">
-                        <ul class="pagination">
+
+
+                        @Html.PagedListPager(Model, page => Url.Action("Destination_mansory",
+                            new { page, search = ViewBag.search, mavung = ViewBag.mavung }))
+                        @*<ul class="pagination">
                             <li class="page-item"><a class="page-link" href="#"><span aria-hidden="true">«</span></a></li>
                             <li class="page-item"><a class="page-link active" href="#">1</a></li>
                             <li class="page-item"><a class="page-link" href="#">2</a></li>
                             <li class="page-item"><a class="page-link" href="#">3</a></li>
                             <li class="page-item"><a class="page-link" href="#"><span aria-hidden="true">»</span></a></li>
-                        </ul>
+                                          </ul>*@
                     </nav>
                 </div>
+            </div>
+            <div class="find-tour">
+                <div class="areas">
+                    <h3 class="sidebar-heading">Choose Destination From Areas</h3>
+                    <a href="@Url.Action("Destination_mansory","Destinations", new {search = ViewBag.search, mavung = 0})">All Area</a>
+                    <img class="hmap8807" src="~/Content/images/vnmap.jpg" alt="Workplace" usemap="#hmap8807">
+                    <map name="hmap8807">
+                        <area class="harea tooltip" onmouseover="writeText('Northeast')" shape="poly" coords="140,67,144,64,148,61,155,62,159,56,160,50,168,43,176,42,182,38,188,42,199,50,204,55,210,55,216,53,221,55,224,60,230,57,238,57,244,61,244,68,236,74,234,81,237,86,240,94,245,102,253,102,257,110,264,114,272,117,278,120,284,120,289,117,294,121,288,125,276,132,272,139,264,148,256,146,249,148,242,147,234,144,236,136,227,139,218,138,211,132,203,128,197,125,188,123,188,133,180,138,180,146,181,152,174,149,167,144,163,138,160,131,165,128,164,120,167,114,171,111,167,103,163,95,157,92,153,87,147,82,142,74" alt="a" href="#" onclick="HienThiVung(1)">
+                        <area class="harea tooltip" onmouseover="writeText('Northwest')" shape="poly" coords="43,82,47,77,51,73,53,67,56,63,67,69,72,71,76,75,79,79,83,75,87,70,93,65,98,68,103,70,111,63,115,69,119,73,124,69,127,64,132,60,138,67,143,81,149,89,156,96,162,100,167,109,162,117,161,125,155,132,161,144,172,149,179,151,186,149,193,158,196,163,202,167,203,173,196,178,187,176,179,172,175,166,167,166,158,164,148,165,143,158,135,152,126,149,118,153,113,157,110,163,103,157,96,156,89,154,84,149,79,141,75,131,77,125,79,117,79,111,73,115,72,109,65,115,62,106,56,101,53,95,51,89,45,87" alt="b" href="#" onclick="HienThiVung(2)">
+                        <area class="harea tooltip" onmouseover="writeText('Red River Delta')" shape="poly" coords="183,139,187,134,190,128,196,128,203,128,209,132,215,137,226,142,231,144,238,147,244,152,244,157,235,168,239,173,238,181,230,183,223,191,217,193,211,188,203,184,196,180,202,173,202,166,196,161,190,154,190,148,183,147" alt="c" href="#" onclick="HienThiVung(3)">
+                        <area class="harea tooltip" onmouseover="writeText('North Central')" shape="poly" coords="145,174,150,170,158,168,167,169,174,169,182,173,187,178,193,180,199,185,205,188,211,193,215,197,210,205,207,213,206,223,204,232,199,240,203,252,207,260,211,266,219,273,227,280,230,285,236,283,238,290,236,297,240,305,245,314,258,325,266,334,271,341,280,349,293,358,300,365,305,368,310,374,314,377,307,379,300,374,290,376,280,375,271,374,264,369,261,363,251,358,245,361,241,352,238,335,228,329,228,322,220,320,207,306,201,305,196,289,190,279,183,277,177,273,174,263,178,259,166,253,158,249,150,246,140,238,132,232,122,228,129,223,131,216,126,210,135,210,141,210,148,210,155,204,158,199,163,195,167,189,162,183,154,183,152,175 " alt="d" href="#" onclick="HienThiVung(4)">
+                        <area class="harea tooltip" onmouseover="writeText('South Central Coast')" shape="poly" coords="275,376,283,375,294,377,300,379,309,379,316,382,319,390,323,395,328,401,333,406,338,414,339,421,341,428,345,434,345,444,349,454,350,461,355,470,353,479,353,489,352,496,355,503,362,514,353,527,355,538,350,543,351,550,351,556,348,562,352,568,348,574,343,584,336,586,331,593,323,592,321,598,313,602,305,604,300,613,290,614,281,620,277,609,281,602,275,600,279,588,287,586,298,588,303,592,310,587,311,578,320,577,326,574,327,564,329,550,327,540,328,534,335,535,338,526,340,520,328,514,331,506,338,502,336,491,335,482,331,471,326,460,327,450,327,441,323,430,313,423,306,423,300,416,294,414,287,407,279,403,271,400,267,394,261,386,265,380" alt="e" href="#" onclick="HienThiVung(5)">
+                        <area class="harea tooltip" onmouseover="writeText('Central Highlands')" shape="poly" coords="288,414,293,414,301,418,306,424,312,425,319,427,324,432,328,438,330,444,330,452,328,458,329,466,332,475,336,480,337,490,338,496,338,502,331,508,336,519,330,517,336,531,329,537,332,546,330,554,328,562,328,570,322,572,312,578,309,585,300,584,288,583,280,582,276,578,273,571,279,565,274,558,271,549,278,541,284,537,285,523,282,512,284,503,281,491,277,486,275,475,273,468,269,460,271,451,275,444,279,434,279,427,275,421,283,419" alt="f" href="#" onclick="HienThiVung(6)">
+                        <area class="harea tooltip" onmouseover="writeText('Southeast')" shape="poly" coords="263,547,264,554,269,558,273,565,267,571,269,578,275,584,275,591,272,600,277,605,272,612,277,619,273,623,265,627,259,623,253,625,249,618,236,616,230,612,229,604,222,601,214,599,207,590,203,582,201,573,210,567,222,570,229,572,229,565,226,559,236,561,246,554,252,553" alt="g" href="#" onclick="HienThiVung(7)">
+                        <area class="harea tooltip" onmouseover="writeText('Mekong River Delta')" shape="poly" coords="170,607,178,609,183,610,186,605,193,605,200,603,206,605,209,610,215,611,221,612,227,605,230,610,235,617,242,621,249,622,249,632,245,638,243,645,241,653,239,662,233,669,225,671,218,676,210,678,203,681,198,685,192,690,185,696,180,701,175,707,165,708,159,709,165,702,159,695,160,686,159,675,160,663,165,654,171,652,169,645,163,642,157,638,151,638,141,630,146,623,152,622,158,623,166,618,170,612" alt="h" href="#" onclick="HienThiVung(8)">
+                    </map>
+                    <div class="boxarea">
+                        <p id="Aarea">S-VietNam</p>
+                    </div>
+                </div>
+                <div class="col-md-15">
+                    <div class="sidebar-wrap">
+                        <div class="search-wrap">
+                            <h3 class="sidebar-heading">Find your destination</h3>
+                            <form method="post" class="findform">
+                                <div class="row">
+                                    <div class="col-md-12 ">
+                                        <div class="form-group">
+                                            <div class="form-field">
+                                                <input name="search" type="text" id="location" class="form-control" placeholder="Search Location">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12 btnfind">
+                                        <input type="button" value="Find" onclick="HienThiDiaDanh()">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+
             </div>
         </div>
     </div>
 </div>
+<script src="~/Content/js/mapoid.js"></script>
+<script type="text/javascript" src="~/Content/js/listdes.js"></script>
+
 <!-- Destination end -->

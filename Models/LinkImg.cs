@@ -11,7 +11,7 @@ namespace TRAVEL.Models
     {
         [Key]
         [StringLength(10)]
-        public string LinkCode { get; set; }
+        public string MaLink { get; set; }
 
         [Column("LinkImg")]
         [StringLength(100)]
@@ -19,6 +19,9 @@ namespace TRAVEL.Models
 
         public int? MaChiTietTour { get; set; }
 
+        public int? MaBlog { get; set; }
+
         public virtual ChiTietTour ChiTietTour { get; set; }
-    }
+        public virtual Blog Blog { get; set; }
+     }
 }
