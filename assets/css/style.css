@@ -88,9 +88,9 @@ p {
      font-weight: 500;
      line-height: 27px;
      color: #656565;
-/*     overflow-y: hidden;*/
+     /*     overflow-y: hidden;*/
      text-align: justify;
-/*     height: 115px;*/
+     /*     height: 115px;*/
 }
 
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
@@ -3722,7 +3722,7 @@ a {
 .blog-item-2 .detail {
      padding: 25px 25px;
      z-index: 4;
-     height: auto;
+     height: min-content;
 }
 
 .date-box span {
@@ -3759,7 +3759,7 @@ a {
 
 .blog-item-2 .detail p {
      margin-bottom: 0;
-/*     overflow-y: hidden;*/
+     /*     overflow-y: hidden;*/
      /*height: 400px;*/
 }
 

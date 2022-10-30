@@ -183,7 +183,7 @@ namespace TRAVEL.Controllers
                int pageSize = 6;
                //int no_of_page = 1;
                int no_of_page = (page ?? 1);
-
+               ViewBag.test = 2;
                return PartialView("_blogsidebar", model.ToPagedList(no_of_page, pageSize));
           }
 
