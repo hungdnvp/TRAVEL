@@ -1,0 +1,253 @@
+﻿@using TRAVEL.Models;
+@model PagedList.IPagedList<Blog>
+@using PagedList.Mvc;
+@{
+     ViewBag.Title = "Blog List";
+     Layout = "~/Views/Shared/_Layout.cshtml";
+     ViewData["sub_link"] = "Blog List";
+
+}
+@Html.Partial("_banner")
+
+
+<!-- Blog section start -->
+<div class="blog-section content-area-2">
+     <div class="container">
+          <div class="row" id="sidebar_body">
+
+               <div class="col-lg-12 col-md-12">
+                    <div class="option-bar">
+                         <div class="row clearfix">
+                              <div class="col-xl-4 col-lg-5 col-md-5 col-sm-5">
+                                   <h4>
+                                        <span class="heading-icon">
+                                             <i class="fa fa-caret-right icon-design"></i>
+                                             <i class="fa fa-th-large"></i>
+                                        </span>
+                                        @if (Model != null)
+                                        {
+                                             var count = Model.LongCount<Blog>();
+                                             if (count > 1)
+                                             {
+                                                  <span class="heading">@count Results Found</span> }
+                                             else
+                                             {
+                                                  <span class="heading">@count Result Found</span>}
+                                        }
+                                   </h4>
+                              </div>
+                              <div class="col-xl-8 col-lg-7 col-md-7 col-sm-7">
+                                   <div class="sorting-options clearfix">
+                                        <a href="#" class="change-view-btn active-view-btn"><i class="fa fa-th-list"></i></a>
+                                        <a href="/Blog/Index" class="change-view-btn "><i class="fa fa-th-large"></i></a>
+                                   </div>
+                                   <div class="search-area">
+                                        <select class="selectpicker search-fields select-sort-details" name="location" id="select-drop-down" style="display:block;">
+
+                                             <option value="1">Default</option>
+                                             <option value="2">A-Z</option>
+                                             <option value="3">Z-A</option>
+
+                                        </select>
+                                   </div>
+                                   <div class="search-area">
+                                        <select class="selectpicker search-fields select-sort" name="location">
+                                             <option value="" selected disabled>sort blog by</option>
+                                             <option value="1">Name of Blog</option>
+                                             <option value="2">Published Date</option>
+                                             <option value="3">Comments</option>
+                                             <option value="4">Reactions</option>
+
+                                        </select>
+
+                                   </div>
+                              </div>
+                         </div>
+                    </div>
+               </div>
+
+
+
+               <div class="col-lg-8 col-md-12" id="ajax_sidebar">
+                    @Html.Partial("_blogsidebar", Model)
+                    <div class="col-lg-12" id="pager_sidebar">
+                         <div class="pagination-box">
+                              <nav aria-label="Page navigation example">
+                                   <ul class="pagination">
+                                        @{ var num_page = @Model.PageCount;
+                                             //var num_page = 16;
+                                             var curr_page = @Model.PageNumber; }
+                                        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+                                        @Html.PagedListPager(Model, page => Url.Action("Blog_sidebar", new { page }))
+                                        @*@if (curr_page > 1)
+                                             {
+                                                  <li class="page-item"><a class="page-link" href="/Blog/?page=@(curr_page-1)"><span aria-hidden="true">«</span></a></li>
+                                             }
+                                             <li class="page-item"><a class="page-link" onclick="true" href="/Blog/Blog_sidebar?page=1">1</a></li>
+                                             @if (num_page > 1)
+                                             {
+                                                  for (int i = 2; i <= 6; i++)
+                                                  {
+                                                       <li class="page-item"><a class="page-link" onclick="true" href="/Blog/Blog_sidebar?page=@i">@i</a></li>
+                                                  }
+                                             }
+                                             @if (curr_page < num_page)
+                                             {
+                                                  <li class="page-item"><a class="page-link" href="/Blog/Blog_sidebar?page=@(curr_page+1)"><span aria-hidden="true">»</span></a></li>
+                                             }*@
+                                   </ul>
+                              </nav>
+                         </div>
+                    </div>
+               </div>
+               @Html.Partial("_blog_rightside")
+
+
+
+          </div>
+     </div>
+</div>
+<!-- Blog section end -->
+@*<script>
+          const curr_location = location.href;
+          var a_tag_list = document.getElementsByClassName("page-link");
+          Array.from(a_tag_list).forEach((e) => {
+               if (e.href === curr_location) {
+                    e.classList.add("active");
+               }
+          })
+
+     </script>*@
+
+<script>
+     var aaa = $("span[class='selectBox-label']");
+     //console.log(aaa);
+     var sort_select_tag = $(".select-sort");
+     sort_select_tag.on("change", function () {
+          var value = parseInt($(this).val());
+          console.log(value);
+          $(".select-sort-details-selectBox-dropdown-menu").empty();
+          switch (value) {
+               case 1:
+                    $(".select-sort-details-selectBox-dropdown-menu").append(
+                         "<li class='select_sort_details_item'><a class='details_link' rel='1'>Default</a></li>" +
+                         "<li class='select_sort_details_item'><a class='details_link' rel='2'>A-Z</a></li>" +
+                         "<li class='select_sort_details_item'><a class='details_link' rel='3'>Z-A</a></li>"
+                    )
+                    break;
+               case 2:
+                    $(".select-sort-details-selectBox-dropdown-menu").append(
+                         "<li class='select_sort_details_item'><a class='details_link' rel='1'>Default</a></li>" +
+                         "<li class='select_sort_details_item'><a class='details_link' rel='6'>Oldest-Newest</a></li>" +
+                         "<li class='select_sort_details_item'><a class='details_link' rel='7'>Newest-Oldest</a></li>"
+                    )
+                    break;
+               case 3:
+                    $(".select-sort-details-selectBox-dropdown-menu").append(
+                         "<li class='select_sort_details_item'><a class='details_link' rel='1'> Default</a ></li > " +
+                         "<li class='select_sort_details_item'><a class='details_link' rel='4'> High to Low</a ></li > " +
+                         "<li class='select_sort_details_item'><a class='details_link' rel='5'> Low to High</a ></li > "
+                    )
+                    break;
+               case 4:
+                    $(".select-sort-details-selectBox-dropdown-menu").append(
+                         "<li class='select_sort_details_item'><a class='details_link' rel='1'>Default</a></li>" +
+                         "<li class='select_sort_details_item'><a class='details_link' rel='4'>High to Low</a></li>" +
+                         "<li class='select_sort_details_item'><a class='details_link' rel='5'>Low to High</a></li>"
+                    )
+                    break;
+
+               default:
+                    $(".select-sort-details-selectBox-dropdown-menu").append(
+                         "<li class='select_sort_details_item'><a rel='1' class='details_link'>Default</a></li>" +
+                         "<li class='select_sort_details_item'><a class='details_link' rel='2'>A-Z</a></li>" +
+                         "<li class='select_sort_details_item'><a class='details_link' rel='3'>Z-A</a></li>"
+                    )
+
+                    console.log("error");
+                    break;
+
+          }
+          var name1 = "";
+          var author1 = "";
+          var tag1 = "";
+          var category1 = "";
+          $(".search-fields-selectBox-dropdown-menu").click(function () {
+               var rel_search = parseInt($(this).attr('rel'));
+               switch (rel_search) {
+                    case "name":
+                         name1 = ViewBag.name;
+                         break;
+                    case "author":
+                         author1 = ViewBag.author;
+                         break;
+                    case "tag":
+                         tag1 = ViewBag.tag;
+                         break;
+                    case "category":
+                         category1 = ViewBag.category;
+                         break;
+                    default:
+                         break;
+
+               }
+          });
+          $("#search-submit").click(function () {
+               $.ajax({
+                    type: "POST",
+                    url: '/Blog/ajax_Sort_Search_sidebar',
+                    data: {
+                         page: @Model.PageNumber,
+                         sortby: 0,
+                         sort_type: 0,
+                         name: name1,
+                         author: author1,
+                         tag: tag1,
+                         category: category1
+                    },
+                    success: function (response) {
+                         console.log(response)
+                         //$('#sidebar_body').html($('.col-lg-12 col-md-12').html() + response + $('#pager_sidebar').html());
+                         $('#ajax_sidebar').html(response);
+                         //$page.appendTo('#body_view');
+                    }
+               });
+
+          });
+
+          $(".details_link").click(function () {
+               var rel = parseInt($(this).attr('rel'));
+               $page = $("#pager_sidebar");
+               $.ajax({
+                    type: "POST",
+                    url: '/Blog/ajax_Sort_Search_sidebar',
+                    data: {
+                         page: @Model.PageNumber,
+                         sortby: value,
+                         sort_type: rel,
+                         name: name1,
+                         author: author1,
+                         tag: tag1,
+                         category: category1
+                    },
+                    success: function (response) {
+                         console.log(response)
+                         //$('#body_view').html($('.col-lg-12 col-md-12').html() + response + $('#pager_sidebar').html());
+                         //$page.appendTo('#body_view');
+                         $('#ajax_sidebar').html(response);
+
+                    }
+               }).then((response) => {
+                    var a = $("span[class='selectBox-label']");
+                    a.parent().removeClass("selectBox-menuShowing").removeClass("selectBox-menuShowing-top");
+                    var ul = $(this).parent().parent();
+                    ul.removeClass("selectBox-options-top").removeClass("selectBox-options-bottom");
+                    ul.css("display", 'none');
+                    a[0].innerHTML = $(this).text();
+               })
+          });
+
+          //selectBox - dropdown - menu selectBox - options selectpicker - selectBox - dropdown - menu search - fields - selectBox - dropdown - menu select - sort - selectBox - dropdown - menu
+     });
+
+</script>

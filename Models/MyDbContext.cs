@@ -1,10 +1,6 @@
-using System;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Data.Entity;
-using System.Linq;
-
 namespace TRAVEL.Models
 {
+
     public partial class MyDbContext : DbContext
     {
         public MyDbContext()
@@ -65,6 +61,14 @@ namespace TRAVEL.Models
             modelBuilder.Entity<DiaDanh>()
                 .Property(e => e.MoTa)
                 .IsUnicode(false);
+
+            modelBuilder.Entity<DiaDanh>()
+                .Property(e => e.DanToc)
+                .IsFixedLength();
+
+            modelBuilder.Entity<DiaDanh>()
+                .Property(e => e.DanSo)
+                .IsFixedLength();
 
             modelBuilder.Entity<DiaDanh>()
                 .HasMany(e => e.Tours)
@@ -137,4 +141,5 @@ namespace TRAVEL.Models
                 .Map(m => m.ToTable("Tour_TravelType").MapLeftKey("MaTour").MapRightKey("MaTravelType"));
         }
     }
+
 }
