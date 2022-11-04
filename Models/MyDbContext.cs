@@ -1,3 +1,5 @@
+using System.Data.Entity;
+
 namespace TRAVEL.Models
 {
 
