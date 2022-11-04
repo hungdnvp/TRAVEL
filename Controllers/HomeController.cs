@@ -12,7 +12,7 @@ namespace TRAVEL.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index( )
+        public ActionResult Index()
         {
             return View();
         }
@@ -110,11 +110,28 @@ namespace TRAVEL.Controllers
                     else
                     {
                         ViewBag.error = "Login failed";
-                        return RedirectToAction("Login");
+                        return View("Login");
                     }
                 }
             }
             return View();
         }
+        // forgot
+        public ActionResult ForgotPassword()
+        {
+
+            return View();
+        }
+
+        [HttpPost]
+        //[ValidateAntiForgeryToken]
+        public ActionResult ForgotPassword(string email)
+        {
+            using (MyDbContext Travel = new MyDbContext())
+            {
+                return View("Index");
+            }
+        }
+
     }
 }

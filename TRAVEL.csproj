@@ -792,6 +792,7 @@
     <Content Include="Views\Blog\_index.cshtml" />
     <Content Include="Views\Blog\_blogsidebar.cshtml" />
     <Content Include="Views\Blog\_blogdetail.cshtml" />
+    <Content Include="Views\Home\ForgotPassword.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Scripts\jquery-3.4.1.min.map" />

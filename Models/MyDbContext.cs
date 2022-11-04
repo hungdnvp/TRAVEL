@@ -1,8 +1,10 @@
+using System;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
+using System.Linq;
 
 namespace TRAVEL.Models
 {
-
     public partial class MyDbContext : DbContext
     {
         public MyDbContext()
@@ -31,7 +33,7 @@ namespace TRAVEL.Models
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Blog>()
-                .Property(e => e.NoiDung)
+                .Property(e => e.MoTa)
                 .IsUnicode(false);
 
             modelBuilder.Entity<ChiTietTK>()
@@ -65,11 +67,7 @@ namespace TRAVEL.Models
                 .IsUnicode(false);
 
             modelBuilder.Entity<DiaDanh>()
-                .Property(e => e.DanToc)
-                .IsFixedLength();
-
-            modelBuilder.Entity<DiaDanh>()
-                .Property(e => e.DanSo)
+                .Property(e => e.Danso)
                 .IsFixedLength();
 
             modelBuilder.Entity<DiaDanh>()
@@ -143,5 +141,4 @@ namespace TRAVEL.Models
                 .Map(m => m.ToTable("Tour_TravelType").MapLeftKey("MaTour").MapRightKey("MaTravelType"));
         }
     }
-
 }

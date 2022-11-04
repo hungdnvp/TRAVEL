@@ -19,9 +19,6 @@ namespace TRAVEL.Models
 
         public int? MaChiTietTour { get; set; }
 
-        public int? MaBlog { get; set; }
-
         public virtual ChiTietTour ChiTietTour { get; set; }
-        public virtual Blog Blog { get; set; }
-     }
+    }
 }

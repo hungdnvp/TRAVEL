@@ -19,10 +19,6 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="form-content-box">
-                    <!-- Logo -->
-                    <a href="index.html">
-                        <img src="~/assets/img/logos/logo.png" class="cm-logo" alt="logo">
-                    </a>
                     <!-- details -->
                     <!-- details -->
                     <div class="details">
@@ -46,6 +42,7 @@
                             </div>
                             <div class="form-group mb-0">
                                 <button type="submit" class="btn btn-color btn-md btn-block">Signup</button>
+                                <span id="error" style="color:red;font-size:14px;display:none"></span>
                             </div>
                         </form>
                         <!-- Form end -->
@@ -70,7 +67,16 @@
 </div>
 @section Script {
     <script>
+        $(document).ready(function () {
+            var er = "@ViewBag.error";
+            if (er) {
+                document.getElementById("error").innerHTML = er;
+                document.getElementById("error").setAttribute("style", "color:red;font-size:14px;display:block");
+            }
+        });
 
+
+            //submit
         function verifyPassword() {
             var pw = document.getElementById("pass").value;
             var pw_confirm = document.getElementById("confirm-pass").value;

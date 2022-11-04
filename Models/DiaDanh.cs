@@ -33,10 +33,10 @@ namespace TRAVEL.Models
         public string DanToc { get; set; }
 
         [StringLength(50)]
-        public string DienTich { get; set; }
+        public string Dientich { get; set; }
 
         [StringLength(10)]
-        public string DanSo { get; set; }
+        public string Danso { get; set; }
 
         [StringLength(100)]
         public string DacSan { get; set; }
