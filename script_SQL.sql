@@ -93,3 +93,24 @@ GO
  --Thêm bảng Vung_DiaDanh 
 select dd.MaDiaDanh, dd.TenDiaDanh, dd.Img, dd.MoTa,v.Mavung, v.TenVung into Vung_DiaDanh  from Vung v join DiaDanh dd
 on dd.Mavung=v.Mavung
+
+--30/10
+-- Modify Blog Table
+-- Thêm MoTa(text) 
+-- Thêm NgayDang (date)
+-- Thêm NoiDung(ntext)
+-- Thêm Columnn Category (nvarchar(50)) 
+-- Thêm Tags (nvarchar(50)) 
+-- Thêm Link_CoverImg (nvarchar(50))
+
+--5/11
+-- thêm bảng BlogComment
+
+CREATE TABLE BlogComment(
+MaComment INT PRIMARY KEY,
+BlogID int FOREIGN KEY REFERENCES Blog(Blog_ID) NULL,
+MaTaiKhoan INT  NULL FOREIGN KEY REFERENCES dbo.TaiKhoan(MaTaiKhoan),
+NoiDung NVARCHAR(MAX) NULL,
+NgayGio DATETIME NULL
+)
+GO
