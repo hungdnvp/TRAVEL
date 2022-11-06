@@ -114,3 +114,13 @@ NoiDung NVARCHAR(MAX) NULL,
 NgayGio DATETIME NULL
 )
 GO
+
+--thêm bảng reply
+CREATE TABLE Reply(
+MaReply INT PRIMARY KEY,
+MaCmt int FOREIGN KEY REFERENCES dbo.BlogComment(MaComment) NULL,
+MaTaiKhoan INT  NULL FOREIGN KEY REFERENCES dbo.TaiKhoan(MaTaiKhoan),
+NoiDung NVARCHAR(MAX) NULL,
+NgayGio DATETIME NULL
+)
+GO
