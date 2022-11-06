@@ -119,18 +119,47 @@ namespace TRAVEL.Controllers
         // forgot
         public ActionResult ForgotPassword()
         {
-
             return View();
         }
 
         [HttpPost]
         //[ValidateAntiForgeryToken]
-        public ActionResult ForgotPassword(string email)
+        public JsonResult ForgotPassword(string email)
         {
             using (MyDbContext Travel = new MyDbContext())
             {
-                return View("Index");
+                var check = Travel.TaiKhoans.Where(c => c.email == email).FirstOrDefault();
+                if (check != null)
+                {
+                    SendMailService mailservice = new SendMailService();
+                    mailservice.setTo(email);
+                    _ = mailservice.SendMail();
+                    return Json(mailservice.code);
+                }
+                else
+                {
+                    return Json("Invalid Email");
+                }
             }
+
+
+        }
+
+        [HttpPost]
+        public ActionResult NewPass(string email, string pass)
+        {
+            using (MyDbContext Travel = new MyDbContext())
+            {
+                TaiKhoan tk = Travel.TaiKhoans.Where(c => c.email == email).FirstOrDefault();
+                if (tk != null)
+                {
+                    tk.pass = GetMD5(pass);
+                    Travel.Configuration.ValidateOnSaveEnabled = false;
+                    Travel.SaveChanges();
+                    return RedirectToAction("Login");
+                }
+            }
+            return View("ForgotPassword");
         }
 
     }
