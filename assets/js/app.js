@@ -7,8 +7,8 @@ $(function () {
         populateColorPlates();
         setTimeout(function () {
             $(".page_loader").fadeOut("fast");
-            $('link[id="style_sheet"]').attr('href', '/assets/css/skins/yellow.css');
-        }, 1000);
+            $('link[id="style_sheet"]').attr('href', '/assets/css/skins/blue-light.css');
+        }, 600);
         if ($('body .filter-portfolio').length > 0) {
             $(function () {
                 $('.filter-portfolio').filterizr(
@@ -714,7 +714,13 @@ $(function () {
         var name = $(this).attr('data-color');
         $('link[id="style_sheet"]').attr('href', '/assets/css/skins/' + name + '.css');
     });
-
+    // custom by Quang Hung
+    setInterval(function () {
+        let random_qh = Math.floor(Math.random() * $('.color-plate').length);
+        let name_qh = $('.color-plate')[random_qh].getAttribute('data-color');
+        $('link[id="style_sheet"]').attr('href', '/assets/css/skins/' + name_qh + '.css');
+    }, 4000);
+    // end
     $(document).on('click', '.setting-button', function () {
         $('.option-panel').toggleClass('option-panel-collased');
     });
