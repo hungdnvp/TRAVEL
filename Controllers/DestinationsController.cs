@@ -15,7 +15,7 @@ namespace TRAVEL.Controllers
 
         // GET: Destinations
 
-        public ActionResult Destination_mansory( int? page, string search = "", int? mavung=0)
+        public ActionResult Destination_mansory(int? page, string search = "", int? mavung = 0)
 
         {
             MyDbContext mdt = new MyDbContext();
@@ -44,26 +44,18 @@ namespace TRAVEL.Controllers
             // tạo truy vấn, lưu ý phải sắp xếp theo trường nào đó
             // Tạo LinkID mới có thể phân trang
             var links = model.ToPagedList(pageNumber, pageSize);
-                       
-           
-            
-            return View(model.ToPagedList(pageNumber,pageSize));
+
+
+
+            return View(model.ToPagedList(pageNumber, pageSize));
         }
-        public ActionResult Destination_Detail(int id )
+        public ActionResult Destination_Detail(int id)
         {
-            if (id == null)
+            using (MyDbContext mdt = new MyDbContext())
             {
-                return RedirectToAction("Index", "Destinations");
-            }
-            else
-            {
-
-                MyDbContext mdt = new MyDbContext();
-
-                var model = mdt.DiaDanhs.Include("Tours").Where(x => x.MaDiaDanh == id).ToList();
-                ViewBag.Tour = model.ToList()[0].Tours.ToArray();
+                var model = mdt.DiaDanhs.Include("Tours").Where(x => x.MaDiaDanh == id).FirstOrDefault();
+                ViewBag.Tour = model.Tours.ToArray();
                 return View(model);
-
             }
 
         }
