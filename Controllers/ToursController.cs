@@ -4,10 +4,6 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using TRAVEL.Models;
-
-using Newtonsoft;
-using Newtonsoft.Json;
-using System.Web.UI;
 using PagedList;
 
 namespace TRAVEL.Controllers
@@ -42,7 +38,7 @@ namespace TRAVEL.Controllers
                 }
             }
         }
-
+        [CustomAuthorize(Role = "admin")]
         public ActionResult Tours_grid(int? page)
         {
             // tạo kích thước trang(pageSize) 

@@ -169,6 +169,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="Models\CustomAuthorizeAttribute.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
@@ -759,7 +760,6 @@
     <Content Include="assets\js\typed.min.js" />
     <Content Include="assets\js\wow.min.js" />
     <Content Include="Content\PagedList.css" />
-    <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\css\blog.css" />
     <Content Include="Content\css\booking.css" />
@@ -788,7 +788,6 @@
     <Content Include="Content\js\tour-place.js" />
     <Content Include="Content\js\tour.js" />
     <Content Include="Content\PagedList.css" />
-    <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Areas\Admin\Views\DiaDanhs\Create.cshtml" />
     <Content Include="Areas\Admin\Views\DiaDanhs\Delete.cshtml" />
@@ -830,6 +829,7 @@
     <Content Include="Views\Blog\_blogsidebar.cshtml" />
     <Content Include="Views\Blog\_blogdetail.cshtml" />
     <Content Include="Views\Home\ForgotPassword.cshtml" />
+    <Content Include="Views\Home\Permission.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Scripts\jquery-3.4.1.min.map" />
