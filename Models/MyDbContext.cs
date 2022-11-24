@@ -25,6 +25,7 @@ namespace TRAVEL.Models
           public virtual DbSet<Ngay> Ngays { get; set; }
           public virtual DbSet<PhanHoi> PhanHois { get; set; }
           public virtual DbSet<PhieuDatTour> PhieuDatTours { get; set; }
+          public virtual DbSet<Reply> Replies { get; set; }
           public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
           public virtual DbSet<TaiKhoan> TaiKhoans { get; set; }
           public virtual DbSet<Tour> Tours { get; set; }
@@ -43,8 +44,14 @@ namespace TRAVEL.Models
                    .WithOptional(e => e.Blog)
                    .HasForeignKey(e => e.BlogID);
 
-               //modelBuilder.Entity<Blog>()
-               //    .HasOptional(e => e.Blog1);
+               modelBuilder.Entity<Blog>();
+               //.HasOptional(e => e.Blog1)
+               //.WithRequired(e => e.Blog2);
+
+               modelBuilder.Entity<BlogComment>()
+                   .HasMany(e => e.Replies)
+                   .WithOptional(e => e.BlogComment)
+                   .HasForeignKey(e => e.MaCmt);
 
                modelBuilder.Entity<ChiTietTK>()
                    .Property(e => e.SDT)

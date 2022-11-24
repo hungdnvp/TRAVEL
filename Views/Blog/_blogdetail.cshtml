@@ -1,1 +1,204 @@
-﻿
+﻿@using TRAVEL.Models;
+@model Blog
+
+<!--Blog detail start -->
+<div class="blog-item-2 mb-40">
+     <div class="blog-photo clip-home">
+          <img src="~/assets/img/blog/@Model.Link_CoverImg" alt="blog" class="img-fluid">
+          <div class="date-box clip-home">
+               <span>@Model.NgayDang.ToString().Split('/')[1]</span>
+               @switch (@Model.NgayDang.ToString().Split('/')[0])
+               {
+                    case "1":<span>Jan</span> break;
+                    case "2": <span>Feb</span> break;
+                    case "3": <span>Mar</span> break;
+                    case "4": <span>Apr</span> break;
+                    case "5": <span>May</span> break;
+                    case "6": <span>Jun</span> break;
+                    case "7": <span>Jul</span> break;
+                    case "8": <span>Aug</span> break;
+                    case "9": <span>Sep</span> break;
+                    case "10": <span>Oct</span> break;
+                    case "11": <span>Nov</span> break;
+                    case "12": <span>Dec</span>break;
+               }
+
+          </div>
+     </div>
+     <div class="detail">
+          <div class="post-meta">
+               <span><a href="#"><i class="flaticon-user"></i>@Model.TacGia</a></span>
+               <span><a href="#"><i class="flaticon-comment"></i>27</a></span>
+               <span><a href="#"><i class="fa fa-heart-o"></i>27</a></span>
+          </div>
+          <h3>
+               <a href="/Blog/Blog_detail/id=@Model.Blog_ID">@Model.Ten</a>
+          </h3>
+
+          <div id="content"> @Html.Raw(Model.NoiDung)</div>
+
+          <div class="row clearfix tags-socal-box">
+               <div class="col-lg-7 col-md-7 col-sm-12">
+                    <div class="tags">
+                         <h2>Tags</h2>
+                         <ul>
+                              <li><a href="#">Image</a></li>
+                              <li><a href="#">Features</a></li>
+                              <li><a href="#">Gallery</a></li>
+                              <li><a href="#">News</a></li>
+                         </ul>
+                    </div>
+               </div>
+               <div class="col-lg-5 col-md-5 col-sm-12">
+                    <div class="social-list">
+                         <h2>Share</h2>
+                         <ul>
+                              <li>
+                                   <a href="#" class="facebook">
+                                        <i class="fa fa-facebook"></i>
+                                   </a>
+                              </li>
+                              <li>
+                                   <a href="#" class="twitter">
+                                        <i class="fa fa-twitter"></i>
+                                   </a>
+                              </li>
+                              <li>
+                                   <a href="#" class="google">
+                                        <i class="fa fa-google"></i>
+                                   </a>
+                              </li>
+                              <li>
+                                   <a href="#" class="linkedin">
+                                        <i class="fa fa-linkedin"></i>
+                                   </a>
+                              </li>
+                              <li>
+                                   <a href="#" class="rss">
+                                        <i class="fa fa-rss"></i>
+                                   </a>
+                              </li>
+                         </ul>
+                    </div>
+               </div>
+          </div>
+     </div>
+</div>
+<!-- blog detail end-->
+<!-- Comments section start -->
+<div class="comments-section mb-40">
+     <ul class="comments">
+          @* List of comments session *@
+          @foreach (var cmt in Model.BlogComments)
+          {
+<li>
+     @* Main comment session *@
+     <div class="comment">
+          <div class="comment-author">
+               @if (cmt.TaiKhoan.ChiTietTKs.SingleOrDefault().LinkAvatar == null)
+               {
+<a href="#">
+     <img src="~/assets/img/avatar/default.jpg" alt="blog">
+
+</a> }
+else
+{
+<a href="#">
+     <img src="~/assets/img/avatar/@cmt.TaiKhoan.ChiTietTKs.SingleOrDefault().LinkAvatar" alt="blog">
+</a>}
+          </div>
+          <div class="comment-content">
+               <div class="comment-meta">
+                    @if (@cmt.TaiKhoan.ChiTietTKs.FirstOrDefault().Hoten == null)
+                    {
+<h3>
+</h3>}
+                    <h3>
+                         @cmt.TaiKhoan.ChiTietTKs.FirstOrDefault().Hoten
+                    </h3>
+                    <div class="comment-meta">
+                         @cmt.NgayGio<a href="#">Reply</a>
+                    </div>
+               </div>
+               <p>@cmt.NoiDung</p>
+          </div>
+     </div>
+     @* Main comment session *@
+
+
+     @* reply session *@
+     <ul>
+          @foreach (var reply in cmt.Replies)
+          {
+
+<li>
+     <div class="comment">
+          <div class="comment-author">
+               @if (@reply.TaiKhoan.ChiTietTKs.FirstOrDefault().LinkAvatar == null)
+               {
+<a href="#">
+     <img src="~/assets/img/avatar/default.jpg" alt="blog">
+</a> }
+else
+{
+<a href="#">
+     <img src="~/assets/img/avatar/@reply.TaiKhoan.ChiTietTKs.FirstOrDefault().LinkAvatar" alt="blog">
+</a>}
+          </div>
+          <div class="comment-content">
+               <div class="comment-meta">
+                    @if (@reply.TaiKhoan.ChiTietTKs.FirstOrDefault().Hoten == null)
+                    {
+<h3>
+</h3> }
+else
+{
+
+<h3>
+     @reply.TaiKhoan.ChiTietTKs.FirstOrDefault().Hoten
+</h3>}
+                    <div class="comment-meta">
+                         @reply.NgayGio<a href="#">Reply</a>
+                    </div>
+               </div>
+               <p>@reply.NoiDung</p>
+          </div>
+     </div>
+</li>
+}
+     </ul>
+     @*end reply session *@
+
+</li>}
+     </ul>
+</div>
+<div class="contact-1 clearfix">
+     <h2>Leave a Comment</h2>
+     <div class="container">
+          <div class="row">
+               <form action="#" method="GET" enctype="multipart/form-data">
+                    <div class="row">
+                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                              <div class="form-group name">
+                                   <input type="text" name="comment" class="form-control" placeholder="Your Comment">
+                              </div>
+                         </div>
+                         <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                              <div class="send-btn mb-30">
+                                   @if (ViewBag.session == null)
+                                   {
+                    <a href="/Home/Login" class="btn btn-color btn-md btn-message">Comment</a> } @*else
+                    {
+                         <button type="submit" class="btn btn-color btn-md btn-message">Comment</button>
+                    }*@
+
+
+                              </div>
+                         </div>
+                    </div>
+               </form>
+          </div>
+     </div>
+</div>
+
+<!-- Comments section end -->

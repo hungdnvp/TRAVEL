@@ -9,8 +9,13 @@ namespace TRAVEL.Models
     [Table("BlogComment")]
     public partial class BlogComment
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public BlogComment()
+        {
+            Replies = new HashSet<Reply>();
+        }
+
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int MaComment { get; set; }
 
         public int? BlogID { get; set; }
@@ -24,5 +29,8 @@ namespace TRAVEL.Models
         public virtual Blog Blog { get; set; }
 
         public virtual TaiKhoan TaiKhoan { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Reply> Replies { get; set; }
     }
 }

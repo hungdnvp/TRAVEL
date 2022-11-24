@@ -165,6 +165,8 @@
     <Compile Include="Models\Ngay.cs" />
     <Compile Include="Models\PhanHoi.cs" />
     <Compile Include="Models\PhieuDatTour.cs" />
+    <Compile Include="Models\Reply.cs" />
+    <Compile Include="Models\SessionInfo.cs" />
     <Compile Include="Models\sysdiagram.cs" />
     <Compile Include="Models\TaiKhoan.cs" />
     <Compile Include="Models\Tour.cs" />
@@ -622,7 +624,7 @@
     <Content Include="assets\fonts\linearicons\Read Me.txt" />
     <Content Include="assets\fonts\linearicons\style.css" />
     <Content Include="assets\img\avatar\ATT.jpg" />
-    <Content Include="assets\img\avatar\avatar-11.jpg" />
+    <Content Include="assets\img\avatar\default.jpg" />
     <Content Include="assets\img\avatar\avatar-2.jpg" />
     <Content Include="assets\img\avatar\avatar-3.jpg" />
     <Content Include="assets\img\avatar\avatar-5.jpg" />
