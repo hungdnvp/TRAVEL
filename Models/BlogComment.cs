@@ -6,32 +6,31 @@ namespace TRAVEL.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("DiaDanh")]
-    public partial class DiaDanh
+    [Table("BlogComment")]
+    public partial class BlogComment
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public DiaDanh()
+        public BlogComment()
         {
-            Tours = new HashSet<Tour>();
+            Replies = new HashSet<Reply>();
         }
 
         [Key]
-        public int MaDiaDanh { get; set; }
+        public int MaComment { get; set; }
 
-        [StringLength(100)]
-        public string TenDiaDanh { get; set; }
+        public int? BlogID { get; set; }
 
-        [StringLength(100)]
-        public string Img { get; set; }
+        public int? MaTaiKhoan { get; set; }
 
-        [StringLength(1000)]
-        public string MoTa { get; set; }
+        public string NoiDung { get; set; }
 
-        public int? MaVung { get; set; }
+        public DateTime? NgayGio { get; set; }
 
-        public virtual Vung Vung { get; set; }
+        public virtual Blog Blog { get; set; }
+
+        public virtual TaiKhoan TaiKhoan { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Tour> Tours { get; set; }
+        public virtual ICollection<Reply> Replies { get; set; }
     }
 }
