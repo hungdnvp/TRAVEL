@@ -1,6 +1,7 @@
 ﻿@using TRAVEL.Models;
 @model Blog
 
+
 <!--Blog detail start -->
 <div class="blog-item-2 mb-40">
      <div class="blog-photo clip-home">
@@ -85,93 +86,98 @@
      </div>
 </div>
 <!-- blog detail end-->
-<!-- Comments section start -->
-<div class="comments-section mb-40">
-     <ul class="comments">
-          @* List of comments session *@
-          @foreach (var cmt in Model.BlogComments)
-          {
-<li>
-     @* Main comment session *@
-     <div class="comment">
-          <div class="comment-author">
-               @if (cmt.TaiKhoan.ChiTietTKs.SingleOrDefault().LinkAvatar == null)
+
+<div class="comments-section mb-40" id="getAllComments">
+
+     @*<ul class="comments">
+               List of comments session
+               @foreach (var cmt in Model.BlogComments)
                {
-<a href="#">
-     <img src="~/assets/img/avatar/default.jpg" alt="blog">
+                    <li>
+                         Main comment session
+                         <div class="comment">
+                              <div class="comment-author">
+                                   @if (cmt.TaiKhoan.ChiTietTKs.FirstOrDefault().LinkAvatar == null)
+                                   {
+                                        <a href="#">
+                                             <img src="~/assets/img/avatar/default.jpg" alt="blog">
 
-</a> }
-else
-{
-<a href="#">
-     <img src="~/assets/img/avatar/@cmt.TaiKhoan.ChiTietTKs.SingleOrDefault().LinkAvatar" alt="blog">
-</a>}
-          </div>
-          <div class="comment-content">
-               <div class="comment-meta">
-                    @if (@cmt.TaiKhoan.ChiTietTKs.FirstOrDefault().Hoten == null)
-                    {
-<h3>
-</h3>}
-                    <h3>
-                         @cmt.TaiKhoan.ChiTietTKs.FirstOrDefault().Hoten
-                    </h3>
-                    <div class="comment-meta">
-                         @cmt.NgayGio<a href="#">Reply</a>
-                    </div>
-               </div>
-               <p>@cmt.NoiDung</p>
-          </div>
-     </div>
-     @* Main comment session *@
+                                        </a> }
+                                   else
+                                   {
+                                        <a href="#">
+                                             <img src="~/assets/img/avatar/@cmt.TaiKhoan.ChiTietTKs.SingleOrDefault().LinkAvatar" alt="blog">
+                                        </a>}
+                              </div>
+                              <div class="comment-content">
+                                   <div class="comment-meta">
+                                        @if (@cmt.TaiKhoan.ChiTietTKs.FirstOrDefault().Hoten == null)
+                                        {
+                                             <h3>
+                                             </h3>}
+                                        <h3>
+                                             @cmt.TaiKhoan.ChiTietTKs.FirstOrDefault().Hoten
+                                        </h3>
+                                        <div class="comment-meta">
+                                             @cmt.NgayGio<a href="#">Reply</a>
+                                        </div>
+                                   </div>
+                                   <p>@cmt.NoiDung</p>
+                              </div>
+                         </div>
+                         Main comment session
 
 
-     @* reply session *@
-     <ul>
-          @foreach (var reply in cmt.Replies)
-          {
+                         reply session
+                         <ul>
+                              @foreach (var reply in cmt.Replies)
+                              {
 
-<li>
-     <div class="comment">
-          <div class="comment-author">
-               @if (@reply.TaiKhoan.ChiTietTKs.FirstOrDefault().LinkAvatar == null)
-               {
-<a href="#">
-     <img src="~/assets/img/avatar/default.jpg" alt="blog">
-</a> }
-else
-{
-<a href="#">
-     <img src="~/assets/img/avatar/@reply.TaiKhoan.ChiTietTKs.FirstOrDefault().LinkAvatar" alt="blog">
-</a>}
-          </div>
-          <div class="comment-content">
-               <div class="comment-meta">
-                    @if (@reply.TaiKhoan.ChiTietTKs.FirstOrDefault().Hoten == null)
-                    {
-<h3>
-</h3> }
-else
-{
+                                   <li>
+                                        <div class="comment">
+                                             <div class="comment-author">
+                                                  @if (@reply.TaiKhoan.ChiTietTKs.FirstOrDefault().LinkAvatar == null)
+                                                  {
+                                                       <a href="#">
+                                                            <img src="~/assets/img/avatar/default.jpg" alt="blog">
+                                                       </a> }
+                                                  else
+                                                  {
+                                                       <a href="#">
+                                                            <img src="~/assets/img/avatar/@reply.TaiKhoan.ChiTietTKs.FirstOrDefault().LinkAvatar" alt="blog">
+                                                       </a>}
+                                             </div>
+                                             <div class="comment-content">
+                                                  <div class="comment-meta">
+                                                       @if (@reply.TaiKhoan.ChiTietTKs.FirstOrDefault().Hoten == null)
+                                                       {
+                                                            <h3>
+                                                            </h3> }
+                                                       else
+                                                       {
 
-<h3>
-     @reply.TaiKhoan.ChiTietTKs.FirstOrDefault().Hoten
-</h3>}
-                    <div class="comment-meta">
-                         @reply.NgayGio<a href="#">Reply</a>
-                    </div>
-               </div>
-               <p>@reply.NoiDung</p>
-          </div>
-     </div>
-</li>
-}
-     </ul>
-     @*end reply session *@
+                                                            <h3>
+                                                                 @reply.TaiKhoan.ChiTietTKs.FirstOrDefault().Hoten
+                                                            </h3>}
+                                                       <div class="comment-meta">
+                                                            @reply.NgayGio<a href="#">Reply</a>
+                                                       </div>
+                                                  </div>
+                                                  <p>@reply.NoiDung</p>
+                                             </div>
+                                        </div>
+                                   </li>
+                              }
+                         </ul>
+                         end reply session
 
-</li>}
-     </ul>
+                    </li>
+               }
+          </ul>*@
+
 </div>
+
+@* leave comment *@
 <div class="contact-1 clearfix">
      <h2>Leave a Comment</h2>
      <div class="container">
@@ -187,10 +193,10 @@ else
                               <div class="send-btn mb-30">
                                    @if (ViewBag.session == null)
                                    {
-                    <a href="/Home/Login" class="btn btn-color btn-md btn-message">Comment</a> } @*else
-                    {
-                         <button type="submit" class="btn btn-color btn-md btn-message">Comment</button>
-                    }*@
+                                        <a href="/Home/Login" class="btn btn-color btn-md btn-message">Comment</a> } @*else
+                                        {
+                                             <button type="submit" class="btn btn-color btn-md btn-message">Comment</button>
+                                        }*@
 
 
                               </div>
@@ -200,5 +206,25 @@ else
           </div>
      </div>
 </div>
+@* leave comment *@
 
-<!-- Comments section end -->
+<script>
+     @*(function () {
+             var txt = document.createElement("textarea");
+             txt.innerHTML = @Model.NoiDung;
+             document.getElementById("content").innerHTML = txt.value;
+     }())*@
+     $(function () {
+          $.ajax({
+               type: "POST",
+               url: '/Blog/GetAllComments',
+               data: {
+                    BlogID: @Model.Blog_ID
+               },
+               success: function (response) {
+                    console.log(response)
+                    $('#getAllComments').html(response);
+               }
+          });
+     })
+</script>

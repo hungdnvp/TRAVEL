@@ -10,7 +10,7 @@ using System.Data.Entity;
 
 namespace TRAVEL.Controllers
 {
-    [AllowAnonymous]
+     [AllowAnonymous]
      public class BlogController : Controller
      {
           // GET: Blog
@@ -252,6 +252,15 @@ namespace TRAVEL.Controllers
                }
                return model;
           }
+
+          public ActionResult GetAllComments(int? BlogID)
+          {
+               MyDbContext md = new MyDbContext();
+               var model = md.Blogs.Where(c => c.Blog_ID == BlogID).FirstOrDefault();
+               ViewBag.model = model;
+               return PartialView("_getAllComments", model);
+          }
+
 
      }
 }
