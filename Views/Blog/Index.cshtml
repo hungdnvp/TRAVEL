@@ -4,6 +4,7 @@
 @{ ViewData["sub_link"] = "Blog Grid";
      ViewBag.Title = "Blog Grid";
      Layout = "~/Views/Shared/_Layout.cshtml"; }
+<link type="text/css" rel="stylesheet" href="~/Content/css/blog_pagelist.css" />
 @Html.Partial("_banner")
 <!-- Blog section start -->
 <div class="blog-section content-area-2">
@@ -65,31 +66,32 @@
           <div id="pager" class="col-lg-12">
                <div class="pagination-box">
                     <nav aria-label="Page navigation example">
-                         <ul class="pagination">
-                              @{ var num_page = @Model.PageCount;
-                                   var curr_page = @Model.PageNumber; }
-                              Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
-                              @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+                         @*<ul class="pagination">*@
+                         @{ var num_page = @Model.PageCount;
+                              var curr_page = @Model.PageNumber; }
+                         <h4>Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount</h4>
+                         </br>
+                         @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
 
-                              @*@if (curr_page > 1)
+                         @*@if (curr_page > 1)
+                                                       {
+                                                            <li class="page-item"><a class="page-link" href="/Blog/?page=@(curr_page-1)"><span aria-hidden="true">«</span></a></li>}
+                                                            <li class="page-item"><a class="page-link" onclick="true" href="/Blog/?page=1">1</a></li>
+                                                       @if (num_page > 1)
+                                                       {
+                                                            for (int i = 2; i <= num_page; i++)
                                                             {
-                                                                 <li class="page-item"><a class="page-link" href="/Blog/?page=@(curr_page-1)"><span aria-hidden="true">«</span></a></li>}
-                                                                 <li class="page-item"><a class="page-link" onclick="true" href="/Blog/?page=1">1</a></li>
-                                                            @if (num_page > 1)
-                                                            {
-                                                                 for (int i = 2; i <= num_page; i++)
-                                                                 {
-                                                                      <li class="page-item"><a class="page-link" onclick="true" href="/Blog/?page=@i">@i</a></li>
-                                                                 }
-                                   }
-                                                            @if (curr_page < num_page)
-                                                            {
-                                                                 <li class="page-item"><a class="page-link" href="/Blog/?page=@(curr_page+1)"><span aria-hidden="true">»</span></a></li> }
-                                                            else
-                                                            {
-                                                                 <li class="page-item"><a class="page-link" href="#"><span aria-hidden="true">»</span></a></li>
-                                                            }*@
-                         </ul>
+                                                                 <li class="page-item"><a class="page-link" onclick="true" href="/Blog/?page=@i">@i</a></li>
+                                                            }
+                              }
+                                                       @if (curr_page < num_page)
+                                                       {
+                                                            <li class="page-item"><a class="page-link" href="/Blog/?page=@(curr_page+1)"><span aria-hidden="true">»</span></a></li> }
+                                                       else
+                                                       {
+                                                            <li class="page-item"><a class="page-link" href="#"><span aria-hidden="true">»</span></a></li>
+                                                       }*@
+                         @*</ul>*@
                     </nav>
                </div>
           </div>

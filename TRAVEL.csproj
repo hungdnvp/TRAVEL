@@ -15,7 +15,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>TRAVEL</RootNamespace>
     <AssemblyName>TRAVEL</AssemblyName>
-    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
@@ -769,6 +769,7 @@
     <Content Include="assets\js\slick.min.js" />
     <Content Include="assets\js\typed.min.js" />
     <Content Include="assets\js\wow.min.js" />
+    <Content Include="Content\css\blog_pagelist.css" />
     <Content Include="Content\css\tour_qh.css" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Global.asax" />
