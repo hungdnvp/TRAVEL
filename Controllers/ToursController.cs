@@ -8,6 +8,7 @@ using PagedList;
 
 namespace TRAVEL.Controllers
 {
+    [AllowAnonymous]
     public class ToursController : Controller
     {
         // GET: Tours
@@ -38,7 +39,7 @@ namespace TRAVEL.Controllers
                 }
             }
         }
-        [CustomAuthorize(Role = "admin")]
+
         public ActionResult Tours_grid(int? page)
         {
             // tạo kích thước trang(pageSize) 
@@ -196,5 +197,10 @@ namespace TRAVEL.Controllers
             }
         }
 
+        //Book Tour
+        public ActionResult bookTour()
+        {
+            return View();
+        }
     }
 }

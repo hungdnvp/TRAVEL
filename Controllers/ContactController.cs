@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace TRAVEL.Controllers
 {
+    [AllowAnonymous]
     public class ContactController : Controller
     {
         // GET: Contact

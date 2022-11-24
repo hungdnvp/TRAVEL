@@ -57,44 +57,41 @@ namespace TRAVEL.Controllers
                return byte2String;
           }
 
-          //POST: Register
-          [HttpPost]
-
-          //[ValidateAntiForgeryToken]
-          public ActionResult Register(TaiKhoan tk)
-          {
-               if (ModelState.IsValid)
-               {
-                    using (MyDbContext Travel = new MyDbContext())
+        //POST: Register
+        [HttpPost]
+        public ActionResult Register(TaiKhoan tk)
+        {
+            if (ModelState.IsValid)
+            {
+                using (MyDbContext Travel = new MyDbContext())
+                {
+                    var check1 = Travel.TaiKhoans.FirstOrDefault(s => s.email == tk.email);
+                    var check2 = Travel.TaiKhoans.FirstOrDefault(s => s.username == tk.username);
+                    if (check1 == null && check2 == null)
                     {
-                         var check1 = Travel.TaiKhoans.FirstOrDefault(s => s.email == tk.email);
-                         var check2 = Travel.TaiKhoans.FirstOrDefault(s => s.username == tk.username);
-                         if (check1 == null && check2 == null)
-                         {
-                              if (check1 == null && check2 == null)
-                              {
-                                   tk.pass = GetMD5(tk.pass);
-                                   tk.role = "user";
-                                   Travel.Configuration.ValidateOnSaveEnabled = false;
-                                   Travel.TaiKhoans.Add(tk);
-                                   Travel.SaveChanges();
-                                   return RedirectToAction("Login");
-                              }
-                              else
-                              {
-                                   ViewBag.error = "Email or username already exists";
-                                   return View();
-                              }
-                         }
-                         else
-                         {
-                              ViewBag.error = "Email or username already exists";
-                              return RedirectToAction("View");
-                         }
+                        tk.pass = GetMD5(tk.pass);
+                        tk.role = "user";
+                        Travel.Configuration.ValidateOnSaveEnabled = false;
+                        Travel.TaiKhoans.Add(tk);
+
+                        // set ChiTietTK
+                        ChiTietTK cttk = new ChiTietTK();
+                        cttk.Hoten = "user";
+                        Travel.SaveChanges();
+                        cttk.MaTaiKhoan = Travel.TaiKhoans.Where(c => c.username == tk.username).FirstOrDefault().MaTaiKhoan;
+                        Travel.ChiTietTKs.Add(cttk);
+                        Travel.SaveChanges();
+                        return RedirectToAction("Login");
                     }
-               }
-               return RedirectToAction("View");
-          }
+                    else
+                    {
+                        ViewBag.error = "Email or username already exists";
+                        return RedirectToAction("View");
+                    }
+                }
+            }
+            return RedirectToAction("View");
+        }
 
           public ActionResult Login(string returnUrl)
           {
@@ -104,43 +101,42 @@ namespace TRAVEL.Controllers
 
           //POST: Login
 
-          [HttpPost]
-
-          //[ValidateAntiForgeryToken]
-          public ActionResult Login(TaiKhoan tk, string returnUrl)
-          {
-               if (ModelState.IsValid)
-               {
-                    using (MyDbContext Travel = new MyDbContext())
+        [HttpPost]
+        public ActionResult Login(TaiKhoan tk, string returnUrl)
+        {
+            if (ModelState.IsValid)
+            {
+                using (MyDbContext Travel = new MyDbContext())
+                {
+                    var f_password = GetMD5(tk.pass);
+                    List<TaiKhoan> data = Travel.TaiKhoans.Where(s => s.username.Equals(tk.username) && s.pass.Equals(f_password)).ToList();
+                    if (data.Count() > 0)
                     {
-                         var f_password = GetMD5(tk.pass);
-                         List<TaiKhoan> data = Travel.TaiKhoans.Where(s => s.username.Equals(tk.username) && s.pass.Equals(f_password)).ToList();
-                         if (data.Count() > 0)
-                         {
-                              //add session
-                              TaiKhoan login = data.FirstOrDefault();
-                              Session["username"] = login.username;
-                              Session["role"] = login.role;
-                              Session["online"] = login;
-                              FormsAuthentication.SetAuthCookie(login.username, false);
-                              return RedirectToAction("Index", "Home");
-                         }
-                         else
-                         {
-                              ViewBag.error = "Login failed";
-                              return RedirectToAction("Login");
-                         }
+                        //add session
+                        TaiKhoan login = data.FirstOrDefault();
+                        Session["username"] = login.username;
+                        Session["role"] = login.role;
+                        Session["online"] = login;
+                        FormsAuthentication.SetAuthCookie(login.username, false);
+                        return RedirectToAction("Index", "Home");
                     }
-               }
-               return View();
-          }
-          [Authorize]
-          public ActionResult Logout()
-          {
-               FormsAuthentication.SignOut();
-               Session.Clear();//remove session
-               return RedirectToAction("Index", "Home");
-          }
+                    else
+                    {
+                        ViewBag.error = "Login failed";
+                        return RedirectToAction("Login");
+                    }
+                }
+            }
+            return View();
+        }
+
+
+        public ActionResult Logout()
+        {
+            FormsAuthentication.SignOut();
+            Session.Clear();//remove session
+            return RedirectToAction("Index", "Home");
+        }
 
           // forgot
 
@@ -149,47 +145,44 @@ namespace TRAVEL.Controllers
                return View();
           }
 
-          [HttpPost]
-
-          //[ValidateAntiForgeryToken]
-          public JsonResult ForgotPassword(string email)
-          {
-               using (MyDbContext Travel = new MyDbContext())
-               {
-                    var check = Travel.TaiKhoans.Where(c => c.email == email).FirstOrDefault();
-                    if (check != null)
-                    {
-                         SendMailService mailservice = new SendMailService();
-                         mailservice.setTo(email);
-                         _ = mailservice.SendMail();
-                         return Json(mailservice.code);
-                    }
-                    else
-                    {
-                         return Json("Invalid Email");
-                    }
-               }
+        [HttpPost]
+        public JsonResult ForgotPassword(string email)
+        {
+            using (MyDbContext Travel = new MyDbContext())
+            {
+                var check = Travel.TaiKhoans.Where(c => c.email == email).FirstOrDefault();
+                if (check != null)
+                {
+                    SendMailService mailservice = new SendMailService();
+                    mailservice.setTo(email);
+                    _ = mailservice.SendMail();
+                    return Json(mailservice.code);
+                }
+                else
+                {
+                    return Json("Invalid Email");
+                }
+            }
 
 
           }
 
-          [HttpPost]
-          [Authorize]
-          public ActionResult NewPass(string email, string pass)
-          {
-               using (MyDbContext Travel = new MyDbContext())
-               {
-                    TaiKhoan tk = Travel.TaiKhoans.Where(c => c.email == email).FirstOrDefault();
-                    if (tk != null)
-                    {
-                         tk.pass = GetMD5(pass);
-                         Travel.Configuration.ValidateOnSaveEnabled = false;
-                         Travel.SaveChanges();
-                         return RedirectToAction("Login");
-                    }
-               }
-               return View("ForgotPassword");
-          }
+        [HttpPost]
+        public ActionResult NewPass(string email, string pass)
+        {
+            using (MyDbContext Travel = new MyDbContext())
+            {
+                TaiKhoan tk = Travel.TaiKhoans.Where(c => c.email == email).FirstOrDefault();
+                if (tk != null)
+                {
+                    tk.pass = GetMD5(pass);
+                    Travel.Configuration.ValidateOnSaveEnabled = false;
+                    Travel.SaveChanges();
+                    return RedirectToAction("Login");
+                }
+            }
+            return View("ForgotPassword");
+        }
 
      }
 }

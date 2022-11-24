@@ -8,7 +8,7 @@
 @using TRAVEL.Models
 @model PagedList.IPagedList<Tour>
 
-<link type="text/css" rel="stylesheet" href="~/Content/css/listdes.css" />
+<link type="text/css" rel="stylesheet" href="~/Content/css/tour_qh.css" />
 
 @Html.Partial("_banner")
 <!-- Tour grid rightside start -->
@@ -96,14 +96,8 @@
                     <div id="tour-page" class="col-lg-12">
                         <div class="pagination-box">
                             <nav aria-label="Page navigation example">
-                                @*<ul class="pagination">
-                                        <li class="page-item"><a class="page-link" href="#"><span aria-hidden="true">«</span></a></li>
-                                        <li class="page-item"><a class="page-link active" href="#">1</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                        <li class="page-item"><a class="page-link" href="#"><span aria-hidden="true">»</span></a></li>
-                                    </ul>*@
                                 <h4>Page @Model.PageNumber of @Model.PageCount</h4>
+                                <br />
                                 @Html.PagedListPager(Model, page => Url.Action("Tours_grid", new { page }))
                             </nav>
                         </div>
@@ -119,14 +113,6 @@
                             <div class="form-group search-col">
                                 <input id="des-input" type="text" class="form-control" placeholder="Destination, City.....">
                                 <i class="flaticon-search icon-append"></i>
-                            </div>
-                            <div class="form-group search-col">
-                                <input type="text" name="dates" placeholder="Check In" class="datetimes-left form-control" />
-                                <i class="flaticon-calendar icon-append"></i>
-                            </div>
-                            <div class="form-group search-col">
-                                <input type="text" name="dates" placeholder="Check Out" class="datetimes-left form-control" />
-                                <i class="flaticon-calendar icon-append"></i>
                             </div>
                             <div class="form-group search-col">
                                 <select id="tour-type" class="selectpicker search-fields btn-block form-control bdr" name="travel-type">

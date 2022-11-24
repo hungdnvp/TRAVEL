@@ -10,6 +10,7 @@ using System.Data.Entity;
 
 namespace TRAVEL.Controllers
 {
+    [AllowAnonymous]
      public class BlogController : Controller
      {
           // GET: Blog
