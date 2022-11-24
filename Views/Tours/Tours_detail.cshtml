@@ -72,13 +72,15 @@
                                 <img src="~/assets/@Model.LinkImage" class="img-fluid" alt="slider">
                             </a>
                         </li>
+                        @{i = 1; }
                         @foreach (string it in ViewBag.Imgs)
                         {
                             <li class="list-inline-item">
-                                <a id="carousel-selector-1" data-slide-to="1" data-target="#itemDetailsSlider">
+                                <a id="carousel-selector-1" data-slide-to="@i" data-target="#itemDetailsSlider">
                                     <img src="~/assets/img/tour/@it" class="img-fluid" alt="slider">
                                 </a>
                             </li>
+                            i++;
                         }
                     </ul>
                 </div>
