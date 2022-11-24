@@ -25,6 +25,7 @@
                         <h3>Sign into your account</h3>
                         <!-- Form start -->
                         <form action="Login" method="POST">
+                            <input type="text" name="ReturnUrl" style="display:none" value="@ViewBag.ReturnUrl" />
                             <div class="form-group">
                                 <input type="text" class="form-control" name="username" placeholder="User Name">
                             </div>
