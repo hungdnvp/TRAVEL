@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.Mvc;
 using TRAVEL.Models;
 using PagedList;
+using System.Threading.Tasks;
+using System.Data.Entity;
 
 namespace TRAVEL.Controllers
 {
@@ -193,7 +195,13 @@ namespace TRAVEL.Controllers
           public ActionResult Blog_detail(int id)
           {
                var md = new MyDbContext();
-               var Blog_dt_model = md.Blogs.Single(b => b.Blog_ID == id);
+               var Blog_dt_model = md.Blogs.Where(b => b.Blog_ID == id).Include(b => b.BlogComments).FirstOrDefault();
+               var session = (SessionInfo)Session["info"];
+               ViewBag.session = session;
+               if (Blog_dt_model == null)
+               {
+                    return HttpNotFound();
+               }
                return View(Blog_dt_model);
           }
           public List<Blog> searchModelByName(List<Blog> model, string name)

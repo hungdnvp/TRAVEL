@@ -15,7 +15,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>TRAVEL</RootNamespace>
     <AssemblyName>TRAVEL</AssemblyName>
-    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
@@ -188,6 +188,7 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BangGia.cs" />
     <Compile Include="Models\Blog.cs" />
+    <Compile Include="Models\BlogComment.cs" />
     <Compile Include="Models\ChiTietNgay.cs" />
     <Compile Include="Models\ChiTietTK.cs" />
     <Compile Include="Models\ChiTietTour.cs" />
@@ -202,11 +203,14 @@
     <Compile Include="Models\Ngay.cs" />
     <Compile Include="Models\PhanHoi.cs" />
     <Compile Include="Models\PhieuDatTour.cs" />
+    <Compile Include="Models\Reply.cs" />
+    <Compile Include="Models\SessionInfo.cs" />
     <Compile Include="Models\sysdiagram.cs" />
     <Compile Include="Models\TaiKhoan.cs" />
     <Compile Include="Models\Tour.cs" />
     <Compile Include="Models\TravelType.cs" />
     <Compile Include="Models\Vung.cs" />
+    <Compile Include="Models\Vung_DiaDanh.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -658,7 +662,7 @@
     <Content Include="assets\fonts\linearicons\Read Me.txt" />
     <Content Include="assets\fonts\linearicons\style.css" />
     <Content Include="assets\img\avatar\ATT.jpg" />
-    <Content Include="assets\img\avatar\avatar-11.jpg" />
+    <Content Include="assets\img\avatar\default.jpg" />
     <Content Include="assets\img\avatar\avatar-2.jpg" />
     <Content Include="assets\img\avatar\avatar-3.jpg" />
     <Content Include="assets\img\avatar\avatar-5.jpg" />

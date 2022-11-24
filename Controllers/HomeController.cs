@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
@@ -21,41 +21,41 @@ namespace TRAVEL.Controllers
             return View();
         }
 
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
+          public ActionResult About()
+          {
+               ViewBag.Message = "Your application description page.";
 
-            return View();
-        }
+               return View();
+          }
 
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
+          public ActionResult Contact()
+          {
+               ViewBag.Message = "Your contact page.";
 
-            return View();
-        }
+               return View();
+          }
 
-        public ActionResult Register()
-        {
+          public ActionResult Register()
+          {
 
-            return View();
-        }
+               return View();
+          }
 
-        //create a string MD5
-        public static string GetMD5(string str)
-        {
-            MD5 md5 = new MD5CryptoServiceProvider();
-            byte[] fromData = Encoding.UTF8.GetBytes(str);
-            byte[] targetData = md5.ComputeHash(fromData);
-            string byte2String = null;
+          //create a string MD5
+          public static string GetMD5(string str)
+          {
+               MD5 md5 = new MD5CryptoServiceProvider();
+               byte[] fromData = Encoding.UTF8.GetBytes(str);
+               byte[] targetData = md5.ComputeHash(fromData);
+               string byte2String = null;
 
-            for (int i = 0; i < targetData.Length; i++)
-            {
-                byte2String += targetData[i].ToString("x2");
+               for (int i = 0; i < targetData.Length; i++)
+               {
+                    byte2String += targetData[i].ToString("x2");
 
-            }
-            return byte2String;
-        }
+               }
+               return byte2String;
+          }
 
         //POST: Register
         [HttpPost]
@@ -99,7 +99,7 @@ namespace TRAVEL.Controllers
             return View();
         }
 
-        //POST: Login
+          //POST: Login
 
         [HttpPost]
         public ActionResult Login(TaiKhoan tk, string returnUrl)
