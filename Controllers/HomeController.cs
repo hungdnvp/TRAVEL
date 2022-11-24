@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
@@ -71,12 +71,22 @@ namespace TRAVEL.Controllers
                     var check2 = Travel.TaiKhoans.FirstOrDefault(s => s.username == tk.username);
                     if (check1 == null && check2 == null)
                     {
-                        tk.pass = GetMD5(tk.pass);
-                        tk.role = "user";
-                        Travel.Configuration.ValidateOnSaveEnabled = false;
-                        Travel.TaiKhoans.Add(tk);
-                        Travel.SaveChanges();
-                        return RedirectToAction("Login");
+                         var check1 = Travel.TaiKhoans.FirstOrDefault(s => s.email == tk.email);
+                         var check2 = Travel.TaiKhoans.FirstOrDefault(s => s.username == tk.username);
+                         if (check1 == null && check2 == null)
+                         {
+                              tk.pass = GetMD5(tk.pass);
+                              tk.role = "user";
+                              Travel.Configuration.ValidateOnSaveEnabled = false;
+                              Travel.TaiKhoans.Add(tk);
+                              Travel.SaveChanges();
+                              return RedirectToAction("Login");
+                         }
+                         else
+                         {
+                              ViewBag.error = "Email or username already exists";
+                              return View();
+                         }
                     }
                     else
                     {
@@ -183,5 +193,5 @@ namespace TRAVEL.Controllers
             return View("ForgotPassword");
         }
 
-     }
+    }
 }
