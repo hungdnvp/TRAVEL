@@ -8,7 +8,8 @@ using PagedList;
 
 namespace TRAVEL.Controllers
 {
-    [AllowAnonymous]
+    //[AllowAnonymous]
+    [Authorize]
     public class ToursController : Controller
     {
         // GET: Tours
