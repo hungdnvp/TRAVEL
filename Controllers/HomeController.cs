@@ -2,16 +2,20 @@
 using System.Collections.Generic;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
+using System.Reflection;
 using System.Security.Cryptography;
 using System.Text;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using TRAVEL.Models;
 
 namespace TRAVEL.Controllers
 {
+    [AllowAnonymous]
     public class HomeController : Controller
     {
+
         public ActionResult Index()
         {
             return View();
@@ -55,6 +59,7 @@ namespace TRAVEL.Controllers
 
         //POST: Register
         [HttpPost]
+
         //[ValidateAntiForgeryToken]
         public ActionResult Register(TaiKhoan tk)
         {
@@ -76,61 +81,106 @@ namespace TRAVEL.Controllers
                     else
                     {
                         ViewBag.error = "Email or username already exists";
-                        return View();
+                        return RedirectToAction("View");
                     }
                 }
             }
-            return View("Register");
+            return RedirectToAction("View");
         }
 
-        public ActionResult Login()
+        public ActionResult Login(string returnUrl)
         {
-
+            ViewBag.ReturnUrl = returnUrl;
             return View();
         }
 
         //POST: Login
 
         [HttpPost]
+
         //[ValidateAntiForgeryToken]
-        public ActionResult Login(TaiKhoan tk)
+        public ActionResult Login(TaiKhoan tk, string returnUrl)
         {
             if (ModelState.IsValid)
             {
                 using (MyDbContext Travel = new MyDbContext())
                 {
                     var f_password = GetMD5(tk.pass);
-                    var data = Travel.TaiKhoans.Where(s => s.username.Equals(tk.username) && s.pass.Equals(f_password)).ToList();
+                    List<TaiKhoan> data = Travel.TaiKhoans.Where(s => s.username.Equals(tk.username) && s.pass.Equals(f_password)).ToList();
                     if (data.Count() > 0)
                     {
                         //add session
-                        Session["username"] = data.FirstOrDefault().username;
-                        return RedirectToAction("Index");
+                        TaiKhoan login = data.FirstOrDefault();
+                        Session["username"] = login.username;
+                        Session["role"] = login.role;
+                        Session["online"] = login;
+                        FormsAuthentication.SetAuthCookie(login.username, false);
+                        return RedirectToAction("Index", "Home");
                     }
                     else
                     {
                         ViewBag.error = "Login failed";
-                        return View("Login");
+                        return RedirectToAction("Login");
                     }
                 }
             }
             return View();
         }
+        [Authorize]
+        public ActionResult Logout()
+        {
+            FormsAuthentication.SignOut();
+            Session.Clear();//remove session
+            return RedirectToAction("Index", "Home");
+        }
+
         // forgot
+
         public ActionResult ForgotPassword()
         {
-
             return View();
         }
 
         [HttpPost]
+
         //[ValidateAntiForgeryToken]
-        public ActionResult ForgotPassword(string email)
+        public JsonResult ForgotPassword(string email)
         {
             using (MyDbContext Travel = new MyDbContext())
             {
-                return View("Index");
+                var check = Travel.TaiKhoans.Where(c => c.email == email).FirstOrDefault();
+                if (check != null)
+                {
+                    SendMailService mailservice = new SendMailService();
+                    mailservice.setTo(email);
+                    _ = mailservice.SendMail();
+                    return Json(mailservice.code);
+                }
+                else
+                {
+                    return Json("Invalid Email");
+                }
             }
+
+
+        }
+
+        [HttpPost]
+        [Authorize]
+        public ActionResult NewPass(string email, string pass)
+        {
+            using (MyDbContext Travel = new MyDbContext())
+            {
+                TaiKhoan tk = Travel.TaiKhoans.Where(c => c.email == email).FirstOrDefault();
+                if (tk != null)
+                {
+                    tk.pass = GetMD5(pass);
+                    Travel.Configuration.ValidateOnSaveEnabled = false;
+                    Travel.SaveChanges();
+                    return RedirectToAction("Login");
+                }
+            }
+            return View("ForgotPassword");
         }
 
     }

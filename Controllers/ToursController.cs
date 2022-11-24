@@ -4,10 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using TRAVEL.Models;
-
-using Newtonsoft;
-using Newtonsoft.Json;
-
+using PagedList;
 
 namespace TRAVEL.Controllers
 {
@@ -41,10 +38,12 @@ namespace TRAVEL.Controllers
                 }
             }
         }
-
-        public ActionResult Tours_grid()
+        [CustomAuthorize(Role = "admin")]
+        public ActionResult Tours_grid(int? page)
         {
-
+            // tạo kích thước trang(pageSize) 
+            int pageSize = 6;
+            int pageNumber = (page ?? 1);
             Load_Page();
             ViewBag.Numstars = numstars;
             using (MyDbContext Travel = new MyDbContext())
@@ -52,15 +51,18 @@ namespace TRAVEL.Controllers
                 var tours = Travel.Tours.OrderBy(s => s.Gia).ToList();
                 List<TravelType> travel_type = Travel.TravelTypes.ToList();
                 ViewBag.TravelTypes = travel_type;
-                return View(tours);
+                return View(tours.ToPagedList(pageNumber, pageSize));
             }
 
         }
 
         // list -or- grid
         [HttpPost]
-        public ActionResult AjaxView(int type)
+        public ActionResult AjaxView(int type, int? page)
         {
+            // tạo kích thước trang(pageSize) 
+            int pageSize = 6;
+            int pageNumber = (page ?? 1);
             Load_Page();
             ViewBag.Numstars = numstars;
             using (MyDbContext Travel = new MyDbContext())
@@ -68,16 +70,18 @@ namespace TRAVEL.Controllers
                 var tours = Travel.Tours.OrderBy(s => s.Gia).ToList();
                 if (type == 2)
                 {
-                    return PartialView("_tourlist", tours);
+                    return PartialView("_tourlist", tours.ToPagedList(pageNumber, pageSize));
                 }
-                else { return PartialView("_tourgrid", tours); }
+                else { return PartialView("_tourgrid", tours.ToPagedList(pageNumber, pageSize)); }
             }
         }
 
         //Search Tour
         [HttpPost]
-        public ActionResult TourSearch(string part, string des, int tourtype, int star, int dura)
+        public ActionResult TourSearch(int? page, string part, string des, int tourtype, int star, int dura)
         {
+            int pageSize = 6;
+            int pageNumber = (page ?? 1);
             Load_Page();
             ViewBag.Numstars = numstars;
             using (MyDbContext Travel = new MyDbContext())
@@ -125,12 +129,12 @@ namespace TRAVEL.Controllers
 
                 if (part == "view-grid")
                 {
-                    return PartialView("_tourgrid", tours);
+                    return PartialView("_tourgrid", tours.ToPagedList(pageNumber, pageSize));
                 }
 
                 else
                 {
-                    return PartialView("_tourlist", tours);
+                    return PartialView("_tourlist", tours.ToPagedList(pageNumber, pageSize));
                 }
 
             }

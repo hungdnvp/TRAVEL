@@ -124,3 +124,9 @@ NoiDung NVARCHAR(MAX) NULL,
 NgayGio DATETIME NULL
 )
 GO
+GO
+
+----------23/11/2022 - Quang Hung
+ALTER TABLE TaiKhoan
+ALTER COLUMN role varchar(10)
+GO
