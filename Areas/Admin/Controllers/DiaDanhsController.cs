@@ -10,6 +10,7 @@ using TRAVEL.Models;
 
 namespace TRAVEL.Areas.Admin.Controllers
 {
+    [CustomAuthorize(Role = "admin")]
     public class DiaDanhsController : Controller
     {
         private MyDbContext db = new MyDbContext();

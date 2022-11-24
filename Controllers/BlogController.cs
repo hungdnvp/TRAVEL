@@ -8,6 +8,7 @@ using PagedList;
 
 namespace TRAVEL.Controllers
 {
+    [AllowAnonymous]
      public class BlogController : Controller
      {
           // GET: Blog

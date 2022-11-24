@@ -759,6 +759,7 @@
     <Content Include="assets\js\slick.min.js" />
     <Content Include="assets\js\typed.min.js" />
     <Content Include="assets\js\wow.min.js" />
+    <Content Include="Content\css\tour_qh.css" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Global.asax" />
     <Content Include="Content\css\blog.css" />

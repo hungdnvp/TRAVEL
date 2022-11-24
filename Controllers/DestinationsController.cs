@@ -10,6 +10,7 @@ using PagedList;
 
 namespace TRAVEL.Controllers
 {
+    [AllowAnonymous]
     public class DestinationsController : Controller
     {
 

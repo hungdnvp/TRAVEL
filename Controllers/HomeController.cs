@@ -59,8 +59,6 @@ namespace TRAVEL.Controllers
 
         //POST: Register
         [HttpPost]
-
-        //[ValidateAntiForgeryToken]
         public ActionResult Register(TaiKhoan tk)
         {
             if (ModelState.IsValid)
@@ -75,6 +73,13 @@ namespace TRAVEL.Controllers
                         tk.role = "user";
                         Travel.Configuration.ValidateOnSaveEnabled = false;
                         Travel.TaiKhoans.Add(tk);
+
+                        // set ChiTietTK
+                        ChiTietTK cttk = new ChiTietTK();
+                        cttk.Hoten = "user";
+                        Travel.SaveChanges();
+                        cttk.MaTaiKhoan = Travel.TaiKhoans.Where(c => c.username == tk.username).FirstOrDefault().MaTaiKhoan;
+                        Travel.ChiTietTKs.Add(cttk);
                         Travel.SaveChanges();
                         return RedirectToAction("Login");
                     }
@@ -97,8 +102,6 @@ namespace TRAVEL.Controllers
         //POST: Login
 
         [HttpPost]
-
-        //[ValidateAntiForgeryToken]
         public ActionResult Login(TaiKhoan tk, string returnUrl)
         {
             if (ModelState.IsValid)
@@ -126,7 +129,8 @@ namespace TRAVEL.Controllers
             }
             return View();
         }
-        [Authorize]
+
+
         public ActionResult Logout()
         {
             FormsAuthentication.SignOut();
@@ -142,8 +146,6 @@ namespace TRAVEL.Controllers
         }
 
         [HttpPost]
-
-        //[ValidateAntiForgeryToken]
         public JsonResult ForgotPassword(string email)
         {
             using (MyDbContext Travel = new MyDbContext())
@@ -166,7 +168,6 @@ namespace TRAVEL.Controllers
         }
 
         [HttpPost]
-        [Authorize]
         public ActionResult NewPass(string email, string pass)
         {
             using (MyDbContext Travel = new MyDbContext())
