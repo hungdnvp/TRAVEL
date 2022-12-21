@@ -114,6 +114,7 @@ namespace TRAVEL.Controllers
                          {
                               //add session
                               TaiKhoan login = data.FirstOrDefault();
+                              Session["mataikhoan"] = login.MaTaiKhoan;
                               Session["username"] = login.username;
                               Session["role"] = login.role;
                               Session["online"] = login;

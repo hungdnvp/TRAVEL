@@ -7,6 +7,7 @@ using TRAVEL.Models;
 using PagedList;
 using System.Threading.Tasks;
 using System.Data.Entity;
+using System.Windows.Forms;
 
 namespace TRAVEL.Controllers
 {
@@ -196,8 +197,8 @@ namespace TRAVEL.Controllers
           {
                var md = new MyDbContext();
                var Blog_dt_model = md.Blogs.Where(b => b.Blog_ID == id).Include(b => b.BlogComments).FirstOrDefault();
-               var session = (SessionInfo)Session["info"];
-               ViewBag.session = session;
+               //var session = (SessionInfo)Session["info"];
+               //ViewBag.session = session;
                if (Blog_dt_model == null)
                {
                     return HttpNotFound();
@@ -260,7 +261,43 @@ namespace TRAVEL.Controllers
                ViewBag.model = model;
                return PartialView("_getAllComments", model);
           }
+          [Authorize]
+          [HttpPost]
+          public ActionResult AddComments(String comment, int blogId, string returnUrl)
+          {
+               var md = new MyDbContext();
+               int taikhoanID = (int)Session["mataikhoan"];
+               var taikhoan = md.TaiKhoans.FirstOrDefault(t => t.MaTaiKhoan == taikhoanID);
+               var blog = md.Blogs.FirstOrDefault(b => b.Blog_ID == blogId);
+               if (taikhoan != null)
+               {
+                    if (comment == null)
+                    {
+                         MessageBox.Show("Please enter your comment before submitting", "Empty Comment", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                    else
+                    {
+                         var blogCmt = new BlogComment();
+                         blogCmt.MaTaiKhoan = taikhoanID;
+                         blogCmt.NoiDung = comment;
+                         blogCmt.NgayGio = DateTime.UtcNow;
+                         blog.BlogComments.Add(blogCmt);
+                         md.SaveChanges();
+                    }
+               }
+               else
+               {
+                    return RedirectToAction("Login", "Home");
+               }
+               return RedirectToAction("GetAllComments", "Blog", new { Blogid = blogId });
+          }
 
+          public ActionResult TagFilter(String tag)
+          {
+               MyDbContext md = new MyDbContext();
+               var model = md.Blogs;
+               return PartialView("_blogdetail", model);
+          }
 
      }
 }
