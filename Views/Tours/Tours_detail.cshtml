@@ -13,6 +13,7 @@
 @{
     int i = 0;
     var night = Model.NumDay - 1;
+    bool check_accountBook = true;
 
 }
 <div class="tour-details-page content-area-2">
@@ -353,32 +354,44 @@
                     <!-- Search area2 start -->
                     <div class="widget search-area2">
                         <h5 class="sidebar-title">Book This Tours</h5>
-                        <form class="inline-search-area" method="GET">
+                        <form class="inline-search-area" method="POST" action="/Tours/bookTour/@Model.MaTour">
+                            @{ 
+                                if (ViewBag.cttk != null)
+                                {
+                                    ChiTietTK cttk = (ChiTietTK)ViewBag.cttk;
+                                    TaiKhoan tk = (TaiKhoan)ViewBag.tk;
+                                    if (cttk.Hoten == "user" || cttk.SDT == null)
+                                    {
+                                        check_accountBook = false;
+                                    }
+                                    else
+                                    {
+                                        <div class="form-group search-col">
+                                            <input type="text" name="name" class="form-control" readonly placeholder="@cttk.Hoten">
+                                            <i class="flaticon-pencil icon-append"></i>
+                                        </div>
+                                        <div class="form-group search-col">
+                                            <input type="email" name="email" class="form-control" readonly placeholder="@tk.email">
+                                            <i class="flaticon-mail icon-append"></i>
+                                        </div>
+                                        <div class="form-group search-col">
+                                            <input type="text" name="phone" class="form-control" readonly placeholder="@cttk.SDT">
+                                            <i class="flaticon-phone icon-append"></i>
+                                        </div>
+                                    }
+                                }
+                            }
+
                             <div class="form-group search-col">
-                                <input type="text" name="name" class="form-control" placeholder="Name">
-                                <i class="flaticon-pencil icon-append"></i>
+                                <p style="display:inline">Number of Guests </p>
+                                <i style="display:inline;top:4px;right:92px" class="flaticon-user icon-append"></i>
+                                <input class="form-control" type="number" name="nummber of guests"
+                                       min="0" max="100" step="1" value="1">
                             </div>
+                            <p style="display:inline">Check In</p>
+                            <i style="display:inline; position:relative;top:0px;right:-5px" class="flaticon-calendar icon-append"></i>
                             <div class="form-group search-col">
-                                <input type="email" name="email" class="form-control" placeholder="Email">
-                                <i class="flaticon-mail icon-append"></i>
-                            </div>
-                            <div class="form-group search-col">
-                                <input type="text" name="phone" class="form-control" placeholder="Phone Number">
-                                <i class="flaticon-phone icon-append"></i>
-                            </div>
-                            <div class="form-group search-col">
-                                <select class="selectpicker search-fields btn-block form-control bdr" name="travel-type">
-                                    <option>Guests</option>
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                </select>
-                                <i class="flaticon-user icon-append"></i>
-                            </div>
-                            <div class="form-group search-col">
-                                <input type="text" name="dates" placeholder="Check In" class="datetimes-left form-control" />
-                                <i class="flaticon-calendar icon-append"></i>
+                                <input class="form-control" type="date" name="dates" placeholder="Check In" required />
                             </div>
                             <div class="form-group clearfix">
                                 <p>Distance</p>
@@ -387,8 +400,17 @@
                                     <div class="clearfix"></div>
                                 </div>
                             </div>
-                            <div class="form-group search-col mb-0">
-                                <a href="#" class="btn-theme btn-md btn-block">Book</a>
+                            <div id="submit-book" class="form-group search-col mb-0">
+                                @{if (check_accountBook == true)
+                                    {
+                                        <button class="btn-theme btn-md btn-block">Book</button>
+                                    }
+                                    else
+                                    {
+                                        <h5 style="color:red">Please!!<br />Update Profile To Book Tour</h5>
+
+                                    }
+                                }
                             </div>
                         </form>
                     </div>

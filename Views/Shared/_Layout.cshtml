@@ -86,9 +86,14 @@
                                                 <a class="nav-link" id="swap_admin" href="/Contact/Index">Contact</a>
                                             </li>
                                         }
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="#"><i class="fa fa-user-circle-o" aria-hidden="true"></i>@Session["username"]</a>
-                                        </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link" href="#"><i class="fa fa-user-circle-o" aria-hidden="true"></i>@Session["username"]</a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                    <li><a class="dropdown-item" href="/Account/Profile">Profile</a></li>
+                                    <li><a class="dropdown-item" href="#">Tours Booked</a></li>
+                                    <li><a class="dropdown-item" href="/Home/Logout">Logout</a></li>
+                                </ul>
+                            </li>
                                     }
                                     else
                                     {

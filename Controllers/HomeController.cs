@@ -118,7 +118,7 @@ namespace TRAVEL.Controllers
                         Session["role"] = login.role;
                         Session["online"] = login;
                         FormsAuthentication.SetAuthCookie(login.username, false);
-                        if (ReturnUrl != null) return Redirect(ReturnUrl);
+                        if (!String.IsNullOrEmpty(ReturnUrl)) return Redirect(ReturnUrl);
                         return RedirectToAction("Index", "Home");
                     }
                     else

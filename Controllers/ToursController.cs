@@ -9,7 +9,7 @@ using PagedList;
 namespace TRAVEL.Controllers
 {
     //[AllowAnonymous]
-    [Authorize]
+    //[Authorize]
     public class ToursController : Controller
     {
         // GET: Tours
@@ -40,7 +40,7 @@ namespace TRAVEL.Controllers
                 }
             }
         }
-
+        [AllowAnonymous]
         public ActionResult Tours_grid(int? page)
         {
             // tạo kích thước trang(pageSize) 
@@ -60,6 +60,7 @@ namespace TRAVEL.Controllers
 
         // list -or- grid
         [HttpPost]
+        [AllowAnonymous]
         public ActionResult AjaxView(int type, int? page)
         {
             // tạo kích thước trang(pageSize) 
@@ -80,6 +81,7 @@ namespace TRAVEL.Controllers
 
         //Search Tour
         [HttpPost]
+        [AllowAnonymous]
         public ActionResult TourSearch(int? page, string part, string des, int tourtype, int star, int dura)
         {
             int pageSize = 6;
@@ -144,6 +146,7 @@ namespace TRAVEL.Controllers
         }
 
         // Detail Tour
+        [AllowAnonymous]
         public ActionResult Tours_detail(int id)
         {
             Load_Page();
@@ -173,7 +176,7 @@ namespace TRAVEL.Controllers
                     ChiTietTK tk = Travel.ChiTietTKs.Find(dg.MaChiTietTK);
                     account_reviews.Add(dg.MaChiTietTK, tk);
                 }
-                ViewBag.accounts = account_reviews;
+                ViewBag.accounts = account_reviews;  // tai khoan review
                 ViewBag.reviews = reviews;
                 // TOur RELATED
                 HashSet<Tour> tour_related = new HashSet<Tour>();
@@ -193,13 +196,25 @@ namespace TRAVEL.Controllers
                     imgs.Add(link.LinkImg1);
                 }
                 ViewBag.Imgs = imgs;
+                // online account đang truy cap web
+                if (Session["online"] != null)
+                {
+                    try
+                    {
+                        TaiKhoan onl = (TaiKhoan)Session["online"];
+                        ViewBag.tk = onl;
+                        ViewBag.cttk = Travel.ChiTietTKs.Where(c => c.MaTaiKhoan == onl.MaTaiKhoan).FirstOrDefault();
+                    }
+                    catch (Exception e) { };
+                }
                 return View(tour);
 
             }
         }
 
         //Book Tour
-        public ActionResult bookTour()
+        [Authorize]
+        public ActionResult bookTour(int id)
         {
             return View();
         }
