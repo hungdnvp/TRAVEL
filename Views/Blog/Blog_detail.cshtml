@@ -2,7 +2,8 @@
 @model Blog
 @{ ViewBag.Title = "Blog Detail";
      Layout = "~/Views/Shared/_Layout.cshtml";
-     ViewData["sub_link"] = "Blog List"; }
+     ViewData["sub_link"] = "Blog List";
+}
 @Html.Partial("_banner")
 <div class="blog-section content-area-2">
      <div class="container">
@@ -49,6 +50,7 @@
                <div class="col-lg-8 col-md-12">
                     <!--blog detail and comment-->
                     @Html.Partial("_blogdetail")
+                    @*@Html.Partial("_getAllComments")*@
                     <!--blog detail and comment-->
                     <!-- Contact-1 start -->
                </div>
@@ -58,10 +60,5 @@
      </div>
 </div>
 
-@*<script>
-         (function () {
-             var txt = document.createElement("textarea");
-             txt.innerHTML = @Model.NoiDung;
-             document.getElementById("content").innerHTML = txt.value;
-         }())
-     </script>*@
+
+
