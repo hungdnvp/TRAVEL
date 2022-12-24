@@ -9,7 +9,7 @@ using PagedList;
 namespace TRAVEL.Controllers
 {
     //[AllowAnonymous]
-    //[Authorize]
+    //[CustomAuthorize]
     public class ToursController : Controller
     {
         // GET: Tours
@@ -170,10 +170,11 @@ namespace TRAVEL.Controllers
                 // review comment
                 Dictionary<int, ChiTietTK> account_reviews = new Dictionary<int, ChiTietTK>();
                 Dictionary<int, DanhGia> reviews = new Dictionary<int, DanhGia>();
-                foreach (DanhGia dg in Travel.DanhGias.Where(c => c.MaTour == tour.MaTour).OrderBy(c => c.MaChiTietTK))
+                foreach (DanhGia dg in Travel.DanhGias.Where(c => c.MaTour == tour.MaTour).OrderBy(c => c.MaChiTietTK).ToList())
                 {
                     reviews.Add(dg.MaChiTietTK, dg);
-                    ChiTietTK tk = Travel.ChiTietTKs.Find(dg.MaChiTietTK);
+                    int ma = dg.MaChiTietTK;
+                    ChiTietTK tk = Travel.ChiTietTKs.Find(ma);
                     account_reviews.Add(dg.MaChiTietTK, tk);
                 }
                 ViewBag.accounts = account_reviews;  // tai khoan review

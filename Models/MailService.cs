@@ -21,7 +21,7 @@ namespace TRAVEL.Models
             mailSettings.Port = 587;
             mailSettings.Mail = "quanghungdo.vp@gmail.com";
             mailSettings.DisplayName = "TRAVEL AND ENJOY";
-            mailSettings.Password = "qlettkqvzluyglms";
+            mailSettings.Password = "MotHaiBa123#2001";
             mailSettings.Host = "smtp.gmail.com";
 
             mailContent.Subject = "TRAVEL CONFIRM FORGOT PASSWORD !!!";

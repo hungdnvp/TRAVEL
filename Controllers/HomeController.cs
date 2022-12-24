@@ -109,11 +109,10 @@ namespace TRAVEL.Controllers
                     using (MyDbContext Travel = new MyDbContext())
                     {
                          var f_password = GetMD5(tk.pass);
-                         List<TaiKhoan> data = Travel.TaiKhoans.Where(s => s.username.Equals(tk.username) && s.pass.Equals(f_password)).ToList();
-                         if (data.Count() > 0)
+                         TaiKhoan login = Travel.TaiKhoans.Where(s => s.username.Equals(tk.username) && s.pass.Equals(f_password)).FirstOrDefault();
+                         if (login !=  null)
                          {
                               //add session
-                              TaiKhoan login = data.FirstOrDefault();
                               Session["mataikhoan"] = login.MaTaiKhoan;
                               Session["username"] = login.username;
                               Session["role"] = login.role;
@@ -155,17 +154,9 @@ namespace TRAVEL.Controllers
           {
                using (MyDbContext Travel = new MyDbContext())
                {
-                    var check = Travel.TaiKhoans.Where(c => c.email == email).FirstOrDefault();
-                    if (check != null)
+                    TaiKhoan login = Travel.TaiKhoans.Where(c => c.email == email).FirstOrDefault();
+                    if (login != null)
                     {
-                        //add session
-                        TaiKhoan login = data.FirstOrDefault();
-                        Session["username"] = login.username;
-                        Session["role"] = login.role;
-                        Session["online"] = login;
-                        FormsAuthentication.SetAuthCookie(login.username, false);
-                        if (!String.IsNullOrEmpty(ReturnUrl)) return Redirect(ReturnUrl);
-                        return RedirectToAction("Index", "Home");
                          SendMailService mailservice = new SendMailService();
                          mailservice.setTo(email);
                          _ = mailservice.SendMail();
