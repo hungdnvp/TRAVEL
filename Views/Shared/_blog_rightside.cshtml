@@ -88,7 +88,8 @@ else
                     <li><a href="/Blog/Blog_sidebar/">All<span>(12)</span></a></li>
                     @{ foreach (KeyValuePair<string, int> cate in ViewBag.categoryDict)
                          {
-          <li><a href="/Blog/Blog_sidebar?category=@cate">@cate.Key<span>@cate.Value</span></a></li> } }
+          <li><a href="/Blog/Blog_sidebar/category=@cate">@cate.Key<span>@cate.Value</span></a></li>
+ } }
                </ul>
           </div>
           <!-- Social list start -->
@@ -109,8 +110,7 @@ else
                     @{ var tagList = ViewBag.tagList;
                          foreach (string tag in tagList)
                          {
-          <li><a href="/Blog/TagFilter?tag=@tag">@tag</a></li>
- } }
+          <li><a href="/Blog/TagFilter?tag=@tag">@tag</a></li> } }
 
                </ul>
           </div>

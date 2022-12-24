@@ -112,8 +112,8 @@
                     <div class="row">
                          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                               <div class="form-group name">
-                                   <input type="text" name="comment" id="comment" class="form-control" placeholder="Your Comment">
                                    <input name="blogId" value="@Model.Blog_ID" type="hidden" class="form-control" />
+                                   <input type="text" name="comment" id="comment" class="form-control" placeholder="Your Comment">
                                    <input name="returnUrl" value="@Request.Url" type="hidden" class="form-control" />
 
                               </div>
@@ -179,4 +179,10 @@
                }
           });
      })*@
+
+     $('#addComments').on('click', function () {
+          if ($("#comment").val() == "" && @Session["mataikhoan"]!=null) {
+               alert("Enter your comment before submitting it!")
+          }
+     });
 </script>

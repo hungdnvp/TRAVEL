@@ -102,7 +102,7 @@ namespace TRAVEL.Controllers
           //POST: Login
 
           [HttpPost]
-          public ActionResult Login(TaiKhoan tk, string ReturnUrl = null)
+          public ActionResult Login(TaiKhoan tk, string ReturnUrl = "")
           {
                if (ModelState.IsValid)
                {

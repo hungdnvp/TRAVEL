@@ -292,22 +292,22 @@ namespace TRAVEL.Controllers
                }
                var list = new List<RecentBlog>();
                // read list of recent blog from session
-               if (Session["mataikhoan"]!= null)
+               if (Session["mataikhoan"] != null)
                {
 
-               list = Session["recentlyViewedBlog"] as List<RecentBlog>;
-               if (list == null)
-               {
+                    list = Session["recentlyViewedBlog"] as List<RecentBlog>;
+                    if (list == null)
+                    {
                          list = new List<RecentBlog>();
-               }
-               AddRecentlyViewedBlog(list, id, Blog_dt_model.Ten, Blog_dt_model.TacGia, Blog_dt_model.Link_Img, (DateTime)Blog_dt_model.NgayDang, 6);
+                    }
+                    AddRecentlyViewedBlog(list, id, Blog_dt_model.Ten, Blog_dt_model.TacGia, Blog_dt_model.Link_Img, (DateTime)Blog_dt_model.NgayDang, 6);
                     Session["recentlyViewedBlog"] = list;
                     ViewBag.recentViewedBlog = list;
                }
                else
                {
-               var listRecentPosted = recentPostedBlog(5);
-               ViewBag.recentPostedBlog = listRecentPosted;
+                    var listRecentPosted = recentPostedBlog(5);
+                    ViewBag.recentPostedBlog = listRecentPosted;
 
                }
 
@@ -372,21 +372,32 @@ namespace TRAVEL.Controllers
                ViewBag.model = model;
                return PartialView("_getAllComments", model);
           }
-          [Authorize]
-          [HttpPost]
-          public ActionResult AddComments(String comment, int blogId, string returnUrl)
+
+          public ActionResult AddComments(int blogId, String comment = "", string returnUrl = "")
           {
                var md = new MyDbContext();
-               int taikhoanID = (int)Session["mataikhoan"];
-               var taikhoan = md.TaiKhoans.FirstOrDefault(t => t.MaTaiKhoan == taikhoanID);
+               var taikhoan = new TaiKhoan();
+               var taikhoanID = new int();
                var blog = md.Blogs.FirstOrDefault(b => b.Blog_ID == blogId);
-               if (taikhoan != null)
+               if (Session["mataikhoan"] != null)
                {
-                    if (comment == null)
-                    {
-                         MessageBox.Show("Please enter your comment before submitting", "Empty Comment", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    }
-                    else
+                    taikhoanID = (int)Session["mataikhoan"];
+                    taikhoan = md.TaiKhoans.FirstOrDefault(t => t.MaTaiKhoan == taikhoanID);
+
+                    //if (comment == "")
+                    //{
+                    //     //MessageBox.Show("Please enter your comment before submitting", "Empty Comment", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    //}
+                    //else
+                    //{
+                    //     var blogCmt = new BlogComment();
+                    //     blogCmt.MaTaiKhoan = taikhoanID;
+                    //     blogCmt.NoiDung = comment;
+                    //     blogCmt.NgayGio = DateTime.UtcNow;
+                    //     blog.BlogComments.Add(blogCmt);
+                    //     md.SaveChanges();
+                    //}
+                    if (comment != "")
                     {
                          var blogCmt = new BlogComment();
                          blogCmt.MaTaiKhoan = taikhoanID;
@@ -398,9 +409,9 @@ namespace TRAVEL.Controllers
                }
                else
                {
-                    return RedirectToAction("Login", "Home", new { tk = taikhoan, ReturnURl = returnUrl });
+                    return RedirectToAction("Login", "Home", new { returnUrl = returnUrl });
                }
-               return RedirectToAction("GetAllComments", "Blog", new { Blogid = blogId });
+               return RedirectToAction("Blog_detail", "Blog", new { id = blogId });
           }
 
           public List<String> GetAllTags()
@@ -435,8 +446,12 @@ namespace TRAVEL.Controllers
           }
           public ActionResult TagFilter(int? page, string tag)
           {
-               //ViewBag.tagList = GetAllTags();
-
+               ViewBag.tagList = GetAllTags();
+               ViewBag.categoryDict = GetAllCategories();
+               // process recent Blog
+               ViewBag.recentViewedBlog = Session["recentlyViewedBlog"] as List<RecentBlog>;
+               var listRecentPosted = recentPostedBlog(5);
+               ViewBag.recentPostedBlog = listRecentPosted;
                MyDbContext md = new MyDbContext();
                var model = md.Blogs.Where(b => (b.Tag.ToUpper().Contains(tag.ToUpper()))).ToList();
                int pageSize = 6;
@@ -462,7 +477,6 @@ namespace TRAVEL.Controllers
           }
           public ActionResult CategoryFilter(int? page, string category)
           {
-               //ViewBag.tagList = GetAllTags();
                ViewBag.tagList = GetAllTags();
                ViewBag.categoryDict = GetAllCategories();
                // process recent Blog
