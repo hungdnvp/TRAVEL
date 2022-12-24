@@ -6,15 +6,7 @@
     ViewBag.Title = "Destination ";
     ViewData["sub_link"] = "Destination Mansory";
 }
-@*<link rel="stylesheet" type="text/css" href="~/Content/css/lightslider.css" />
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-      integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-<script src="https://kit.fontawesome.com/cecfe00ec6.js" crossorigin="anonymous"></script>
-<script src="~/Content/js/jquery-3.5.1.min.js"></script>
-<script type="text/javascript" src="~/Content/js/JQuery3.3.1.js"></script>
-<script type="text/javascript" src="~/Content/js/lightslider.js"></script>*@
-@*<script src="https://kit.fontawesome.com/a858033a2a.js" crossorigin="anonymous"></script>*@
-@*<link rel="stylesheet" href="~/Content/css/bootstrap.css">*@
+
 <link type="text/css" rel="stylesheet" href="~/Content/css/listdes.css" />
 @Html.Partial("_banner")
 <!-- Destination strat -->
@@ -31,8 +23,10 @@
                             <div class="category-overlay">
                                 <div class="category-content">
                                     <img src=" @Url.Content("~/Content/images/Destination2/"+ dd.Img)" />
-                                    <h5 class="category-title">@dd.Tours.Count() Tours</h5>
-                                    <a href="Destination_Detail/@dd.MaDiaDanh">
+                                    <a href="~/Tours/Tours_grid?desId=@dd.MaDiaDanh">
+                                        <h5 class="category-title" style="cursor:pointer">@dd.Tours.Count() Tours</h5>
+                                    </a>
+                                    <a href="~/Destinations/Destination_Detail/@dd.MaDiaDanh">
                                         <h4 class="category-subtitle"><i class="flaticon-pin"></i> @dd.TenDiaDanh</h4>
                                     </a>
                                 </div>
@@ -42,102 +36,7 @@
                 </div>
             }
 
-            @*<div class="col-lg-4 col-md-6 col-sm-12">
-                    <div class="category">
-                        <div class="category_bg_box cat-5-bg">
-                            <div class="category-overlay">
-                                <div class="category-content">
-                                    <h5 class="category-title">77 Tours</h5>
-                                    <h4 class="category-subtitle"><i class="flaticon-pin"></i> Thailand</h4>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-12">
-                    <div class="category">
-                        <div class="category_bg_box cat-3-bg">
-                            <div class="category-overlay">
-                                <div class="category-content">
-                                    <h5 class="category-title">182 Tours</h5>
-                                    <h4 class="category-subtitle"><i class="flaticon-pin"></i> Sydney</h4>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-12">
-                    <div class="category">
-                        <div class="category_bg_box cat-2-bg">
-                            <div class="category-overlay">
-                                <div class="category-content">
-                                    <h5 class="category-title">242Tours</h5>
-                                    <h4 class="category-subtitle"><i class="flaticon-pin"></i> Paris</h4>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-12">
-                    <div class="category">
-                        <div class="category_bg_box cat-3-bg">
-                            <div class="category-overlay">
-                                <div class="category-content">
-                                    <h5 class="category-title">182 Tours</h5>
-                                    <h4 class="category-subtitle"><i class="flaticon-pin"></i> Sydney</h4>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-12">
-                    <div class="category">
-                        <div class="category_bg_box cat-1-bg">
-                            <div class="category-overlay">
-                                <div class="category-content">
-                                    <h5 class="category-title">24 Tours</h5>
-                                    <h4 class="category-subtitle"><i class="flaticon-pin"></i> Rome</h4>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-12">
-                    <div class="category">
-                        <div class="category_bg_box cat-5-bg">
-                            <div class="category-overlay">
-                                <div class="category-content">
-                                    <h5 class="category-title">77 Tours</h5>
-                                    <h4 class="category-subtitle"><i class="flaticon-pin"></i> Thailand</h4>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-12">
-                    <div class="category">
-                        <div class="category_bg_box cat-1-bg">
-                            <div class="category-overlay">
-                                <div class="category-content">
-                                    <h5 class="category-title">24 Tours</h5>
-                                    <h4 class="category-subtitle"><i class="flaticon-pin"></i> Rome</h4>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-12">
-                    <div class="category">
-                        <div class="category_bg_box cat-2-bg">
-                            <div class="category-overlay">
-                                <div class="category-content">
-                                    <h5 class="category-title">242Tours</h5>
-                                    <h4 class="category-subtitle"><i class="flaticon-pin"></i> Paris</h4>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>*@
+            
 
             <div class="col-lg-12">
                 <div class="pagination-box">
@@ -146,13 +45,7 @@
 
                         @Html.PagedListPager(Model, page => Url.Action("Destination_mansory",
                             new { page, search = ViewBag.search, mavung = ViewBag.mavung }))
-                        @*<ul class="pagination">
-                            <li class="page-item"><a class="page-link" href="#"><span aria-hidden="true">«</span></a></li>
-                            <li class="page-item"><a class="page-link active" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item"><a class="page-link" href="#"><span aria-hidden="true">»</span></a></li>
-                                          </ul>*@
+                       
                     </nav>
                 </div>
             </div>

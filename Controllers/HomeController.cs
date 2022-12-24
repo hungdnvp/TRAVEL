@@ -69,7 +69,7 @@ namespace TRAVEL.Controllers
                     var check2 = Travel.TaiKhoans.FirstOrDefault(s => s.username == tk.username);
                     if (check1 == null && check2 == null)
                     {
-                        tk.pass = GetMD5(tk.pass);
+                        tk.pass = tk.pass;
                         tk.role = "user";
                         Travel.Configuration.ValidateOnSaveEnabled = false;
                         Travel.TaiKhoans.Add(tk);
@@ -108,8 +108,8 @@ namespace TRAVEL.Controllers
             {
                 using (MyDbContext Travel = new MyDbContext())
                 {
-                    var f_password = GetMD5(tk.pass);
-                    List<TaiKhoan> data = Travel.TaiKhoans.Where(s => s.username.Equals(tk.username) && s.pass.Equals(f_password)).ToList();
+                    //var f_password = GetMD5(tk.pass);
+                    List<TaiKhoan> data = Travel.TaiKhoans.Where(s => s.username.Equals(tk.username) && s.pass.Equals(tk.pass)).ToList();
                     if (data.Count() > 0)
                     {
                         //add session
@@ -118,8 +118,10 @@ namespace TRAVEL.Controllers
                         Session["role"] = login.role;
                         Session["online"] = login;
                         FormsAuthentication.SetAuthCookie(login.username, false);
-                        if (ReturnUrl != null) return Redirect(ReturnUrl);
-                        return RedirectToAction("Index", "Home");
+
+                        if (string.IsNullOrEmpty(ReturnUrl)) { return RedirectToAction("Index", "Home"); }
+                     
+                         return Redirect(ReturnUrl); 
                     }
                     else
                     {
@@ -146,27 +148,27 @@ namespace TRAVEL.Controllers
             return View();
         }
 
-        [HttpPost]
-        public JsonResult ForgotPassword(string email)
-        {
-            using (MyDbContext Travel = new MyDbContext())
-            {
-                var check = Travel.TaiKhoans.Where(c => c.email == email).FirstOrDefault();
-                if (check != null)
-                {
-                    SendMailService mailservice = new SendMailService();
-                    mailservice.setTo(email);
-                    _ = mailservice.SendMail();
-                    return Json(mailservice.code);
-                }
-                else
-                {
-                    return Json("Invalid Email");
-                }
-            }
+        //[HttpPost]
+        //public JsonResult ForgotPassword(string email)
+        //{
+        //    using (MyDbContext Travel = new MyDbContext())
+        //    {
+        //        var check = Travel.TaiKhoans.Where(c => c.email == email).FirstOrDefault();
+        //        if (check != null)
+        //        {
+        //            //SendMailService mailservice = new SendMailService();
+        //            //mailservice.setTo(email);
+        //            //_ = mailservice.SendMail();
+        //            //return Json(mailservice.code);
+        //        }
+        //        else
+        //        {
+        //            return Json("Invalid Email");
+        //        }
+        //    }
 
 
-        }
+        //}
 
         [HttpPost]
         public ActionResult NewPass(string email, string pass)

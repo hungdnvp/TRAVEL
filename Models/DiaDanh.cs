@@ -29,6 +29,21 @@ namespace TRAVEL.Models
 
         public int? MaVung { get; set; }
 
+        [StringLength(50)]
+        public string DanToc { get; set; }
+
+        [StringLength(50)]
+        public string Dientich { get; set; }
+
+        [StringLength(10)]
+        public string Danso { get; set; }
+
+        [StringLength(100)]
+        public string DacSan { get; set; }
+
+        [StringLength(100)]
+        public string ThanhPho { get; set; }
+
         public virtual Vung Vung { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

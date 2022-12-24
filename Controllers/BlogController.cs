@@ -45,11 +45,11 @@ namespace TRAVEL.Controllers
                     case 2:
                          if (sort_type == 6)
                          {
-                              model = model.OrderBy(x => x.NgayDang).ToList();
+                              //model = model.OrderBy(x => x.NgayDang).ToList();
                          }
                          else if (sort_type == 7)
                          {
-                              model = model.OrderByDescending(x => x.NgayDang).ToList();
+                              //model = model.OrderByDescending(x => x.NgayDang).ToList();
                          }
                          break;
 
@@ -131,11 +131,11 @@ namespace TRAVEL.Controllers
                     case 2:
                          if (sort_type == 6)
                          {
-                              model = model.OrderBy(x => x.NgayDang).ToList();
+                              //model = model.OrderBy(x => x.NgayDang).ToList();
                          }
                          else if (sort_type == 7)
                          {
-                              model = model.OrderByDescending(x => x.NgayDang).ToList();
+                              //model = model.OrderByDescending(x => x.NgayDang).ToList();
                          }
                          break;
 
@@ -192,18 +192,18 @@ namespace TRAVEL.Controllers
 
 
 
-          public ActionResult Blog_detail(int id)
-          {
-               var md = new MyDbContext();
-               var Blog_dt_model = md.Blogs.Where(b => b.Blog_ID == id).Include(b => b.BlogComments).FirstOrDefault();
-               var session = (SessionInfo)Session["info"];
-               ViewBag.session = session;
-               if (Blog_dt_model == null)
-               {
-                    return HttpNotFound();
-               }
-               return View(Blog_dt_model);
-          }
+          //public ActionResult Blog_detail(int id)
+          //{
+          //     var md = new MyDbContext();
+          //     var Blog_dt_model = md.Blogs.Where(b => b.Blog_ID == id).Include(b => b.BlogComments).FirstOrDefault();
+          //     var session = (SessionInfo)Session["info"];
+          //     ViewBag.session = session;
+          //     if (Blog_dt_model == null)
+          //     {
+          //          return HttpNotFound();
+          //     }
+          //     return View(Blog_dt_model);
+          //}
           public List<Blog> searchModelByName(List<Blog> model, string name)
           {
                if (name != null)

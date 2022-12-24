@@ -45,9 +45,9 @@ function writeText(txt) {
 //	});
 //}
 function HienThiVung(index) {
-	document.location.href = '/Destinations/Destination_mansory/?mavung=' + index;
+	document.location.href = '/Destinations/Destination_mansory?mavung=' + index;
 }
 function HienThiDiaDanh() {
-	document.location.href = '/Destinations/Destination_mansory/?search=' + $('#location').val();
+	document.location.href = '/Destinations/Destination_mansory?search=' + $('#location').val();
 }
 

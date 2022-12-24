@@ -1,7 +1,7 @@
 ﻿@using TRAVEL.Models;
 
 @{
-    ViewBag.Title = Model[0].TenDiaDanh;
+    ViewBag.Title = Model.TenDiaDanh;
     ViewData["sub_link"] = "Destination Detail";
 }
 
@@ -57,23 +57,23 @@
                             <ul>
                                 <li>
                                     <div class="information-info">Ethnic</div>
-                                    <div class="information-info2">@Model[0].DanToc/div>
+                                    <div class="information-info2">@Model.DanToc/div>
                                 </li>
                                 <li>
                                     <div class="information-info">Cities</div>
-                                    <div class="information-info2">@Model[0].ThanhPho</div>
+                                    <div class="information-info2">@Model.ThanhPho</div>
                                 </li>
                                 <li>
                                     <div class="information-info">Local food</div>
-                                    <div class="information-info2">@Model[0].DacSan</div>
+                                    <div class="information-info2">@Model.DacSan</div>
                                 </li>
                                 <li>
                                     <div class="information-info">Area</div>
-                                    <div class="information-info2">@Model[0].DienTich</div>
+                                    <div class="information-info2">@Model.Dientich</div>
                                 </li>
                                 <li>
                                     <div class="information-info">Population</div>
-                                    <div class="information-info2">@Model[0].DanSo</div>
+                                    <div class="information-info2">@Model.Danso</div>
                                 </li>
                             </ul>
                         </div>
@@ -265,7 +265,7 @@
     (function () {
         var txt = document.createElement("textarea");
         console.log("test")
-        txt.innerHTML = `@(Model[0].MoTa)`;
+        txt.innerHTML = `@(Model.MoTa)`;
         document.getElementById("content").innerHTML = txt.value;
     }())
 </script>
