@@ -17,10 +17,18 @@ namespace TRAVEL.Controllers
           // GET: Blog
           public ActionResult Index(int? page)
           {
+               //ViewBag.tagList = GetAllTags();
+               //ViewBag.categoryDict = GetAllCategories();
                MyDbContext md = new MyDbContext();
                var model = md.Blogs.ToList();
                int pageSize = 6;
                int no_of_page = (page ?? 1);
+
+               // process recent Blog
+               //ViewBag.recentViewedBlog = Session["recentlyViewedBlog"] as List<RecentBlog>;
+               //var listRecentPosted = recentPostedBlog(5);
+               //ViewBag.recentPostedBlog = listRecentPosted;
+
                return View(model.ToPagedList(no_of_page, pageSize));
           }
           //[HttpPost]
@@ -102,6 +110,12 @@ namespace TRAVEL.Controllers
 
           public ActionResult Blog_sidebar(int? page)
           {
+               ViewBag.tagList = GetAllTags();
+               ViewBag.categoryDict = GetAllCategories();
+               // process recent Blog
+               ViewBag.recentViewedBlog = Session["recentlyViewedBlog"] as List<RecentBlog>;
+               var listRecentPosted = recentPostedBlog(5);
+               ViewBag.recentPostedBlog = listRecentPosted;
                MyDbContext md = new MyDbContext();
                var model = md.Blogs.ToList();
                int pageSize = 6;
@@ -192,9 +206,82 @@ namespace TRAVEL.Controllers
           }
 
 
+          public void AddRecentlyViewedBlog(List<RecentBlog> list, int blogId, string ten, string author, string image, DateTime ngaydang, int maxNum)
+          {
+               var item = new RecentBlog();
+               try
+               {
+                    //item = list.FirstOrDefault(b => b.blogId == blogId);
+                    if (list.FirstOrDefault(b => b.blogId == blogId) == null)
+                    {
+                         // danh sach trong, them vao dau danh sach
+                         list.Add(new RecentBlog
+                         {
+                              blogId = blogId,
+                              ten = ten,
+                              author = author,
+                              image = image,
+                              ngaydang = ngaydang,
+                              lastVisited = DateTime.UtcNow,
+                         });
+                    }
+                    else
+                    {
+                         List<RecentBlog> temp = new List<RecentBlog>();
+                         temp.Add(new RecentBlog
+                         {
+                              blogId = blogId,
+                              ten = ten,
+                              author = author,
+                              image = image,
+                              ngaydang = ngaydang,
+                              lastVisited = DateTime.UtcNow,
+                         });
+                         list.AddRange(temp);
+                         // Them blog vao cuoi danh sach
+                    }
+               }
+               catch (Exception e)
+               {
+                    //// danh sach trong, them vao dau danh sach
+                    //list = new List<RecentBlog>();
+                    //list.Add(new RecentBlog
+                    //{
+                    //     blogId = blogId,
+                    //     ten = ten,
+                    //     author = author,
+                    //     image = image,
+                    //     ngaydang = ngaydang,
+                    //     lastVisited = DateTime.UtcNow,
+                    //});
+               }
+               while (list.Count > maxNum)
+               {
+                    list.RemoveAt(0);
+                    //first in first out
+               }
+
+          }
+          public List<Blog> recentPostedBlog(int maxNUm)
+          {
+               // sort datetime descending (newest - oldest)
+               var md = new MyDbContext();
+               var model = md.Blogs.ToList();
+               model.OrderByDescending(x => x.NgayDang).ToList();
+               var listRes = new List<Blog>();
+               for (int i = 0; i < maxNUm; i++)
+               {
+                    listRes.Add(model[i]);
+               }
+               return listRes;
+          }
+          // Add recent blog: 
+          // neu dang nhap: Add recently viewed blog: viewbag => list dung trong index, blog_detail, blog_sidebar controller 
+          // neu chua dang nhap, hien thi cac bai duoc dang gan nhat
 
           public ActionResult Blog_detail(int id)
           {
+
                var md = new MyDbContext();
                var Blog_dt_model = md.Blogs.Where(b => b.Blog_ID == id).Include(b => b.BlogComments).FirstOrDefault();
                //var session = (SessionInfo)Session["info"];
@@ -203,6 +290,30 @@ namespace TRAVEL.Controllers
                {
                     return HttpNotFound();
                }
+               var list = new List<RecentBlog>();
+               // read list of recent blog from session
+               if (Session["mataikhoan"]!= null)
+               {
+
+               list = Session["recentlyViewedBlog"] as List<RecentBlog>;
+               if (list == null)
+               {
+                         list = new List<RecentBlog>();
+               }
+               AddRecentlyViewedBlog(list, id, Blog_dt_model.Ten, Blog_dt_model.TacGia, Blog_dt_model.Link_Img, (DateTime)Blog_dt_model.NgayDang, 6);
+                    Session["recentlyViewedBlog"] = list;
+                    ViewBag.recentViewedBlog = list;
+               }
+               else
+               {
+               var listRecentPosted = recentPostedBlog(5);
+               ViewBag.recentPostedBlog = listRecentPosted;
+
+               }
+
+
+               ViewBag.categoryDict = GetAllCategories();
+               ViewBag.tagList = GetAllTags();
                return View(Blog_dt_model);
           }
           public List<Blog> searchModelByName(List<Blog> model, string name)
@@ -221,7 +332,7 @@ namespace TRAVEL.Controllers
           {
                if (author != null)
                {
-                    model = model.Where(x => (x.Ten.ToUpper().Contains(author.ToUpper()))).ToList();
+                    model = model.Where(x => (x.TacGia.ToUpper().Contains(author.ToUpper()))).ToList();
                }
                else
                {
@@ -233,7 +344,7 @@ namespace TRAVEL.Controllers
           {
                if (tag != null)
                {
-                    model = model.Where(x => (x.Ten.ToUpper().Contains(tag.ToUpper()))).ToList();
+                    model = model.Where(x => (x.Tag.ToUpper().Contains(tag.ToUpper()))).ToList();
                }
                else
                {
@@ -245,7 +356,7 @@ namespace TRAVEL.Controllers
           {
                if (category != null)
                {
-                    model = model.Where(x => (x.Ten.ToUpper().Contains(category.ToUpper()))).ToList();
+                    model = model.Where(x => (x.Category.ToUpper().Contains(category.ToUpper()))).ToList();
                }
                else
                {
@@ -287,16 +398,84 @@ namespace TRAVEL.Controllers
                }
                else
                {
-                    return RedirectToAction("Login", "Home");
+                    return RedirectToAction("Login", "Home", new { tk = taikhoan, ReturnURl = returnUrl });
                }
                return RedirectToAction("GetAllComments", "Blog", new { Blogid = blogId });
           }
 
-          public ActionResult TagFilter(String tag)
+          public List<String> GetAllTags()
           {
                MyDbContext md = new MyDbContext();
-               var model = md.Blogs;
-               return PartialView("_blogdetail", model);
+               var model = md.Blogs.ToList();
+               List<String> tagList = new List<string>();
+               foreach (Blog blog in model)
+               {
+                    if (blog.Tag.Contains(";"))
+                    {
+                         var temp = blog.Tag.Split(';');
+                         foreach (string tg in temp)
+                         {
+                              if (!tagList.Contains(tg))
+                              {
+                                   tagList.Add(tg);
+                              }
+
+                         }
+                    }
+                    else
+                    {
+                         if (!tagList.Contains(blog.Tag))
+                         {
+                              tagList.Add(blog.Tag);
+                         }
+                    }
+               }
+
+               return tagList;
+          }
+          public ActionResult TagFilter(int? page, string tag)
+          {
+               //ViewBag.tagList = GetAllTags();
+
+               MyDbContext md = new MyDbContext();
+               var model = md.Blogs.Where(b => (b.Tag.ToUpper().Contains(tag.ToUpper()))).ToList();
+               int pageSize = 6;
+               int no_of_page = (page ?? 1);
+
+               return View("Blog_sidebar", model.ToPagedList(no_of_page, pageSize));
+          }
+
+          public Dictionary<String, int> GetAllCategories()
+          {
+               MyDbContext md = new MyDbContext();
+               var model = md.Blogs.ToList();
+               Dictionary<String, int> categoryDict = new Dictionary<string, int>();
+               foreach (Blog blog in model)
+               {
+                    if (!categoryDict.ContainsKey(blog.Category))
+                    {
+                         categoryDict.Add(blog.Category, md.Blogs.Count(b => (b.Category.ToLower() == blog.Category.ToLower())));
+                    }
+               }
+
+               return categoryDict;
+          }
+          public ActionResult CategoryFilter(int? page, string category)
+          {
+               //ViewBag.tagList = GetAllTags();
+               ViewBag.tagList = GetAllTags();
+               ViewBag.categoryDict = GetAllCategories();
+               // process recent Blog
+               ViewBag.recentViewedBlog = Session["recentlyViewedBlog"] as List<RecentBlog>;
+               var listRecentPosted = recentPostedBlog(5);
+               ViewBag.recentPostedBlog = listRecentPosted;
+
+               MyDbContext md = new MyDbContext();
+               var model = md.Blogs.Where(b => (b.Category.ToUpper().Contains(category.ToUpper()))).ToList();
+               int pageSize = 6;
+               int no_of_page = (page ?? 1);
+
+               return View("Blog_sidebar", model.ToPagedList(no_of_page, pageSize));
           }
 
      }

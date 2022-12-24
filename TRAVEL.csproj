@@ -210,6 +210,7 @@
     <Compile Include="Models\Ngay.cs" />
     <Compile Include="Models\PhanHoi.cs" />
     <Compile Include="Models\PhieuDatTour.cs" />
+    <Compile Include="Models\RecentBlog.cs" />
     <Compile Include="Models\Reply.cs" />
     <Compile Include="Models\sysdiagram.cs" />
     <Compile Include="Models\TaiKhoan.cs" />

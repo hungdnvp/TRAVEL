@@ -118,6 +118,7 @@ namespace TRAVEL.Controllers
                               Session["username"] = login.username;
                               Session["role"] = login.role;
                               Session["online"] = login;
+                              Session["recentlyViewedBlog"] = new List<Blog>();
                               FormsAuthentication.SetAuthCookie(login.username, false);
                               if (!String.IsNullOrEmpty(ReturnUrl))
                               {

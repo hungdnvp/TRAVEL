@@ -43,10 +43,22 @@
                     <div class="tags">
                          <h2>Tags</h2>
                          <ul>
-                              <li><a href="#">Image</a></li>
-                              <li><a href="#">Features</a></li>
-                              <li><a href="#">Gallery</a></li>
-                              <li><a href="#">News</a></li>
+                              @{
+                                   var tagList = new List<String>();
+                                   if (Model.Tag.Contains(';'))
+                                   {
+                                        tagList = Model.Tag.Split(';').ToList();
+                                   }
+                                   else
+                                   {
+                                        tagList.Add(Model.Tag);
+                                   }
+
+                                   foreach (string tag in tagList)
+                                   {
+                                        <li><a href="/Blog/TagFilter?tag=@tag">@tag</a></li>
+                                   }
+                              }
                          </ul>
                     </div>
                </div>
@@ -88,92 +100,6 @@
 <!-- blog detail end-->
 
 <div class="comments-section mb-40" id="getAllComments">
-
-     @*<ul class="comments">
-               List of comments session
-               @foreach (var cmt in Model.BlogComments)
-               {
-                    <li>
-                         Main comment session
-                         <div class="comment">
-                              <div class="comment-author">
-                                   @if (cmt.TaiKhoan.ChiTietTKs.FirstOrDefault().LinkAvatar == null)
-                                   {
-                                        <a href="#">
-                                             <img src="~/assets/img/avatar/default.jpg" alt="blog">
-
-                                        </a> }
-                                   else
-                                   {
-                                        <a href="#">
-                                             <img src="~/assets/img/avatar/@cmt.TaiKhoan.ChiTietTKs.SingleOrDefault().LinkAvatar" alt="blog">
-                                        </a>}
-                              </div>
-                              <div class="comment-content">
-                                   <div class="comment-meta">
-                                        @if (@cmt.TaiKhoan.ChiTietTKs.FirstOrDefault().Hoten == null)
-                                        {
-                                             <h3>
-                                             </h3>}
-                                        <h3>
-                                             @cmt.TaiKhoan.ChiTietTKs.FirstOrDefault().Hoten
-                                        </h3>
-                                        <div class="comment-meta">
-                                             @cmt.NgayGio<a href="#">Reply</a>
-                                        </div>
-                                   </div>
-                                   <p>@cmt.NoiDung</p>
-                              </div>
-                         </div>
-                         Main comment session
-
-
-                         reply session
-                         <ul>
-                              @foreach (var reply in cmt.Replies)
-                              {
-
-                                   <li>
-                                        <div class="comment">
-                                             <div class="comment-author">
-                                                  @if (@reply.TaiKhoan.ChiTietTKs.FirstOrDefault().LinkAvatar == null)
-                                                  {
-                                                       <a href="#">
-                                                            <img src="~/assets/img/avatar/default.jpg" alt="blog">
-                                                       </a> }
-                                                  else
-                                                  {
-                                                       <a href="#">
-                                                            <img src="~/assets/img/avatar/@reply.TaiKhoan.ChiTietTKs.FirstOrDefault().LinkAvatar" alt="blog">
-                                                       </a>}
-                                             </div>
-                                             <div class="comment-content">
-                                                  <div class="comment-meta">
-                                                       @if (@reply.TaiKhoan.ChiTietTKs.FirstOrDefault().Hoten == null)
-                                                       {
-                                                            <h3>
-                                                            </h3> }
-                                                       else
-                                                       {
-
-                                                            <h3>
-                                                                 @reply.TaiKhoan.ChiTietTKs.FirstOrDefault().Hoten
-                                                            </h3>}
-                                                       <div class="comment-meta">
-                                                            @reply.NgayGio<a href="#">Reply</a>
-                                                       </div>
-                                                  </div>
-                                                  <p>@reply.NoiDung</p>
-                                             </div>
-                                        </div>
-                                   </li>
-                              }
-                         </ul>
-                         end reply session
-
-                    </li>
-               }
-          </ul>*@
 
 </div>
 
