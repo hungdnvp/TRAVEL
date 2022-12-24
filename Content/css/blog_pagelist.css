@@ -1,0 +1,28 @@
+﻿
+/*sửa page list*/
+.pagination {
+     display: flex;
+     justify-content: center;
+}
+
+     .pagination > li > a {
+          position: relative;
+          padding: 10px 20px;
+          line-height: 1.42857;
+          text-decoration: none;
+          color: #337ab7;
+          background-color: #fff;
+          border: 1px solid #ddd;
+          margin-left: -1px;
+     }
+
+@media(max-width: 640px) {
+     .pagination {
+          margin-bottom: 25px;
+     }
+}
+
+@media(max-width: 480px) {
+     .pagination {
+          margin-bottom: 25px;
+     }

@@ -9,6 +9,12 @@ namespace TRAVEL.Models
     [Table("Blog")]
     public partial class Blog
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Blog()
+        {
+            BlogComments = new HashSet<BlogComment>();
+        }
+
         [Key]
         public int Blog_ID { get; set; }
 
@@ -40,6 +46,9 @@ namespace TRAVEL.Models
 
         [StringLength(50)]
         public string Link_CoverImg { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<BlogComment> BlogComments { get; set; }
 
         public virtual TaiKhoan TaiKhoan { get; set; }
     }

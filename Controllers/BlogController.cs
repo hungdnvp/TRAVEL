@@ -7,10 +7,11 @@ using TRAVEL.Models;
 using PagedList;
 using System.Threading.Tasks;
 using System.Data.Entity;
+using System.Windows.Forms;
 
 namespace TRAVEL.Controllers
 {
-    [AllowAnonymous]
+     [AllowAnonymous]
      public class BlogController : Controller
      {
           // GET: Blog
@@ -192,18 +193,18 @@ namespace TRAVEL.Controllers
 
 
 
-          //public ActionResult Blog_detail(int id)
-          //{
-          //     var md = new MyDbContext();
-          //     var Blog_dt_model = md.Blogs.Where(b => b.Blog_ID == id).Include(b => b.BlogComments).FirstOrDefault();
-          //     var session = (SessionInfo)Session["info"];
-          //     ViewBag.session = session;
-          //     if (Blog_dt_model == null)
-          //     {
-          //          return HttpNotFound();
-          //     }
-          //     return View(Blog_dt_model);
-          //}
+          public ActionResult Blog_detail(int id)
+          {
+               var md = new MyDbContext();
+               var Blog_dt_model = md.Blogs.Where(b => b.Blog_ID == id).Include(b => b.BlogComments).FirstOrDefault();
+               //var session = (SessionInfo)Session["info"];
+               //ViewBag.session = session;
+               if (Blog_dt_model == null)
+               {
+                    return HttpNotFound();
+               }
+               return View(Blog_dt_model);
+          }
           public List<Blog> searchModelByName(List<Blog> model, string name)
           {
                if (name != null)
@@ -251,6 +252,51 @@ namespace TRAVEL.Controllers
                     model = model.ToList();
                }
                return model;
+          }
+
+          public ActionResult GetAllComments(int? BlogID)
+          {
+               MyDbContext md = new MyDbContext();
+               var model = md.Blogs.Where(c => c.Blog_ID == BlogID).FirstOrDefault();
+               ViewBag.model = model;
+               return PartialView("_getAllComments", model);
+          }
+          [Authorize]
+          [HttpPost]
+          public ActionResult AddComments(String comment, int blogId, string returnUrl)
+          {
+               var md = new MyDbContext();
+               int taikhoanID = (int)Session["mataikhoan"];
+               var taikhoan = md.TaiKhoans.FirstOrDefault(t => t.MaTaiKhoan == taikhoanID);
+               var blog = md.Blogs.FirstOrDefault(b => b.Blog_ID == blogId);
+               if (taikhoan != null)
+               {
+                    if (comment == null)
+                    {
+                         MessageBox.Show("Please enter your comment before submitting", "Empty Comment", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                    else
+                    {
+                         var blogCmt = new BlogComment();
+                         blogCmt.MaTaiKhoan = taikhoanID;
+                         blogCmt.NoiDung = comment;
+                         blogCmt.NgayGio = DateTime.UtcNow;
+                         blog.BlogComments.Add(blogCmt);
+                         md.SaveChanges();
+                    }
+               }
+               else
+               {
+                    return RedirectToAction("Login", "Home");
+               }
+               return RedirectToAction("GetAllComments", "Blog", new { Blogid = blogId });
+          }
+
+          public ActionResult TagFilter(String tag)
+          {
+               MyDbContext md = new MyDbContext();
+               var model = md.Blogs;
+               return PartialView("_blogdetail", model);
           }
 
      }

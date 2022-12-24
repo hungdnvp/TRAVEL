@@ -1,12 +1,11 @@
 ﻿@using TRAVEL.Models;
 @model PagedList.IPagedList<Blog>
 @using PagedList.Mvc;
-@{
-     ViewBag.Title = "Blog List";
+@{ ViewBag.Title = "Blog List";
      Layout = "~/Views/Shared/_Layout.cshtml";
-     ViewData["sub_link"] = "Blog List";
+     ViewData["sub_link"] = "Blog List"; }
+<link type="text/css" rel="stylesheet" href="~/Content/css/blog_pagelist.css" />
 
-}
 @Html.Partial("_banner")
 
 
@@ -29,11 +28,11 @@
                                              var count = Model.LongCount<Blog>();
                                              if (count > 1)
                                              {
-                                                  <span class="heading">@count Results Found</span> }
-                                             else
-                                             {
-                                                  <span class="heading">@count Result Found</span>}
-                                        }
+                         <span class="heading">@count Results Found</span> }
+                    else
+                    {
+<span class="heading">@count Result Found</span>}
+}
                                    </h4>
                               </div>
                               <div class="col-xl-8 col-lg-7 col-md-7 col-sm-7">

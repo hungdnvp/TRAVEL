@@ -13,7 +13,9 @@ namespace TRAVEL.Models
         public TaiKhoan()
         {
             Blogs = new HashSet<Blog>();
+            BlogComments = new HashSet<BlogComment>();
             ChiTietTKs = new HashSet<ChiTietTK>();
+            Replies = new HashSet<Reply>();
         }
 
         [Key]
@@ -35,6 +37,12 @@ namespace TRAVEL.Models
         public virtual ICollection<Blog> Blogs { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<BlogComment> BlogComments { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ChiTietTK> ChiTietTKs { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Reply> Replies { get; set; }
     }
 }

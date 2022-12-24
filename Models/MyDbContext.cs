@@ -14,6 +14,7 @@ namespace TRAVEL.Models
 
         public virtual DbSet<BangGia> BangGias { get; set; }
         public virtual DbSet<Blog> Blogs { get; set; }
+        public virtual DbSet<BlogComment> BlogComments { get; set; }
         public virtual DbSet<ChiTietNgay> ChiTietNgays { get; set; }
         public virtual DbSet<ChiTietTK> ChiTietTKs { get; set; }
         public virtual DbSet<ChiTietTour> ChiTietTours { get; set; }
@@ -24,6 +25,7 @@ namespace TRAVEL.Models
         public virtual DbSet<Ngay> Ngays { get; set; }
         public virtual DbSet<PhanHoi> PhanHois { get; set; }
         public virtual DbSet<PhieuDatTour> PhieuDatTours { get; set; }
+        public virtual DbSet<Reply> Replies { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<TaiKhoan> TaiKhoans { get; set; }
         public virtual DbSet<Tour> Tours { get; set; }
@@ -35,6 +37,16 @@ namespace TRAVEL.Models
             modelBuilder.Entity<Blog>()
                 .Property(e => e.MoTa)
                 .IsUnicode(false);
+
+            modelBuilder.Entity<Blog>()
+                .HasMany(e => e.BlogComments)
+                .WithOptional(e => e.Blog)
+                .HasForeignKey(e => e.BlogID);
+
+            modelBuilder.Entity<BlogComment>()
+                .HasMany(e => e.Replies)
+                .WithOptional(e => e.BlogComment)
+                .HasForeignKey(e => e.MaCmt);
 
             modelBuilder.Entity<ChiTietTK>()
                 .Property(e => e.SDT)

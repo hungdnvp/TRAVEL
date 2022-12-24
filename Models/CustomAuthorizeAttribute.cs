@@ -15,7 +15,8 @@ namespace TRAVEL.Models
             TaiKhoan taiKhoan = (TaiKhoan)HttpContext.Current.Session["online"];
             if (taiKhoan != null)
             {
-                if (taiKhoan.role == Role)
+                if (Role == null) return true;
+                else if (taiKhoan.role == Role)
                 {
                     return true;
                 }
