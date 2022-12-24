@@ -16,6 +16,7 @@ namespace TRAVEL.Models
         }
 
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int MaComment { get; set; }
 
         public int? BlogID { get; set; }

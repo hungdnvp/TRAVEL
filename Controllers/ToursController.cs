@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.Mvc;
 using TRAVEL.Models;
 using PagedList;
+using System.Drawing.Printing;
+using System.Data.Entity;
 
 namespace TRAVEL.Controllers
 {
@@ -40,22 +42,57 @@ namespace TRAVEL.Controllers
                 }
             }
         }
-        [AllowAnonymous]
-        public ActionResult Tours_grid(int? page)
+
+        public ActionResult Tours_grid(int? page, int? desId)
         {
+            
             // tạo kích thước trang(pageSize) 
             int pageSize = 6;
             int pageNumber = (page ?? 1);
-            Load_Page();
-            ViewBag.Numstars = numstars;
-            using (MyDbContext Travel = new MyDbContext())
+            if (desId != null)
             {
-                var tours = Travel.Tours.OrderBy(s => s.Gia).ToList();
-                List<TravelType> travel_type = Travel.TravelTypes.ToList();
-                ViewBag.TravelTypes = travel_type;
-                return View(tours.ToPagedList(pageNumber, pageSize));
-            }
+                using (MyDbContext Travel = new MyDbContext())
+                {
 
+                    var des = Travel.DiaDanhs.Where(d => d.MaDiaDanh == desId).ToList();
+                    var tours = des[0].Tours.OrderBy(s => s.Gia);
+                    float star = 0f;
+                    foreach (Tour it in tours)
+                    {
+                        star = 0f;
+                        try
+                        {
+                            var dgs = Travel.DanhGias.Where(s => s.MaTour == it.MaTour).ToList();
+                            foreach (var dg in dgs)
+                            {
+                                if (dg.NumStar != null) star += (float)dg.NumStar;
+                            }
+                            star /= dgs.Count();
+                        }
+                        catch (Exception e)
+                        {
+                            Console.WriteLine("error get numstar");
+                        }
+                        this.numstars.Add(it.MaTour, (int)Math.Round(star));
+                    }
+                    ViewBag.Numstars = numstars;
+                    List<TravelType> travel_type = Travel.TravelTypes.ToList();
+                    ViewBag.TravelTypes = travel_type;
+                    return View(tours.ToPagedList(pageNumber, pageSize));
+                }
+            }
+            else
+            {
+                Load_Page();
+                ViewBag.Numstars = numstars;
+                using (MyDbContext Travel = new MyDbContext())
+                {
+                    var tours = Travel.Tours.OrderBy(s => s.Gia).ToList();
+                    List<TravelType> travel_type = Travel.TravelTypes.ToList();
+                    ViewBag.TravelTypes = travel_type;
+                    return View(tours.ToPagedList(pageNumber, pageSize));
+                }
+            } 
         }
 
         // list -or- grid

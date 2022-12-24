@@ -178,7 +178,6 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="Areas\Admin\Controllers\TourController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Models\CustomAuthorizeAttribute.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
@@ -201,6 +200,7 @@
     <Compile Include="Models\ChiTietNgay.cs" />
     <Compile Include="Models\ChiTietTK.cs" />
     <Compile Include="Models\ChiTietTour.cs" />
+    <Compile Include="Models\CustomAuthorizeAttribute.cs" />
     <Compile Include="Models\DanhGia.cs" />
     <Compile Include="Models\DiaDanh.cs" />
     <Compile Include="Models\DichVu.cs" />
@@ -219,7 +219,6 @@
     <Compile Include="Models\Tour.cs" />
     <Compile Include="Models\TravelType.cs" />
     <Compile Include="Models\Vung.cs" />
-    <Compile Include="Models\Vung_DiaDanh.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -725,4 +724,11 @@
   </Target>
   <Target Name="AfterBuild">
   </Target> -->
+  <Target Name="CopyRoslynFiles" AfterTargets="AfterBuild" Condition="!$(Disable_CopyWebApplication) And '$(OutDir)' != '$(OutputPath)'">
+    <ItemGroup>
+      <RoslynFiles Include="$(CscToolPath)\*" />
+    </ItemGroup>
+    <MakeDir Directories="$(WebProjectOutputDir)\bin\roslyn" />
+    <Copy SourceFiles="@(RoslynFiles)" DestinationFolder="$(WebProjectOutputDir)\bin\roslyn" SkipUnchangedFiles="true" Retries="$(CopyRetryCount)" RetryDelayMilliseconds="$(CopyRetryDelayMilliseconds)" />
+  </Target>
 </Project>
