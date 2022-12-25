@@ -1,0 +1,128 @@
+﻿
+@{
+     ViewBag.Title = "EditBlog";
+     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<link rel="stylesheet" href="../assets/vendor/css/core.css" class="template-customizer-core-css" />
+<link rel="stylesheet" href="../assets/vendor/css/theme-default.css" class="template-customizer-theme-css" />
+<link rel="stylesheet" href="../assets/css/demo.css" />
+<link rel="stylesheet" href="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
+<script src="../assets/vendor/js/helpers.js"></script>
+<script src="../assets/js/config.js"></script>
+<script src="~/ckeditor/ckeditor.js"></script>
+@using TRAVEL.Models
+@model Blog
+<div class="container-xxl flex-grow-1 container-p-y">
+     <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Blogs /</span> Edit Blog</h4>
+     <div class="card mb-4">
+          <h5 class="card-header">Edit</h5>
+          @using (Html.BeginForm())
+          {
+
+               @*<form class="form-container" method="post">*@
+               <div class="card-body">
+                    <div class="mt-2 mb-3">
+                         <label for="tenBlog" class="form-label">Blog Name</label>
+                         <input id="tenBlog"
+                                class="form-control"
+                                type="text"
+                                name="tenBlog"
+                                value="@Model.Ten" />
+                    </div>
+                    <div class="mb-3">
+                         <label for="ngaydang" class="form-label">Posted Date</label>
+                         <input id="ngaydang" class="form-control" type="datetime-local" name="ngaydang" value=@DateTime.Now />
+                    </div>
+                    <div>
+                         <label for="mota" class="form-label">Description</label>
+                         <input id="mota"
+                                class="form-control"
+                                type="text"
+                                name="mota"
+                                value="@Model.MoTa" />
+                    </div>
+                    <div>
+                         <label for="loai" class="form-label">Category</label>
+                         <input id="loai"
+                                class="form-control"
+                                type="text"
+                                name="loai"
+                                value="@Model.Category" />
+                    </div>
+                    <div>
+                         <label for="tag" class="form-label">Tag</label>
+                         <input id="tag"
+                                class="form-control"
+                                type="text"
+                                name="tag"
+                                value="@Model.Tag" />
+                    </div>
+
+                    @*<div>
+                              <label for="Image" class="form-label">Uploaded Image</label>
+                              <input id="image"
+                                     class="form-control"
+                                     type="text"
+                                     name="image"
+                                     placeholder="@Model.Link_Img" />
+                         </div>*@
+
+                    <label for="Image" class="form-label">Uploaded Image</label>
+                    <div class="input-group">
+                         <input type="file" class="form-control" id="inputGroupFile02" />
+                         @*<label class="input-group-text" for="inputGroupFile02">Upload</label>*@
+                    </div>
+                    @*<div>
+                              <label for="oldContent" class="form-label">Old Content</label>
+                              <input id="oldContent"
+                                     class="form-control"
+                                     type="text"
+                                     name="oldcontent"
+                                     value="@Model.NoiDung" />
+                         </div>*@
+
+
+                    <label for="oldContent" class="form-label">Old Content</label>
+                    <div class="input-group input-group-merge speech-to-text">
+                         <textarea class="form-control" rows="10">@Model.NoiDung</textarea>
+                         <span class="input-group-text">
+                              <i class="bx bx-microphone cursor-pointer text-to-speech-toggle"></i>
+                         </span>
+                    </div>
+
+                    <div>
+                         <label for="Content" class="form-label">New Content</label>
+                         <input id="editblogcontent"
+                                class="form-control"
+                                type="text"
+                                name="content"
+                                value="@Model.NoiDung" />
+                    </div>
+                    <script>
+                         CKEDITOR.replace("editblogcontent");
+                    </script>
+               </div>
+               @*<hr class="m-0" />
+                    <div class="card-body">
+                         <div class="mb-3">
+                              <label for="defaultSelect" class="form-label">Num Day</label>
+                              <select id="numday" class="form-select">
+                                   <option value="null">Default select</option>
+                                   <option value="1">1 Day</option>
+                                   <option value="2">2 Day</option>
+                                   <option value="3">3 Day</option>
+                                   <option value="3">4 Day</option>
+                                   <option value="3">5 Day</option>
+                                   <option value="3">6 Day</option>
+                              </select>
+                         </div>
+
+                    </div>*@
+               <button type="submit" class="btn btn-primary">Update Blog</button>
+               @*</form>*@}
+     </div>
+
+</div>
+
+
+

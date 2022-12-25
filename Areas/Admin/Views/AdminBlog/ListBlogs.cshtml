@@ -1,0 +1,37 @@
+﻿@{ ViewBag.Title = "ListBlogs";
+     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml"; }
+
+@using TRAVEL.Models
+@model List<Blog>
+
+
+
+<!-- Contextual Classes -->
+
+<div class="card">
+     <h5 class="card-header">List of Blogs</h5>
+     <div class="table-responsive text-nowrap" id="listblog">
+          @Html.Partial("_listBlog")
+     </div>
+</div>
+<!--/ Contextual Classes -->
+@*<script>
+          var category = $("#spancategory").val();
+          $('#spancategory').click(function () {
+               $.ajax({
+                    type: "POST",
+                    url: 'Admin/AdminBlog/CategoryFilter',
+                    data: {
+                         category: category,
+                    },
+                    success: function (response) {
+                         console.log(response)
+                         //$('#body_view').html($('.col-lg-12 col-md-12').html() + response + $('#pager_sidebar').html());
+                         //$page.appendTo('#body_view');
+                         $('#listblog').html(response);
+
+                    }
+               })
+          });
+
+     </script>*@
