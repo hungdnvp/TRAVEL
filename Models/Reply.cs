@@ -10,6 +10,7 @@ namespace TRAVEL.Models
     public partial class Reply
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int MaReply { get; set; }
 
         public int? MaCmt { get; set; }

@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using TRAVEL.Models
+<!DOCTYPE html>
 <html lang="zxx">
 <head>
     <!-- Google Tag Manager -->
@@ -74,6 +75,10 @@
                                 </li>
                                 @{if (Session["username"] != null)
                                     {
+                                        MyDbContext db = new TRAVEL.Models.MyDbContext();
+                                        TaiKhoan account = (TaiKhoan)Session["online"];
+                                        int matk = (int)account.MaTaiKhoan;
+                                        ChiTietTK cttk = db.ChiTietTKs.Where(c=>c.MaTaiKhoan == matk).FirstOrDefault();
                                         if (Session["role"].ToString() == "admin")
                                         {
                                             <li class="nav-item">
@@ -86,9 +91,14 @@
                                                 <a class="nav-link" id="swap_admin" href="/Contact/Index">Contact</a>
                                             </li>
                                         }
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="#"><i class="fa fa-user-circle-o" aria-hidden="true"></i>@Session["username"]</a>
-                                        </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link" href="#"><img style="width:24px; height=20px; border-radius:50%;" src="~/assets/@cttk.LinkAvatar" /> @Session["username"]</a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                    <li><a class="dropdown-item" href="/Account/Profile">Profile</a></li>
+                                    <li><a class="dropdown-item" href="#">Tours Booked</a></li>
+                                    <li><a class="dropdown-item" href="/Home/Logout">Logout</a></li>
+                                </ul>
+                            </li>
                                     }
                                     else
                                     {
@@ -108,7 +118,7 @@
                                     </a>
                                 </li>
                                 <li class="nav-item dropdown">
-                                    <button type="button" style="background-color: Transparent;border: none;" class="btn btn-secondary nav-link dropdown-toggle"><i class="fa fa-bars" aria-hidden="true"></i></button>
+                                    <button type="button" style="background-color: Transparent;border: none;" class="btn nav-link dropdown-toggle"><i class="fa fa-bars" aria-hidden="true"></i></button>
                                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                         <li><a class="dropdown-item" href="about.html">About Us</a></li>
                                         <li><a class="dropdown-item" href="pricing-tables.html">Pricing Tables</a></li>
@@ -116,11 +126,6 @@
                                         <li><a class="dropdown-item" href="agent.html">Meet Our Team</a></li>
                                         <li><a class="dropdown-item" href="typography.html">Typography</a></li>
                                         <li><a class="dropdown-item" href="coming-soon.html">Coming Soon</a></li>
-                                        @{if (Session["username"] != null)
-                                            {
-                                                <li><a class="dropdown-item" href="#">Profile</a></li>
-                                                <li><a class="dropdown-item" href="/Home/Logout">Logout</a></li>
-                                            }}
                                     </ul>
                             </ul>
                         </div>

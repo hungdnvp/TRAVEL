@@ -130,3 +130,12 @@ GO
 ALTER TABLE TaiKhoan
 ALTER COLUMN role varchar(10)
 GO
+
+
+----------16/12/2022 LP 
+alter table DiaDanh
+add DanToc nvarchar(50),
+	Dientich nvarchar(50),
+	Danso nchar(10),
+	DacSan nvarchar(100),
+	ThanhPho nvarchar(100);

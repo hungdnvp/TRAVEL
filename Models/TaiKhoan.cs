@@ -12,6 +12,7 @@ namespace TRAVEL.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public TaiKhoan()
         {
+            Blogs = new HashSet<Blog>();
             BlogComments = new HashSet<BlogComment>();
             ChiTietTKs = new HashSet<ChiTietTK>();
             Replies = new HashSet<Reply>();
@@ -31,6 +32,9 @@ namespace TRAVEL.Models
 
         [StringLength(10)]
         public string role { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Blog> Blogs { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BlogComment> BlogComments { get; set; }

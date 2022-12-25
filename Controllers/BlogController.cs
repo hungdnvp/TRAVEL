@@ -54,11 +54,11 @@ namespace TRAVEL.Controllers
                     case 2:
                          if (sort_type == 6)
                          {
-                              model = model.OrderBy(x => x.NgayDang).ToList();
+                              //model = model.OrderBy(x => x.NgayDang).ToList();
                          }
                          else if (sort_type == 7)
                          {
-                              model = model.OrderByDescending(x => x.NgayDang).ToList();
+                              //model = model.OrderByDescending(x => x.NgayDang).ToList();
                          }
                          break;
 
@@ -166,11 +166,11 @@ namespace TRAVEL.Controllers
                     case 2:
                          if (sort_type == 6)
                          {
-                              model = model.OrderBy(x => x.NgayDang).ToList();
+                              //model = model.OrderBy(x => x.NgayDang).ToList();
                          }
                          else if (sort_type == 7)
                          {
-                              model = model.OrderByDescending(x => x.NgayDang).ToList();
+                              //model = model.OrderByDescending(x => x.NgayDang).ToList();
                          }
                          break;
 
