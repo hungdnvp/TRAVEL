@@ -29,9 +29,9 @@
                                    </div>
                                    <div class="detail">
                                         <div class="post-meta">
-                                             <span><a href="#"><i class="flaticon-user"></i>Amdin</a></span>
-                                             <span><a href="#"><i class="flaticon-comment"></i>27</a></span>
-                                             <span><a href="#"><i class="fa fa-heart-o"></i>27</a></span>
+                                             <span><a href="#"><i class="flaticon-user"></i>@item.TacGia</a></span>
+                                             <span><a href="#"><i class="flaticon-comment"></i>@item.BlogComments.Count() </a></span>
+                                             <span><a href="#"><i class="fa fa-heart-o"></i>22</a></span>
                                         </div>
                                         <h3>
                                              <a href="/Blog/Blog_detail/@item.Blog_ID">@item.Ten</a>
@@ -47,5 +47,6 @@
           alert('No result found!')
           var url = "/Blog/Blog_sidebar";
           window.location.href = url;
-     </script>}
+     </script>
+}
 

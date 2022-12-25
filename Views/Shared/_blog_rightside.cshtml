@@ -7,16 +7,16 @@
           <!-- Search box start -->
           <div class="widget search-box">
                <h5 class="sidebar-title">Search Blog</h5>
-               <div class="search-area">
-                    <select class="selectpicker search-fields" name="location">
-                         <option value="name">Name</option>
-                         <option value="author">Author</option>
-                         <option value="tag">Tag</option>
-                         <option value="category">Category</option>
-                    </select>
-               </div>
                <form class="form-search" method="GET">
-                    <input type="text" class="form-control" placeholder="Search">
+                    <div class="search-area">
+                         <select class="selectpicker search-fields" name="searchBy" id="searchBy">
+                              <option value="name">Name</option>
+                              <option value="author">Author</option>
+                              <option value="tag">Tag</option>
+                              <option value="category">Category</option>
+                         </select>
+                    </div>
+                    <input type="text" name="searchString" class="form-control" placeholder="Search">
                     @*<script>
                               var search_tag = $("#selectpicker search-fields").val();
                               switch (search_tag) {
@@ -55,7 +55,7 @@
                <a href="/Blog/Blog_detail/@blg.Blog_ID">@blg.Ten</a>
           </h5>
           <div class="listing-post-meta">
-               @blg.NgayDang | <a href="#">Tour</a>
+               @blg.NgayDang.ToString().Split(' ')[0]  | <a href="/Blog/Index/">Blog</a>
           </div>
      </div>
 </div>}
@@ -73,7 +73,7 @@ else
                <a href="/Blog/Blog_detail/@blg.blogId">@blg.ten</a>
           </h5>
           <div class="listing-post-meta">
-               @blg.ngaydang | <a href="#">Tour</a>
+               @blg.ngaydang.ToShortDateString() | <a href="/Blog/Index/">Blog</a>
           </div>
      </div>
 </div>}
@@ -88,8 +88,7 @@ else
                     <li><a href="/Blog/Blog_sidebar/">All<span>(12)</span></a></li>
                     @{ foreach (KeyValuePair<string, int> cate in ViewBag.categoryDict)
                          {
-          <li><a href="/Blog/Blog_sidebar/category=@cate">@cate.Key<span>@cate.Value</span></a></li>
- } }
+          <li><a href="/Blog/Blog_sidebar/category=@cate">@cate.Key<span>@cate.Value</span></a></li> } }
                </ul>
           </div>
           <!-- Social list start -->
@@ -110,12 +109,14 @@ else
                     @{ var tagList = ViewBag.tagList;
                          foreach (string tag in tagList)
                          {
-          <li><a href="/Blog/TagFilter?tag=@tag">@tag</a></li> } }
+          <li><a href="/Blog/TagFilter?tag=@tag">@tag</a></li>
+ } }
 
                </ul>
           </div>
      </div>
 </div>
+
 
 
 

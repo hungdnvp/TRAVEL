@@ -167,52 +167,31 @@
                     break;
 
           }
-          var name1 = "";
-          var author1 = "";
-          var tag1 = "";
-          var category1 = "";
-          $(".search-fields-selectBox-dropdown-menu").click(function () {
-               var rel_search = parseInt($(this).attr('rel'));
-               switch (rel_search) {
-                    case "name":
-                         name1 = ViewBag.name;
-                         break;
-                    case "author":
-                         author1 = ViewBag.author;
-                         break;
-                    case "tag":
-                         tag1 = ViewBag.tag;
-                         break;
-                    case "category":
-                         category1 = ViewBag.category;
-                         break;
-                    default:
-                         break;
+          //var name1 = "";
+          //var author1 = "";
+          //var tag1 = "";
+          //var category1 = "";
+          //$(".search-fields-selectBox-dropdown-menu").click(function () {
+          //     var rel_search = parseInt($(this).attr('rel'));
+          //     switch (rel_search) {
+          //          case "name":
+          //               name1 = ViewBag.name;
+          //               break;
+          //          case "author":
+          //               author1 = ViewBag.author;
+          //               break;
+          //          case "tag":
+          //               tag1 = ViewBag.tag;
+          //               break;
+          //          case "category":
+          //               category1 = ViewBag.category;
+          //               break;
+          //          default:
+          //               break;
 
-               }
-          });
-          $("#search-submit").click(function () {
-               $.ajax({
-                    type: "POST",
-                    url: '/Blog/ajax_Sort_Search_sidebar',
-                    data: {
-                         page: @Model.PageNumber,
-                         sortby: 0,
-                         sort_type: 0,
-                         name: name1,
-                         author: author1,
-                         tag: tag1,
-                         category: category1
-                    },
-                    success: function (response) {
-                         console.log(response)
-                         //$('#sidebar_body').html($('.col-lg-12 col-md-12').html() + response + $('#pager_sidebar').html());
-                         $('#ajax_sidebar').html(response);
-                         //$page.appendTo('#body_view');
-                    }
-               });
+          //     }
+          //});
 
-          });
 
           $(".details_link").click(function () {
                var rel = parseInt($(this).attr('rel'));
@@ -224,10 +203,10 @@
                          page: @Model.PageNumber,
                          sortby: value,
                          sort_type: rel,
-                         name: name1,
-                         author: author1,
-                         tag: tag1,
-                         category: category1
+                         //name: name1,
+                         //author: author1,
+                         //tag: tag1,
+                         //category: category1
                     },
                     success: function (response) {
                          console.log(response)
@@ -248,5 +227,20 @@
 
           //selectBox - dropdown - menu selectBox - options selectpicker - selectBox - dropdown - menu search - fields - selectBox - dropdown - menu select - sort - selectBox - dropdown - menu
      });
+
+     //$("#search-submit").onclick(function () {
+     //     $.ajax({
+     //          type: "POST",
+     //          url: '/Blog/ajax_searchBlogBy',
+     //          data: {
+     //               searchBy: $("#searchBy").val(),
+     //               searchString: $(".form-control").val()
+     //          },
+     //          success: function (response) {
+     //               console.log(response)
+     //               $('#ajax_sidebar').html(response);
+     //          }
+     //     });
+     //});
 
 </script>

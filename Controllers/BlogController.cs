@@ -108,7 +108,7 @@ namespace TRAVEL.Controllers
                return PartialView("_index", model.ToPagedList(no_of_page, pageSize));
           }
 
-          public ActionResult Blog_sidebar(int? page)
+          public ActionResult Blog_sidebar(int? page, string searchBy="", string searchString = "")
           {
                ViewBag.tagList = GetAllTags();
                ViewBag.categoryDict = GetAllCategories();
@@ -118,13 +118,33 @@ namespace TRAVEL.Controllers
                ViewBag.recentPostedBlog = listRecentPosted;
                MyDbContext md = new MyDbContext();
                var model = md.Blogs.ToList();
+               if (searchBy == "name")
+               {
+                    model = md.Blogs.Where(b => (b.Ten.ToLower().Contains(searchString.ToLower()))).ToList();
+               }
+               else if (searchBy == "author")
+               {
+                    model = md.Blogs.Where(b => (b.TacGia.ToLower().Contains(searchString.ToLower()))).ToList();
+               }
+               else if (searchBy == "tag")
+               {
+                    model = md.Blogs.Where(b => (b.Tag.ToLower().Contains(searchString.ToLower()))).ToList();
+               }
+               else if (searchBy == "category")
+               {
+                    model = md.Blogs.Where(b => (b.Category.ToLower().Contains(searchString.ToLower()))).ToList();
+               }
+               //else
+               //{
+               //     model = md.Blogs.Where(b => (b.Ten.ToLower().Contains(searchString.ToLower()))).ToList();
+               //}
                int pageSize = 6;
                int no_of_page = (page ?? 1);
 
                return View("Blog_sidebar", model.ToPagedList(no_of_page, pageSize));
           }
 
-          public ActionResult ajax_Sort_Search_sidebar(int? page, int? sortby, int? sort_type, string name = "", string author = "", string category = "", string tag = "")
+          public ActionResult ajax_Sort_Search_sidebar(int? page, int? sortby, int? sort_type)
           {
 
                MyDbContext md = new MyDbContext();
@@ -192,12 +212,12 @@ namespace TRAVEL.Controllers
                     default:
                          break;
                }
-               ViewBag.name = name;
-               ViewBag.tag = tag;
-               ViewBag.author = author;
-               ViewBag.category = category;
+               //ViewBag.name = name;
+               //ViewBag.tag = tag;
+               //ViewBag.author = author;
+               //ViewBag.category = category;
 
-               model = searchModelByName(searchModelByAuthor(searchModelByCategory(searchModelByTag(model, tag), category), author), name);
+               //model = searchModelByName(searchModelByAuthor(searchModelByCategory(searchModelByTag(model, tag), category), author), name);
                int pageSize = 6;
                //int no_of_page = 1;
                int no_of_page = (page ?? 1);
@@ -316,54 +336,73 @@ namespace TRAVEL.Controllers
                ViewBag.tagList = GetAllTags();
                return View(Blog_dt_model);
           }
-          public List<Blog> searchModelByName(List<Blog> model, string name)
-          {
-               if (name != null)
-               {
-                    model = model.Where(x => (x.Ten.ToUpper().Contains(name.ToUpper()))).ToList();
-               }
-               else
-               {
-                    model = model.ToList();
-               }
-               return model;
-          }
-          public List<Blog> searchModelByAuthor(List<Blog> model, string author)
-          {
-               if (author != null)
-               {
-                    model = model.Where(x => (x.TacGia.ToUpper().Contains(author.ToUpper()))).ToList();
-               }
-               else
-               {
-                    model = model.ToList();
-               }
-               return model;
-          }
-          public List<Blog> searchModelByTag(List<Blog> model, string tag)
-          {
-               if (tag != null)
-               {
-                    model = model.Where(x => (x.Tag.ToUpper().Contains(tag.ToUpper()))).ToList();
-               }
-               else
-               {
-                    model = model.ToList();
-               }
-               return model;
-          }
-          public List<Blog> searchModelByCategory(List<Blog> model, string category)
-          {
-               if (category != null)
-               {
-                    model = model.Where(x => (x.Category.ToUpper().Contains(category.ToUpper()))).ToList();
-               }
-               else
-               {
-                    model = model.ToList();
-               }
-               return model;
-          }
+
+          //public ActionResult searchBlog(int? page, string searchBy = "", string searchString = "")
+          //{
+          //     //string searchBy = ViewBag.searchBy;
+          //     var md = new MyDbContext();
+          //     var model = new List<Blog>();
+          //     if (searchBy == "name")
+          //     {
+          //          model = md.Blogs.Where(b => (b.Ten.ToLower().Contains(searchString.ToLower()))).ToList();
+          //     }
+          //     else if (searchBy == "author")
+          //     {
+          //          model = md.Blogs.Where(b => (b.TacGia.ToLower().Contains(searchString.ToLower()))).ToList();
+          //     }
+          //     else if (searchBy == "tag")
+          //     {
+          //          model = md.Blogs.Where(b => (b.Tag.ToLower().Contains(searchString.ToLower()))).ToList();
+          //     }
+          //     else if (searchBy == "category")
+          //     {
+          //          model = md.Blogs.Where(b => (b.Category.ToLower().Contains(searchString.ToLower()))).ToList();
+          //     }
+          //     else
+          //     {
+          //          model = md.Blogs.Where(b => (b.Ten.ToLower().Contains(searchString.ToLower()))).ToList();
+          //     }
+          //     int pageSize = 6;
+          //     int no_of_page = (page ?? 1);
+          //     return View("searchBlog", model.ToPagedList(no_of_page, pageSize));
+          //     //return PartialView("_searchBlog", model.ToPagedList(no_of_page, pageSize));
+          //}
+          //public List<Blog> searchModelByAuthor(List<Blog> model, string author)
+          //{
+          //     if (author != null)
+          //     {
+          //          model = model.Where(x => (x.TacGia.ToUpper().Contains(author.ToUpper()))).ToList();
+          //     }
+          //     else
+          //     {
+          //          model = model.ToList();
+          //     }
+          //     return model;
+          //}
+          //public List<Blog> searchModelByTag(List<Blog> model, string tag)
+          //{
+          //     if (tag != null)
+          //     {
+          //          model = model.Where(x => (x.Tag.ToUpper().Contains(tag.ToUpper()))).ToList();
+          //     }
+          //     else
+          //     {
+          //          model = model.ToList();
+          //     }
+          //     return model;
+          //}
+          //public List<Blog> searchModelByCategory(List<Blog> model, string category)
+          //{
+          //     if (category != null)
+          //     {
+          //          model = model.Where(x => (x.Category.ToUpper().Contains(category.ToUpper()))).ToList();
+          //     }
+          //     else
+          //     {
+          //          model = model.ToList();
+          //     }
+          //     return model;
+          //}
 
           public ActionResult GetAllComments(int? BlogID)
           {
