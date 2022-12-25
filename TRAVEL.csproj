@@ -176,6 +176,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="Areas\Admin\Controllers\TourController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -673,6 +674,8 @@
     <Content Include="Areas\Admin\Data\scss\_theme\_theme.scss" />
     <Content Include="Areas\Admin\Views\ListUsers\ListUsers.cshtml" />
     <Content Include="Areas\Admin\Views\Manager\DashBoard.cshtml" />
+    <Content Include="Areas\Admin\Views\Tour\List.cshtml" />
+    <Content Include="Areas\Admin\Views\Tour\Edit.cshtml" />
     <None Include="packages.config" />
     <Content Include="Views\Tours\Tours_grid.cshtml" />
     <Content Include="Views\Shared\_banner.cshtml" />

@@ -1,0 +1,76 @@
+﻿
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+@using TRAVEL.Models
+@model Tour
+<div class="container-xxl flex-grow-1 container-p-y">
+    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Tours /</span> Edit Tour</h4>
+    <div class="card mb-4">
+        <h5 class="card-header">Edit</h5>
+        <div class="card-body">
+            <div class="mt-2 mb-3">
+                <label for="tenTour" class="form-label">Ten Tour</label>
+                <input id="tenTour"
+                       class="form-control"
+                       type="text"
+                       name="tenTour"
+                       placeholder="@Model.TenTour" />
+            </div>
+            <div class="mb-3">
+                <label for="mota" class="form-label">Mo ta</label>
+                <input id="mota" class="form-control" type="text" name="mota" placeholder="@Model.Mota" />
+            </div>
+            <div>
+                <label for="diadiem" class="form-label">Dia Diem</label>
+                <input id="diadiem"
+                       class="form-control"
+                       type="text"
+                       name="gia"
+                       placeholder="@Model.DiaDiem" />
+            </div>
+            <div>
+                <label for="gia" class="form-label">Gia</label>
+                <input id="gia"
+                       class="form-control"
+                       type="text"
+                       name="gia"
+                       placeholder="@Model.Gia" />
+            </div>
+            <div>
+                <label for="diadiem" class="form-label">Vi tri Map (x)</label>
+                <input id="lat"
+                       class="form-control"
+                       type="text"
+                       name="lat"
+                       placeholder="@Model.lat" />
+            </div>
+            <div>
+                <label for="diadiem" class="form-label">Vi tri Map (y)</label>
+                <input id="lng"
+                       class="form-control"
+                       type="text"
+                       name="lng"
+                       placeholder="@Model.lng" />
+            </div>
+        </div>
+        <hr class="m-0" />
+        <div class="card-body">
+            <div class="mb-3">
+                <label for="defaultSelect" class="form-label">Num Day</label>
+                <select id="numday" class="form-select">
+                    <option value="null">Default select</option>
+                    <option value="1">1 Day</option>
+                    <option value="2">2 Day</option>
+                    <option value="3">3 Day</option>
+                    <option value="3">4 Day</option>
+                    <option value="3">5 Day</option>
+                    <option value="3">6 Day</option>
+                </select>
+            </div>
+            
+        </div>
+    </div>
+</div>
+
