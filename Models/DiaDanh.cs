@@ -5,6 +5,7 @@ namespace TRAVEL.Models
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
+    using System.Web;
 
     [Table("DiaDanh")]
     public partial class DiaDanh
@@ -43,6 +44,8 @@ namespace TRAVEL.Models
 
         [StringLength(100)]
         public string ThanhPho { get; set; }
+        [NotMapped]
+        public HttpPostedFileBase ImageFile { get; set; }
 
         public virtual Vung Vung { get; set; }
 

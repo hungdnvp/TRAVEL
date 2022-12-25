@@ -490,7 +490,6 @@
     <Content Include="Content\PagedList.css" />
     <Content Include="Global.asax" />
     <Content Include="Areas\Admin\Views\DiaDanhs\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\DiaDanhs\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\DiaDanhs\Details.cshtml" />
     <Content Include="Areas\Admin\Views\DiaDanhs\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\DiaDanhs\Index.cshtml" />
@@ -526,7 +525,9 @@
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Views\Blog\_getAllComments.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Upload\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="assets\fonts\flaticon\font\Flaticon.eot" />
     <Content Include="assets\fonts\flaticon\font\Flaticon.ttf" />

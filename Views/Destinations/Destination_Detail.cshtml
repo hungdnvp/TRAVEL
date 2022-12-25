@@ -84,18 +84,20 @@
                         <h3 class="heading-2">Related Tours</h3>
                     </div>
                     @foreach(var item in @ViewBag.Tour)
-                    { 
+                    {
+                           int j = 0;
+                        var night = item.NumDay - 1;
                         <div class="col-lg-6 col-md-6">
                             <div class="tour-item">
                                 <div class="item-thumbnail">
                                     <a href="tours-detail.html" class="item-img">
-                                        <div class="plan-price"><sup>$</sup>750<sub>/ night</sub></div>
-                                        <img src="assets/img/tour/img-1.jpg" alt="tours" class="img-fluid">
+                                        <div class="plan-price"><sup>$</sup>@item.Gia<sub>/ night</sub></div>
+                                        <img src="~/assets/@item.LinkImage" alt="tours" class="img-fluid">
                                     </a>
                                 </div>
                                 <div class="detail">
                                     <h1 class="title">
-                                        <a href="tours-detail.html">@item.TenTour</a>
+                                        <a href="~/Tours/Tours_detail/@item.MaTour">@item.TenTour</a>
                                     </h1>
                                     <div class="location">
                                         <a href="tours-detail.html">
@@ -105,99 +107,28 @@
                                 </div>
                                 <div class="footer clearfix">
                                     <div class="pull-left">
-                                        <i class="flaticon-calendar"></i>  5 Days / 4 Nights
+                                        <i class="flaticon-calendar"></i> @item.NumDay Days /@night; Nights
                                     </div>
                                     <div class="pull-right">
-                                        <div class="ratings">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star-o"></i>
-                                        </div>
+                                        @*<div class="ratings">
+                                            @for (int i = 0; i < item.Num; i++)
+                                            {
+                                                <i class="fa fa-star"></i>
+                                                j++;
+                                            }
+                                            @while (j < 5)
+                                            {
+                                                <i class="fa fa-star-o"></i>
+                                                j++;
+                                            }
+                                        </div>*@
                                     </div>
                                 </div>
                             </div>
                         </div>
                     }
                     
-                    @*<div class="col-lg-6 col-md-6">
-                        <div class="tour-item">
-                            <div class="item-thumbnail">
-                                <a href="tours-detail.html" class="item-img">
-                                    <div class="tag">Sale</div>
-                                    <div class="plan-price"><sup>$</sup>600<sub>/ night</sub></div>
-                                    <img src="assets/img/tour/img-2.jpg" alt="tours" class="img-fluid">
-                                </a>
-                            </div>
-                            <div class="detail">
-                                <h1 class="title">
-                                    <a href="tours-detail.html">@ViewBag.Tour[0].Gia</a>
-                                </h1>
-                                <div class="location">
-                                    <a href="tours-detail.html">
-                                        <i class="flaticon-pin"></i> 2726 Shinn Street, New York
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="footer clearfix">
-                                <div class="pull-left">
-                                    <i class="flaticon-calendar"></i> 5 Days / 4 Nights
-                                </div>
-                                <div class="pull-right">
-                                    <div class="ratings">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star-o"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>*@
-                     @*Recent posts start*@ 
-                    <div class="widget recent-posts">
-                        <h4 class="sidebar-title">Recent Posts</h4>
-                        <div class="media mb-4">
-                            <a class="pr-3" href="tours-detail.html">
-                                <img src="assets/img/sub-tours/sub-tours.jpg" alt="sub-tours">
-                            </a>
-                            <div class="media-body align-self-center">
-                                <h5>
-                                    <a href="tours-detail.html">Australia Sydney City</a>
-                                </h5>
-                                <div class="listing-post-meta">
-                                    Oct 27, 2021 | <a href="#">Tour</a>
-                                </div>
-                            </div>
-                        </div>
-                        @*<div class="media mb-4">
-                            <a class="pr-3" href="tours-detail.html">
-                                <img src="assets/img/sub-tours/sub-tours-2.jpg" alt="sub-tours">
-                            </a>
-                            <div class="media-body align-self-center">
-                                <h5>
-                                    <a href="tours-detail.html">Camping and  mountains</a>
-                                </h5>
-                                <div class="listing-post-meta">
-                                    Nov 23, 2021 | <a href="#">Tour</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="media">
-                            <a class="pr-3" href="tours-detail.html">
-                                <img src="assets/img/sub-tours/sub-tours-3.jpg" alt="sub-tours">
-                            </a>
-                            <div class="media-body align-self-center">
-                                <h5>
-                                    <a href="tours-detail.html">Best Switzerland Tour</a>
-                                </h5>
-                                <div class="listing-post-meta">
-                                    Jan 17, 2022 | <a href="#">Tour</a>
-                                </div>
-                            </div>
-                        </div>*@
+                   
                     </div>
                 </div>
             </div>
