@@ -177,7 +177,9 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="Areas\Admin\Controllers\AdminBlogController.cs" />
+    <Compile Include="Areas\Admin\Controllers\Test33Controller.cs" />
     <Compile Include="Areas\Admin\Controllers\TourController.cs" />
+    <Compile Include="Areas\Admin\Controllers\_333Controller.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -190,7 +192,9 @@
     <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\DestinationsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\KhongPhuongThaoController.cs" />
     <Compile Include="Controllers\ToursController.cs" />
+    <Compile Include="Controllers\_33Controller.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -841,7 +845,10 @@
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Views\Blog\_getAllComments.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Areas\Admin\Views\_33\" />
+    <Folder Include="Views\KhongPhuongThao\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="assets\fonts\flaticon\font\Flaticon.eot" />
     <Content Include="assets\fonts\flaticon\font\Flaticon.ttf" />
@@ -1008,6 +1015,11 @@
     <Content Include="ckeditor\SECURITY.md" />
     <Content Include="ckeditor\skins\moono-lisa\readme.md" />
     <Content Include="Areas\Admin\Views\AdminBlog\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Test33\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Test33\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Test33\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Test33\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Test33\Index.cshtml" />
     <None Include="packages.config" />
     <Content Include="Views\Tours\Tours_grid.cshtml" />
     <Content Include="Views\Shared\_banner.cshtml" />
@@ -1022,6 +1034,7 @@
     <Content Include="Views\Tours\_tourgrid.cshtml" />
     <Content Include="Views\Tours\Tours_detail.cshtml" />
     <Content Include="Views\Captcha\Index.cshtml" />
+    <Content Include="Views\_33\Blog_detail_Thao.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

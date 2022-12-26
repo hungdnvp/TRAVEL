@@ -1,0 +1,106 @@
+﻿@model TRAVEL.Models.Blog
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <div>
+        <h4>Blog</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.TaiKhoan.username)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.TaiKhoan.username)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Ten)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Ten)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.NoiDung)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.NoiDung)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Link_Img)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Link_Img)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.TacGia)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.TacGia)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.MoTa)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.MoTa)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.NgayDang)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.NgayDang)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Tag)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Tag)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Category)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Category)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Link_CoverImg)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Link_CoverImg)
+            </dd>
+    
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Blog_ID }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>
