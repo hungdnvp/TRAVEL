@@ -849,9 +849,6 @@
     <Folder Include="Views\KhongPhuongThao\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Upload\" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="assets\fonts\flaticon\font\Flaticon.eot" />
     <Content Include="assets\fonts\flaticon\font\Flaticon.ttf" />
     <Content Include="assets\fonts\flaticon\font\Flaticon.woff" />
