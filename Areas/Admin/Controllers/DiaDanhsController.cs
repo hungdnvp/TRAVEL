@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -37,19 +39,16 @@ namespace TRAVEL.Areas.Admin.Controllers
             return View(diaDanh);
         }
 
-        // GET: Admin/DiaDanhs/Create
+        //GET: Admin/DiaDanhs/Create
         public ActionResult Create()
         {
             ViewBag.MaVung = new SelectList(db.Vungs, "MaVung", "TenVung");
-            return View();
+            return View(new DiaDanh());
         }
 
-        // POST: Admin/DiaDanhs/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "MaDiaDanh,TenDiaDanh,Img,MoTa,MaVung")] DiaDanh diaDanh)
+        public ActionResult Create(DiaDanh diaDanh)
         {
             if (ModelState.IsValid)
             {
@@ -78,9 +77,7 @@ namespace TRAVEL.Areas.Admin.Controllers
             return View(diaDanh);
         }
 
-        // POST: Admin/DiaDanhs/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+      
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "MaDiaDanh,TenDiaDanh,Img,MoTa,MaVung")] DiaDanh diaDanh)
@@ -96,24 +93,24 @@ namespace TRAVEL.Areas.Admin.Controllers
         }
 
         // GET: Admin/DiaDanhs/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            DiaDanh diaDanh = db.DiaDanhs.Find(id);
-            if (diaDanh == null)
-            {
-                return HttpNotFound();
-            }
-            return View(diaDanh);
-        }
+        //public ActionResult Delete(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    DiaDanh diaDanh = db.DiaDanhs.Find(id);
+        //    if (diaDanh == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return RedirectToAction("Index"); ;
+        //}
 
         // POST: Admin/DiaDanhs/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        //[HttpPost, ActionName("Delete")]
+        //[ValidateAntiForgeryToken]
+        public ActionResult Delete(int id)
         {
             DiaDanh diaDanh = db.DiaDanhs.Find(id);
             db.DiaDanhs.Remove(diaDanh);

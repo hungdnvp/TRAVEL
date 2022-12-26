@@ -809,7 +809,6 @@
     <Content Include="Content\PagedList.css" />
     <Content Include="Global.asax" />
     <Content Include="Areas\Admin\Views\DiaDanhs\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\DiaDanhs\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\DiaDanhs\Details.cshtml" />
     <Content Include="Areas\Admin\Views\DiaDanhs\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\DiaDanhs\Index.cshtml" />
@@ -848,6 +847,9 @@
   <ItemGroup>
     <Folder Include="Areas\Admin\Views\_33\" />
     <Folder Include="Views\KhongPhuongThao\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Upload\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="assets\fonts\flaticon\font\Flaticon.eot" />

@@ -1,51 +1,85 @@
-﻿@model IEnumerable<TRAVEL.Models.DiaDanh>
+﻿@*@model IEnumerable<TRAVEL.Models.DiaDanh>*@
+@using TRAVEL.Models;
 
 @{
     ViewBag.Title = "Index";
 }
-
+        
 <h2>Index</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Vung.TenVung)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TenDiaDanh)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Img)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.MoTa)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Vung.TenVung)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TenDiaDanh)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Img)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MoTa)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.MaDiaDanh }) |
-            @Html.ActionLink("Details", "Details", new { id=item.MaDiaDanh }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.MaDiaDanh })
-        </td>
-    </tr>
-}
 
 </table>
+<!-- Basic Bootstrap Table -->
+<div class="card">
+    <h5 class="card-header">Table Basic</h5>
+    <div class="table-responsive text-nowrap">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Destination</th>
+                    <th>Location</th>
+                    <th>City</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody class="table-border-bottom-0">
+                @foreach (DiaDanh dd in Model)
+                {
+                    <tr id="row_@dd.MaDiaDanh">
+                        <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>@dd.MaDiaDanh</strong></td>
+                        <td>
+                            <a class="detail" href="~/Admin/DiaDanhs/Details/@dd.MaDiaDanh">
+                                @dd.TenDiaDanh
+                            </a>
+                        </td>
+                        <td>@dd.Vung.TenVung</td>
+                        <td>@dd.DacSan</td>
+                        <td>
+                            <div class="dropdown">
+                                <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                                    <i class="bx bx-dots-vertical-rounded"></i>
+                                </button>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="~/Admin/DiaDanhs/Edit/@dd.MaDiaDanh"><i class="bx bx-edit-alt me-1"></i> Edit</a>
+                                    @*<a class="dropdown-item" href="~/Admin/DiaDanhs/Delete/@dd.MaDiaDanh"><i class="bx bx-trash me-1"></i> Delete</a>*@
+                                    @Ajax.ActionLink(" Delete", "Delete",new { @id = dd.MaDiaDanh }, new AjaxOptions
+                               {
+                                   Confirm = "Do you want to delele",
+                                   OnComplete = "$('#row_"+@dd.MaDiaDanh+"').remove()",
+                                   HttpMethod = "Delete"
+                               })
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+<script src="../Scripts/jquery.unobtrusive-ajax.min.js" type="text/javascript"></script>
+<!--/ Basic Bootstrap Table -->
+ @*$(document).ready(function () {
+        $("#submit-search").click(function () {
+            let
+            $.ajax({
+                type: "POST",
+                url: '/DiaDanhs/Delete',
+                dataType: 'html',
+                data: JSON.stringify({ part: view, des: destination, tourtype: matourtype, star: favorite, dura: duration }),
+                async: true,
+                contentType: "application/json; charset=utf-8",
+                success: function (response) {
+                    $('#load-database').html(response);
+                    $page.appendTo('#load-database');
+                    window.scrollTo(0, 341.2363586425781);
+                    let result_count = $('#load-database').children().length - 1;
+                    $('span[class="heading"]').text(result_count + " Result Found");
+                }
+            });
+        });*@
